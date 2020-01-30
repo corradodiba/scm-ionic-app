@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="userForm" padding-right>
+      <ion-item>
+        <ion-icon name="walk" slot="start"></ion-icon>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input
+          type="text"
+          formControlName="email"
+          inputmode="email"
+          type="email"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="walk" slot="start"></ion-icon>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input
+          type="password"
+          formControlName="password"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="walk" slot="start"></ion-icon>
+        <ion-label position="floating">Fiscal Code</ion-label>
+        <ion-input formControlName="fiscalCode" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="walk" slot="start"></ion-icon>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="walk" slot="start"></ion-icon>
+        <ion-label position="floating">Surname</ion-label>
+        <ion-input formControlName="surname" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="walk" slot="start"></ion-icon>
+        <ion-label position="floating">Data</ion-label>
+        <ion-datetime
+          displayFormat="DD MM YY"
+          placeholder="Select Date"
+          formControlName="dateOfBirth"
+        ></ion-datetime>
+      </ion-item>
+      <!-- <ion-item>
+        <ion-icon name="walk" slot="start"></ion-icon>
+        <ion-label position="floating">Image</ion-label>
+        <ion-input formControlName="imagePath" required></ion-input>
+      </ion-item> -->
+      <ion-item>
+        <ion-icon name="walk" slot="start"></ion-icon>
+        <ion-label position="floating">Type</ion-label>
+        <ion-select formControlName="type" required>
+          <ion-select-option value="Admin">Admin</ion-select-option>
+          <ion-select-option value="Student">Student</ion-select-option>
+          <ion-select-option value="Teacher"
+            >Teacher</ion-select-option
+          ></ion-select
+        >
+      </ion-item>
+
+      <ion-button
+        type="submit"
+        color="primary"
+        expand="block"
+        [disabled]="!userForm.valid"
+        (click)="signUp()"
+        >Login</ion-button
+      >
+    </form>
+  </ion-card>
+</ion-content>
