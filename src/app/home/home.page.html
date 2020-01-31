@@ -11,7 +11,15 @@
     >Avviare il server in locale, e disabilitare momentaneamente i middleware di
     authenticazione e authorizzazione</ion-label
   >
-  <ion-tab-button tab="signup" [routerLink]="'/signup'">
-    <ion-label>let's start</ion-label>
-  </ion-tab-button>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="signup" [routerLink]="'/signup'">
+        <ion-label>Sign Up</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="login" [routerLink]="'/login'">
+        <ion-label>Login</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
