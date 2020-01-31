@@ -16,7 +16,7 @@ export class SignupPage implements OnInit {
     name: new FormControl(),
     surname: new FormControl(),
     dateOfBirth: new FormControl(),
-    //imagePath: new FormControl(),
+    imagePath: new FormControl(),
     type: new FormControl(),
   });
   constructor(private signUpService: SignUpService) {}
@@ -25,6 +25,6 @@ export class SignupPage implements OnInit {
 
   signUp() {
     let user: User = this.userForm.value;
-    this.signUpService.registration(user);
+    console.log(this.signUpService.registration(user));
   }
 }
