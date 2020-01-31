@@ -24,7 +24,8 @@ export class SignupPage implements OnInit {
   ngOnInit() {}
 
   signUp() {
-    let user: User = this.userForm.value;
-    console.log(this.signUpService.registration(user));
+    const user: User = this.userForm.value;
+    this.signUpService.registration(user);
   }
+  //user:admin@admin.admin pass: admin
 }
