@@ -27,5 +27,4 @@ export class SignupPage implements OnInit {
     const user: User = this.userForm.value;
     this.signUpService.registration(user);
   }
-  //user:admin@admin.admin pass: admin
 }
