@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000',
   coursesPath: 'courses',
+  signUpPath: 'auth/signup',
+  loginPath: 'auth/login',
 };
 
 /*
