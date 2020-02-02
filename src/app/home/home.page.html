@@ -1,17 +1,3 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-label
-    >Avviare il server in locale, e disabilitare momentaneamente i middleware di
-    authenticazione e authorizzazione</ion-label
-  >
-  <ion-tab-button tab="courses" [routerLink]="'/courses'">
-    <ion-label>let's start</ion-label>
-  </ion-tab-button>
+  <app-tabs [tabs]="tabs"></app-tabs>
 </ion-content>

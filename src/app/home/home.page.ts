@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Item } from '../models/Tabs.model';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  constructor() {}
-
+  tabs: Item[] = [
+    {
+      title: 'dashboard',
+      url: './dashboard',
+      icon: 'apps',
+    },
+    {
+      title: 'profile',
+      url: './profile',
+      icon: 'contact',
+    }
+  ];
 }
