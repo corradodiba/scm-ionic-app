@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Item } from './../../models/Tabs.model';
+import { Tab } from '../../models/Tab.model';
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
 })
 export class TabsComponent implements OnInit {
-  @Input() tabs: Item[];
-  //tot: any = 2;
+  @Input() tabs: Tab[];
+  // tot: any = 2;
 
   constructor() {}
 
@@ -18,5 +18,5 @@ export class TabsComponent implements OnInit {
   //   if (this.tabs > this.tot) {
   //     return 2;
   //   }
-  //}
+  // }
 }
