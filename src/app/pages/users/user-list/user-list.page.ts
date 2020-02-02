@@ -10,13 +10,13 @@ import { UsersService } from 'src/app/providers/users.service';
   styleUrls: ['./user-list.page.scss'],
 })
 export class UserListPage implements OnInit {
-  user: User[] = [];
+  users: User[] = [];
   userSelected: User;
 
   constructor(private usersService: UsersService) {}
 
   async ngOnInit() {
-    this.user = await this.usersService.allStudent();
+    this.users = await this.usersService.allStudent();
   }
 
   async onUserSelected(id: string) {

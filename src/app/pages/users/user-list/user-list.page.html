@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor='let user of users'>
+    <ion-item *ngFor='let user of users' [routerLink]="['details/' + user._id]">
       <ion-label> {{ user.name }} {{ user.surname }} </ion-label>
     </ion-item>
   </ion-list>  
