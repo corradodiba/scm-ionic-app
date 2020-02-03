@@ -1,5 +1,1 @@
-export enum AuthorizationType {
-  Teacher,
-  Student,
-  Admin,
-}
+export type AuthorizationType = 'Admin' | 'Student' | 'Teacher';
