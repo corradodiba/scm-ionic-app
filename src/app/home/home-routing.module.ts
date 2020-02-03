@@ -5,7 +5,7 @@ import { HomePage } from './home.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: HomePage,
     children: [
       {
@@ -29,14 +29,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/home/tabs/dashboard',
+        redirectTo: '/home',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/home/tabs/dashboard',
+    redirectTo: '/home',
     pathMatch: 'full',
   },
 ];
