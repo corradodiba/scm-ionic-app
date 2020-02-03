@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="userForm" padding-right>
+      <ion-item>
+        <ion-icon name="md-contact" slot="start"></ion-icon>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input
+          formControlName="email"
+          inputmode="email"
+          type="email"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="md-key" slot="start"></ion-icon>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input
+          type="password"
+          formControlName="password"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-button
+        type="submit"
+        color="primary"
+        expand="block"
+        [disabled]="!userForm.valid"
+        (click)="login()"
+        >Login</ion-button
+      >
+    </form>
+  </ion-card>
+</ion-content>
