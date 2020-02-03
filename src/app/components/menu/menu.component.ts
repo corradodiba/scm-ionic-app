@@ -1,30 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NavigationItem } from '../../models/NavigationItem.model';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
-export class MenuComponent implements OnInit {
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home',
-    },
-    {
-      title: 'Signup',
-      url: '/home',
-      icon: 'log-in',
-    },
-    {
-      title: 'Login',
-      url: '/home',
-      icon: 'log-in',
-    },
-  ];
+export class MenuComponent {
+  @Input() pages: NavigationItem[];
 
   constructor() {}
-
-  ngOnInit() {}
 }
