@@ -11,6 +11,8 @@ export class TabsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log(this.tabs);
+    if (this.tabs.length > 8) {
+      this.tabs.length = 8;
+    }
   }
 }

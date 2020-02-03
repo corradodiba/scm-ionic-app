@@ -6,7 +6,7 @@ import { NavigationItem } from '../models/NavigationItem.model';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
   tabs: NavigationItem[] = [
     {
       title: 'dashboard',
@@ -20,8 +20,4 @@ export class HomePage implements OnInit {
     },
   ];
   constructor() {}
-
-  ngOnInit() {
-    this.tabs.length = 2;
-  }
 }
