@@ -2,8 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { HomeRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
+
 import { MenuComponent } from '../components/menu/menu.component';
 import { TabsComponent } from '../components/tabs/tabs.component';
 
@@ -12,7 +16,7 @@ import { TabsComponent } from '../components/tabs/tabs.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomeRoutingModule
+    HomeRoutingModule,
     RouterModule.forChild([
       {
         path: '',
@@ -20,7 +24,6 @@ import { TabsComponent } from '../components/tabs/tabs.component';
       },
     ]),
   ],
-  declarations: [HomePage, TabsComponents, MenuComponent]
+  declarations: [HomePage, TabsComponent, MenuComponent],
 })
-
 export class HomePageModule {}
