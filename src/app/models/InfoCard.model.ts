@@ -1,4 +1,4 @@
-export interface Card {
+export interface InfoCard {
   title: string;
   icon: string;
 }

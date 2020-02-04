@@ -29,6 +29,6 @@ export class CoursesListPage implements OnInit {
   }
   async navigate(id: string) {
     await this.onSelectCourse(id);
-    await this.navCtrl.navigateForward(this.selectedCourse._id);
+    await this.navCtrl.navigateForward(this.selectedCourse.id);
   }
 }

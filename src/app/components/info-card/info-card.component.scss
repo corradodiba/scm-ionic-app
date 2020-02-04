@@ -1,0 +1,17 @@
+.dimension-card {
+    width: 220px;
+    border-radius: 15px;
+}
+
+.dimension-subcard {
+    width: 350px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.vertical-align-content>* {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from 'src/app/models/Card.model';
+import { InfoCard } from 'src/app/models/InfoCard.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,6 +7,17 @@ import { Card } from 'src/app/models/Card.model';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  cards: InfoCard[] = [
+    {
+      title: 'Course',
+      icon: 'school',
+    },
+    {
+      title: 'Subjects',
+      icon: 'book',
+    },
+  ];
+
   constructor() {}
 
   ngOnInit() {}

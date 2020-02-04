@@ -1,5 +1,5 @@
 interface Course {
-  _id: string;
+  id: string;
   name: string;
   status: string;
   year: Date;

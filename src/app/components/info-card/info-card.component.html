@@ -1,0 +1,29 @@
+<ion-grid>
+  <ion-row class="vertical-align-content">
+    <ion-col>
+      <ion-card class="dimension-card" *ngFor=" let card of cards">
+        <ion-card-header>
+          <ion-card-title>{{card.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-item>
+          <ion-label>{{cards.length}}</ion-label>
+          <ion-icon [name]="card.icon" slot="end"></ion-icon>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-grid>
+  <ion-row class="vertical-align-content">
+    <ion-col>
+      <ion-card class="dimension-subcard" *ngFor=" let card of cards">
+        <ion-card-header>
+          <ion-card-title>{{card.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-item>
+          <ion-label *ngFor="let title of cards"> {{title.title}}</ion-label>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
