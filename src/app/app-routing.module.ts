@@ -13,6 +13,18 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/courses/courses.module').then(m => m.CoursesModule),
   },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        m => m.DashboardPageModule,
+      ),
+  },
 ];
 
 @NgModule({

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
+
 import { NavigationItem } from '../models/NavigationItem.model';
 
 @Component({
@@ -7,7 +10,8 @@ import { NavigationItem } from '../models/NavigationItem.model';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  public pages: NavigationItem[] = [
+
+  pages: NavigationItem[] = [
     {
       title: 'Home',
       url: '/home',
@@ -22,7 +26,21 @@ export class HomePage {
       title: 'Login',
       url: '/home',
       icon: 'log-in',
+    }
+  ];
+  
+  tabs: NavigationItem[] = [
+    {
+      title: 'dashboard',
+      url: '/home',
+      icon: 'apps',
+    },
+    {
+      title: 'profile',
+      url: '/home',
+      icon: 'contact',
     },
   ];
+  
   constructor() {}
 }
