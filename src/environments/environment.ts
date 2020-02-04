@@ -8,6 +8,7 @@ export const environment = {
   coursesPath: 'courses',
   signUpPath: 'auth/signup',
   loginPath: 'auth/login',
+  usersPath: 'users',
 };
 
 /*

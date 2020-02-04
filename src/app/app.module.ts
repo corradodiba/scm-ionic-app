@@ -9,6 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DashboardPageModule } from './pages/dashboard/dashboard.module';
+import { CoursesModule } from './pages/courses/courses.module';
+import { UsersModule } from './pages/users/users.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -17,6 +20,9 @@ import { AppRoutingModule } from './app-routing.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    DashboardPageModule,
+    CoursesModule,
+    UsersModule,
   ],
   providers: [
     StatusBar,

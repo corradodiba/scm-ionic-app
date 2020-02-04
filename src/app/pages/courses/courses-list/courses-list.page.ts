@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
 
 import Course from 'src/app/models/Course.model';
 
@@ -14,10 +13,7 @@ export class CoursesListPage implements OnInit {
   courses: Course[] = [];
   selectedCourse: Course;
 
-  constructor(
-    private coursesService: CoursesService,
-    private navCtrl: NavController,
-  ) {}
+  constructor(private coursesService: CoursesService) {}
 
   async ngOnInit() {
     this.courses = await this.coursesService.getAll();
@@ -25,10 +21,8 @@ export class CoursesListPage implements OnInit {
 
   async onSelectCourse(id: string) {
     this.selectedCourse = await this.coursesService.getById(id);
-    console.log(this.selectedCourse.name);
   }
   async navigate(id: string) {
     await this.onSelectCourse(id);
-    await this.navCtrl.navigateForward(this.selectedCourse._id);
   }
 }

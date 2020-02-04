@@ -20,10 +20,7 @@ export class CourseDetailPage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    console.log('ci sono arrivato!');
     this.courseId = this.router.snapshot.paramMap.get('courseId');
-    console.log('courseId => ', this.courseId);
     this.course = await this.coursesService.getById(this.courseId);
-    console.log('course-detail', this.course);
   }
 }

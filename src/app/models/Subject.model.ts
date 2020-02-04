@@ -1,5 +1,5 @@
 export interface Subject {
-  _id: string;
+  id: string;
   name: string;
   hours: number;
 }

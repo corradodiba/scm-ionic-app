@@ -33,8 +33,13 @@ export class HomePage {
       icon: 'apps',
     },
     {
-      title: 'my profile',
-      url: '/profile',
+      title: 'courses',
+      url: '/courses',
+      icon: 'contact',
+    },
+    {
+      title: 'users',
+      url: '/users',
       icon: 'contact',
     },
   ];

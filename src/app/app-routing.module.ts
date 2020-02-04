@@ -35,6 +35,21 @@ const routes: Routes = [
         m => m.DashboardPageModule,
       ),
   },
+  {
+    path: 'users',
+    loadChildren: () =>
+      import('./pages/users/users.module').then(m => m.UsersModule),
+  },
+  {
+    path: 'students',
+    loadChildren: () =>
+      import('./pages/users/users.module').then(m => m.UsersModule),
+  },
+  {
+    path: 'teachers',
+    loadChildren: () =>
+      import('./pages/users/users.module').then(m => m.UsersModule),
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Users List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar>
+    <ion-segment
+      (ionChange)="segmentChanged()"
+      [(ngModel)]="segment"
+      color="danger"
+    >
+      <ion-segment-button value="0">
+        <ion-label>{{segments[0]}}</ion-label>
+        <ion-icon name="person"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="1">
+        <ion-label>{{segments[1]}}</ion-label>
+        <ion-icon name="laptop"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        <ion-label>{{segments[2]}}</ion-label>
+        <ion-icon name="school"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
+    <ion-slide>
+      <ion-list class="full-width">
+        <ion-item
+          *ngFor="let user of users"
+          [routerLink]="['users/' + user.id]"
+        >
+          <ion-label> {{ user.name }} {{ user.surname }} </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
