@@ -19,7 +19,7 @@ export class UserDetailPage implements OnInit {
 
   async ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.user = await this.service.getStudentById(this.id);
+    this.user = await this.service.getStudentsById(this.id);
   }
 
 }

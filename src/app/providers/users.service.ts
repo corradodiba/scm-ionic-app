@@ -5,6 +5,8 @@ import { environment } from '../../environments/environment';
 
 import User from '../models/User.model';
 
+import { typeUser } from '../interfaces/typeUser.type'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +14,21 @@ export class UsersService {
   usersApiUrl = `${environment.apiUrl}/${environment.usersPath}`;
 
   constructor(private httpClient: HttpClient) {}
-  
-  allStudent(): Promise<User[]> {
+
+  getUsers(): Promise<User[]> {
     return this.httpClient.get<User[]>(this.usersApiUrl).toPromise();
   }
+  
+  // getStudents(): Promise<User[]> {
+  //   return this.httpClient.get<User[]>(this.usersApiUrl).toPromise();
+  // }
 
-  getStudentById(id: string): Promise<User> {
+  getStudentsById(id: string): Promise<User> {
     return this.httpClient.get<User>(`${this.usersApiUrl}/${id}`).toPromise();
+  }
+
+  async getUsersByType(type: typeUser) {
+    const user = await this.getUsers();
+    return user.filter((user) => user.type === type)
   }
 }
