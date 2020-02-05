@@ -11,10 +11,7 @@ export class DashboardPage implements OnInit {
     {
       title: 'Course',
       icon: 'school',
-    },
-    {
-      title: 'Subjects',
-      icon: 'book',
+      counter: 3,
     },
   ];
 

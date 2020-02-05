@@ -6,7 +6,7 @@ import { InfoCard } from '../../models/InfoCard.model';
   styleUrls: ['./info-card.component.scss'],
 })
 export class InfoCardComponent {
-  @Input() cards: InfoCard[];
+  @Input() cards: InfoCard;
 
   constructor() {}
 }
