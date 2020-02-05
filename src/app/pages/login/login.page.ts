@@ -23,10 +23,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   async login() {
-    const userLoginData = this.userForm.value;
+    const { email, password } = this.userForm.value;
     this.userLogged = await this.loginService.access({
-      email: userLoginData.email,
-      password: userLoginData.password,
+      email,
+      password,
     });
     if (this.userLogged != null) {
       this.navCtrl.navigateBack(['/home']);
