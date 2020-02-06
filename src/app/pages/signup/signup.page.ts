@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { User } from '../../models/User.model';
-import { SignUpService } from 'src/app/providers/signup.service';
-import { LoginService } from 'src/app/providers/login.service';
+import { AuthService } from 'src/app/providers/auth.service';
 import { FetchedUser } from 'src/app/models/FetchedUser.model';
 import { NavController } from '@ionic/angular';
 
@@ -24,19 +22,17 @@ export class SignupPage implements OnInit {
   });
   fetchedUser: FetchedUser;
   constructor(
-    private signUpService: SignUpService,
-    private loginService: LoginService,
+    private authService: AuthService,
     private navCtrl: NavController,
   ) {}
 
   ngOnInit() {}
 
-  async signUp() {
-    const { email, password } = await this.signUpService.registration(
-      this.userForm.value,
-    );
-    this.fetchedUser = await this.loginService.access({ email, password });
-    if (this.fetchedUser != null) {
+  signUp() {
+    if (this.userForm.invalid) return;
+    this.authService.registration(this.userForm.value);
+    if (true) {
+      //TODO cambiare
       this.navCtrl.navigateBack(['/home']);
     }
   }

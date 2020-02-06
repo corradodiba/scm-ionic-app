@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { LoginService } from 'src/app/providers/login.service';
+import { AuthService } from 'src/app/providers/auth.service';
 import { FetchedUser } from 'src/app/models/FetchedUser.model';
 import { NavController } from '@ionic/angular';
 
@@ -16,19 +16,19 @@ export class LoginPage implements OnInit {
   });
   userLogged: FetchedUser;
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private navCtrl: NavController,
   ) {}
 
   ngOnInit() {}
 
-  async login() {
+  login() {
     const { email, password } = this.userForm.value;
-    this.userLogged = await this.loginService.access({
+    this.authService.access({
       email,
       password,
     });
-    if (this.userLogged != null) {
+    if (localStorage.getItem('token')) {
       this.navCtrl.navigateBack(['/home']);
     }
   }
