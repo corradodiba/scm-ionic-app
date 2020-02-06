@@ -12,8 +12,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardPageModule } from './pages/dashboard/dashboard.module';
 import { CoursesModule } from './pages/courses/courses.module';
 import { UsersModule } from './pages/users/users.module';
+import { MenuButtonModule } from './components/menu-button/menu-button.module';
+
+import { MenuComponent } from './components/menu/menu.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MenuComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -23,6 +27,7 @@ import { UsersModule } from './pages/users/users.module';
     DashboardPageModule,
     CoursesModule,
     UsersModule,
+    MenuButtonModule,
   ],
   providers: [
     StatusBar,

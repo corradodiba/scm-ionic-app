@@ -1,15 +1,16 @@
-  <ion-menu contentId="main-content" type="overlay">
-    <ion-content>
-      <ion-list>
-        <ion-menu-toggle auto-hide="false" *ngFor="let page of pages">
-          <ion-item [routerDirection]="'root'" [routerLink]="[page.url]">
-            <ion-icon slot="start" [name]="page.icon"></ion-icon>
-            <ion-label>
-              {{page.title}}
-            </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  <ion-router-outlet main id="main-content"></ion-router-outlet>
+<ion-menu contentId="main-content" type="overlay">
+  <app-menu-button></app-menu-button>
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle auto-hide="false" *ngFor="let page of pages">
+        <ion-item [routerDirection]="'root'" [routerLink]="[page.url]">
+          <ion-icon slot="start" [name]="page.icon"></ion-icon>
+          <ion-label>
+            {{ page.title }}
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet id="main-content"></ion-router-outlet>

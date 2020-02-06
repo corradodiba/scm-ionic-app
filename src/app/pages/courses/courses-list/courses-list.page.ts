@@ -17,6 +17,7 @@ export class CoursesListPage implements OnInit {
 
   async ngOnInit() {
     this.courses = await this.coursesService.getAll();
+    console.log(this.courses);
   }
 
   async onSelectCourse(id: string) {
@@ -24,5 +25,6 @@ export class CoursesListPage implements OnInit {
   }
   async navigate(id: string) {
     await this.onSelectCourse(id);
+    // await this.navCtrl.navigateForward(this.selectedCourse.id);
   }
 }

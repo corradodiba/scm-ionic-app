@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavigationItem } from '../models/NavigationItem.model';
+import { NavigationItem } from '../../models/NavigationItem.model';
 
 @Component({
   selector: 'app-home',
@@ -8,24 +8,6 @@ import { NavigationItem } from '../models/NavigationItem.model';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  pages: NavigationItem[] = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home',
-    },
-    {
-      title: 'Signup',
-      url: '/signup',
-      icon: 'log-in',
-    },
-    {
-      title: 'Login',
-      url: '/login',
-      icon: 'log-in',
-    },
-  ];
-
   tabs: NavigationItem[] = [
     {
       title: 'dashboard',
@@ -40,6 +22,11 @@ export class HomePage {
     {
       title: 'users',
       url: '/users',
+      icon: 'contact',
+    },
+    {
+      title: 'profile',
+      url: '/profile',
       icon: 'contact',
     },
   ];

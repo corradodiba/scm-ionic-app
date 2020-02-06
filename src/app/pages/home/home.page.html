@@ -1,13 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-menu-button [title]="'Home'"></app-menu-button>
 
 <ion-content class="background">
   <div class="ion-text-center">
@@ -46,6 +37,5 @@
       <ion-label>Slack Chanel</ion-label>
     </ion-item>
   </ion-list>
-  <app-menu [pages]="pages"></app-menu>
   <app-tabs [tabs]="tabs"></app-tabs>
 </ion-content>
