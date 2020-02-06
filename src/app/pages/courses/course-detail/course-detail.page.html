@@ -1,7 +1,5 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Course {{course?.name}}</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content> </ion-content>
+<app-menu-button
+  [title]="'Course' + course?.name"
+  [isToBack]="true"
+></app-menu-button>
+<ion-content>Details works!</ion-content>

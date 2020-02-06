@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomeRoutingModule } from './home-routing.module';
+import { MenuButtonModule } from '../components/menu-button/menu-button.module';
 
 import { HomePage } from './home.page';
 
-import { MenuComponent } from '../components/menu/menu.component';
 import { TabsComponent } from '../components/tabs/tabs.component';
 
 @NgModule({
@@ -23,7 +23,8 @@ import { TabsComponent } from '../components/tabs/tabs.component';
         component: HomePage,
       },
     ]),
+    MenuButtonModule,
   ],
-  declarations: [HomePage, TabsComponent, MenuComponent],
+  declarations: [HomePage, TabsComponent],
 })
 export class HomePageModule {}

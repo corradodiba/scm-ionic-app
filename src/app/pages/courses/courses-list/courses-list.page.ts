@@ -21,6 +21,7 @@ export class CoursesListPage implements OnInit {
 
   async ngOnInit() {
     this.courses = await this.coursesService.getAll();
+    console.log(this.courses);
   }
 
   async onSelectCourse(id: string) {

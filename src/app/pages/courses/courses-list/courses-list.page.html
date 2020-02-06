@@ -1,13 +1,9 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Courses</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-menu-button [title]="'Courses'"></app-menu-button>
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let course of courses" [routerLink]="course._id">
-      {{course.name}}
+    <ion-item *ngFor="let course of courses" [routerLink]="course?.id">
+      {{course?.name}}
     </ion-item>
   </ion-list>
 </ion-content>
+>
