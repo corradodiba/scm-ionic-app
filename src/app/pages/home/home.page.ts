@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavigationItem } from '../models/NavigationItem.model';
+import { NavigationItem } from '../../models/NavigationItem.model';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +22,11 @@ export class HomePage {
     {
       title: 'courses',
       url: '/courses',
+      icon: 'contact',
+    },
+    {
+      title: 'users',
+      url: '/users',
       icon: 'contact',
     },
   ];

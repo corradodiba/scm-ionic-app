@@ -5,11 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomeRoutingModule } from './home-routing.module';
-import { MenuButtonModule } from '../components/menu-button/menu-button.module';
+import { MenuButtonModule } from '../../components/menu-button/menu-button.module';
 
 import { HomePage } from './home.page';
 
-import { TabsComponent } from '../components/tabs/tabs.component';
+import { TabsComponent } from '../../components/tabs/tabs.component';
 
 @NgModule({
   imports: [
