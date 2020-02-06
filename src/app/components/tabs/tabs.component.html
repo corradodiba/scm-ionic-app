@@ -1,7 +1,7 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button [routerLink]="[item.url]" *ngFor="let item of tabs">
-      <ion-label>{{item.title}}</ion-label>
+      <ion-label>{{ item.title }}</ion-label>
       <ion-icon [name]="item.icon"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>
