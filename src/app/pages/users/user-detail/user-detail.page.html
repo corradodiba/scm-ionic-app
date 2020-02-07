@@ -1,21 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>user-detail</ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-menu-button
+  [title]="user?.name + ' ' + user?.surname"
+  [isToBack]="true"
+></app-menu-button>
 
 <ion-content>
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{ user?.name}} {{ user?.surname }}</ion-card-title>
-    </ion-card-header>
     <ion-card-content>
-      <p>Fiscal Code: </p> {{ user?.fiscalCode }} <br>
-      <p>Date of Birth: </p> {{ user?.dateOfBirth }} <br>
-      <p>Type of user: </p> {{ user?.type }}
+      <p>Fiscal Code:</p>
+      {{ user?.fiscalCode }} <br />
+      <p>Date of Birth:</p>
+      {{ user?.dateOfBirth }} <br />
+      <p>Type of user:</p>
+      {{ user?.type }}
     </ion-card-content>
   </ion-card>
 </ion-content>
