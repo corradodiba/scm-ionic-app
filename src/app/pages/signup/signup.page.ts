@@ -31,8 +31,7 @@ export class SignupPage implements OnInit {
   signUp() {
     if (this.userForm.invalid) return;
     this.authService.registration(this.userForm.value);
-    if (true) {
-      //TODO cambiare
+    if (localStorage.getItem('token')) {
       this.navCtrl.navigateBack(['/home']);
     }
   }

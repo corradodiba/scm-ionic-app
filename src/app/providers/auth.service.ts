@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FetchedUser } from '../models/FetchedUser.model';
 import { environment } from 'src/environments/environment';
+import { Subject } from 'rxjs';
 import { User } from '../models/User.model';
 const ApiUrl = `${environment.apiUrl}`;
 @Injectable({
@@ -10,8 +11,13 @@ const ApiUrl = `${environment.apiUrl}`;
 export class AuthService {
   isAuthenticated = false;
   private tokenTimeout;
+  private authStatusListener = new Subject<boolean>();
   private fetchedUser: FetchedUser;
   constructor(private httpClient: HttpClient) {}
+
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
 
   async access(body: { email: string; password: string }) {
     this.httpClient
@@ -25,13 +31,14 @@ export class AuthService {
           const expirationDate = new Date(
             timeStamp.getTime() + this.fetchedUser.expiresIn * 1000,
           );
+          this.authStatusListener.next(true);
           localStorage.setItem('token', this.fetchedUser.token);
           localStorage.setItem('expiresIn', expirationDate.toISOString());
           localStorage.setItem('userId', this.fetchedUser.id);
           localStorage.setItem('type', this.fetchedUser.type);
+          console.log('Logged in');
         }
       });
-    console.log(this.fetchedUser);
   }
   registration(body: User) {
     const { email, password } = body;
@@ -54,5 +61,26 @@ export class AuthService {
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('userId');
     localStorage.removeItem('type');
+    this.authStatusListener.next(false);
+  }
+  autoConfigAuthUser() {
+    const loggedUser = {
+      token: localStorage.getItem('token'),
+      expiresIn: new Date(localStorage.getItem('expiresIn')),
+      id: localStorage.getItem('userId'),
+      type: localStorage.getItem('type'),
+    };
+    if (!loggedUser) {
+      //e se il token scadesse?
+      return;
+    }
+    const timestamp = new Date();
+    const expirationDate = loggedUser.expiresIn.getTime() - timestamp.getTime();
+    if (expirationDate > 0) {
+      this.fetchedUser.token = loggedUser.token;
+      this.isAuthenticated = true;
+      this.getTokenTimeout(expirationDate / 1000);
+      this.authStatusListener.next(true);
+    }
   }
 }
