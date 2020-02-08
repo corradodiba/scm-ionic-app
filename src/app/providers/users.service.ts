@@ -12,6 +12,7 @@ import { TypeUser } from '../models/TypeUser.type';
 })
 export class UsersService {
   usersApiUrl = `${environment.apiUrl}/${environment.usersPath}`;
+  userByTypeUrl = `${this.usersApiUrl}${environment.usersTypeQuery}`;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -24,7 +25,8 @@ export class UsersService {
   }
 
   async getUsersByType(type: TypeUser) {
-    const user = await this.getUsers();
-    return user.filter((fetchedUser: User) => fetchedUser.type === type);
+    return this.httpClient
+      .get<User[]>(`${this.userByTypeUrl}${type}`)
+      .toPromise();
   }
 }

@@ -9,6 +9,7 @@ export const environment = {
   signUpPath: 'auth/signup',
   loginPath: 'auth/login',
   usersPath: 'users',
+  usersTypeQuery: '?type=',
 };
 
 /*
