@@ -12,14 +12,31 @@ export class AuthService {
   isAuthenticated = false;
   private tokenTimeout;
   private authStatusListener = new Subject<boolean>();
-  private fetchedUser: FetchedUser;
+  private fetchedUser: FetchedUser = {
+    token: '',
+    expiresIn: null,
+    id: null,
+    type: null,
+  };
   constructor(private httpClient: HttpClient) {}
 
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
 
-  async access(body: { email: string; password: string }) {
+  getToken() {
+    return this.fetchedUser.token;
+  }
+
+  registration(body: User) {
+    this.httpClient
+      .post<User>(`${ApiUrl}/${environment.signUpPath}`, body)
+      .subscribe(user => {
+        const { email, password } = user;
+        this.access({ email, password });
+      });
+  }
+  access(body: { email: string; password: string }) {
     this.httpClient
       .post<FetchedUser>(`${ApiUrl}/${environment.loginPath}`, body)
       .subscribe(resp => {
@@ -36,16 +53,7 @@ export class AuthService {
           localStorage.setItem('expiresIn', expirationDate.toISOString());
           localStorage.setItem('userId', this.fetchedUser.id);
           localStorage.setItem('type', this.fetchedUser.type);
-          console.log('Logged in');
         }
-      });
-  }
-  registration(body: User) {
-    const { email, password } = body;
-    this.httpClient
-      .post<User>(`${ApiUrl}/${environment.signUpPath}`, body)
-      .subscribe(placeholder => {
-        this.access({ email, password });
       });
   }
   getTokenTimeout(expiresIn: number) {
@@ -64,14 +72,17 @@ export class AuthService {
     this.authStatusListener.next(false);
   }
   autoConfigAuthUser() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
     const loggedUser = {
-      token: localStorage.getItem('token'),
+      token,
       expiresIn: new Date(localStorage.getItem('expiresIn')),
       id: localStorage.getItem('userId'),
       type: localStorage.getItem('type'),
     };
     if (!loggedUser) {
-      //e se il token scadesse?
       return;
     }
     const timestamp = new Date();

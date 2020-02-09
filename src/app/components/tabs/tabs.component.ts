@@ -22,7 +22,6 @@ export class TabsComponent implements OnInit {
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
         this.isAuthenticated = isAuthenticated;
-        console.log('Tabs');
       });
   }
 
