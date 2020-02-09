@@ -1,9 +1,35 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-menu-button [title]="'Dashboard'"></app-menu-button>
 
 <ion-content>
-  <app-info-card [cards]="cards"></app-info-card>
+    <ion-slides scrollbar="true">
+    <ion-slide>
+      <ion-list style="width: 100%">
+        <app-info-card [cards]="cards"></app-info-card>
+      </ion-list>
+      <ion-list style="margin-right: -60px">
+        <app-info-card [cards]="cards"></app-info-card>
+      </ion-list>
+    </ion-slide>
+    <ion-slide>
+      <ion-list style=" width: 100%">
+        <app-info-card [cards]="cards"></app-info-card>
+      </ion-list>
+      <ion-list style="margin-right: -60px">
+        <app-info-card [cards]="cards"></app-info-card>
+      </ion-list>
+    </ion-slide>
+    <ion-slide>
+      <ion-list style=" width: 100%">
+        <app-info-card [cards]="cards"></app-info-card>
+      </ion-list>
+      <ion-list style="margin-right: -60px">
+        <app-info-card [cards]="cards"></app-info-card>
+      </ion-list>
+    </ion-slide>
+    <ion-slide>
+      <ion-list style=" width: 100%">
+        <app-info-card [cards]="cards"></app-info-card>
+      </ion-list>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

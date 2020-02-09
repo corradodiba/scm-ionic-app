@@ -8,9 +8,16 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
 import { InfoCardComponent } from 'src/app/components/info-card/info-card.component';
+import { MenuButtonModule } from 'src/app/components/menu-button/menu-button.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, DashboardPageRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    DashboardPageRoutingModule,
+    MenuButtonModule,
+  ],
   declarations: [DashboardPage, InfoCardComponent],
 })
 export class DashboardPageModule {}
