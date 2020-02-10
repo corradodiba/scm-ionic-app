@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { InfoCard } from 'src/app/models/InfoCard.model';
+import { IonSlide } from '@ionic/angular';
+import { CoursesService } from 'src/app/providers/courses.service';
+import Course from 'src/app/models/Course.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,15 +10,36 @@ import { InfoCard } from 'src/app/models/InfoCard.model';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  cards: InfoCard[] = [
-    {
-      title: 'Course',
-      icon: 'school',
-      counter: 3,
-    },
-  ];
+  @ViewChild('slides', { static: true }) slider: IonSlide;
+  courses: Course[];
 
-  constructor() {}
+  cards: InfoCard[] = [];
 
-  ngOnInit() {}
+  constructor(private coursesService: CoursesService) {}
+
+  async ngOnInit() {
+    this.courses = await this.coursesService.getAll();
+    this.cards = [
+      {
+        title: 'Courses',
+        icon: 'school',
+        counter: this.courses.length,
+      },
+      {
+        title: 'Teachers',
+        icon: 'school',
+        counter: this.courses.length,
+      },
+      {
+        title: 'Students',
+        icon: 'school',
+        counter: this.courses.length,
+      },
+      {
+        title: 'Subjects',
+        icon: 'school',
+        counter: this.courses.length,
+      },
+    ];
+  }
 }

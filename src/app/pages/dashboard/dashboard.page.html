@@ -1,9 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-menu-button [title]="'Dashboard'"></app-menu-button>
 
 <ion-content>
-  <app-info-card [cards]="cards"></app-info-card>
+  <ion-slides>
+    <ion-slide
+      *ngFor="let card of cards; let i = index"
+      [ngStyle]="{'transform': 'translate(-' + 20 * i + 'px, 0px)'}"
+    >
+      <app-info-card class="card" [card]="card"></app-info-card>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
