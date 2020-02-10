@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import User from '../../models/User.model';
-import { SignUpService } from 'src/app/providers/signup.service';
+
+import { AuthService } from 'src/app/providers/auth.service';
+import { FetchedUser } from 'src/app/models/FetchedUser.model';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signup',
@@ -19,12 +21,21 @@ export class SignupPage implements OnInit {
     imagePath: new FormControl(),
     type: new FormControl(),
   });
-  constructor(private signUpService: SignUpService) {}
+  fetchedUser: FetchedUser;
+  constructor(
+    private authService: AuthService,
+    private navCtrl: NavController,
+  ) {}
 
   ngOnInit() {}
 
   signUp() {
-    const user: User = this.userForm.value;
-    this.signUpService.registration(user);
+    if (this.userForm.invalid) {
+      return;
+    }
+    this.authService.registration(this.userForm.value);
+    if (localStorage.getItem('token')) {
+      this.navCtrl.navigateBack(['/home']);
+    }
   }
 }

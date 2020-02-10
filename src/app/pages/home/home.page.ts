@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { NavigationItem } from '../../models/NavigationItem.model';
+import { NavigationItem } from 'src/app/models/NavigationItem.model';
 
 @Component({
   selector: 'app-home',
@@ -13,23 +12,26 @@ export class HomePage {
       title: 'dashboard',
       url: '/dashboard',
       icon: 'apps',
+      guest: true,
     },
     {
       title: 'courses',
       url: '/courses',
       icon: 'contact',
+      guest: true,
     },
     {
       title: 'users',
       url: '/users',
       icon: 'contact',
+      guest: true,
     },
     {
       title: 'profile',
       url: '/profile',
       icon: 'contact',
+      guest: true,
     },
   ];
-
   constructor() {}
 }

@@ -1,14 +1,20 @@
 <ion-menu contentId="main-content" type="overlay">
-  <app-menu-button></app-menu-button>
+  <app-menu-button [title]="'Menu'"></app-menu-button>
   <ion-content>
     <ion-list>
       <ion-menu-toggle auto-hide="false" *ngFor="let page of pages">
-        <ion-item [routerDirection]="'root'" [routerLink]="[page.url]">
-          <ion-icon slot="start" [name]="page.icon"></ion-icon>
-          <ion-label>
-            {{ page.title }}
-          </ion-label>
-        </ion-item>
+        <ng-template [ngIf]="show(page)">
+          <ion-item
+            [routerDirection]="'root'"
+            [routerLink]="[page.url]"
+            (click)="logout(page)"
+          >
+            <ion-icon slot="start" [name]="page.icon"></ion-icon>
+            <ion-label>
+              {{ page.title }}
+            </ion-label>
+          </ion-item>
+        </ng-template>
       </ion-menu-toggle>
     </ion-list>
   </ion-content>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -16,6 +16,8 @@ import { MenuButtonModule } from './components/menu-button/menu-button.module';
 
 import { MenuComponent } from './components/menu/menu.component';
 
+import { AuthInterceptor } from './pages/auth-interceptor';
+import { HomePageModule } from './pages/home/home.module';
 @NgModule({
   declarations: [AppComponent, MenuComponent],
   entryComponents: [],
@@ -28,11 +30,13 @@ import { MenuComponent } from './components/menu/menu.component';
     CoursesModule,
     UsersModule,
     MenuButtonModule,
+    HomePageModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

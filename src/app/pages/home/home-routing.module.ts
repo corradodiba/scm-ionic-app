@@ -9,25 +9,6 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
-        path: 'dashboard',
-        children: [
-          {
-            path: '',
-            loadChildren:
-              '../pages/dashboard/dashboard.module#DashboardPageModule',
-          },
-        ],
-      },
-      {
-        path: 'profile',
-        children: [
-          {
-            path: '',
-            loadChildren: '../pages/profile/profile.module#ProfilePageModule',
-          },
-        ],
-      },
-      {
         path: '',
         redirectTo: '/home',
         pathMatch: 'full',

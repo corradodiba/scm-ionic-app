@@ -26,5 +26,6 @@ import { TabsComponent } from '../../components/tabs/tabs.component';
     MenuButtonModule,
   ],
   declarations: [HomePage, TabsComponent],
+  exports: [HomePage],
 })
 export class HomePageModule {}
