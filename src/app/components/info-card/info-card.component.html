@@ -1,15 +1,9 @@
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <ion-card class="card" *ngFor="let card of cards">
-        <ion-card-header>
-          <ion-card-title>{{ card.title }}</ion-card-title>
-        </ion-card-header>
-        <ion-item lines="none">
-          <ion-label>{{ card.counter }}</ion-label>
-          <ion-icon [name]="card.icon" slot="end"></ion-icon>
-        </ion-item>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<ion-card class="card" style="margin: 1">
+  <ion-card-header>
+    <ion-card-title>{{ card.title }}</ion-card-title>
+  </ion-card-header>
+  <ion-item lines="none">
+    <ion-label>{{ card.counter }}</ion-label>
+    <ion-icon [name]="card.icon" slot="end"></ion-icon>
+  </ion-item>
+</ion-card>

@@ -1,35 +1,12 @@
 <app-menu-button [title]="'Dashboard'"></app-menu-button>
 
 <ion-content>
-    <ion-slides>
-    <ion-slide>
-      <ion-list class="first-card">
-        <app-info-card [cards]="cards"></app-info-card>
-      </ion-list>
-      <ion-list class="second-card">
-        <app-info-card [cards]="cards"></app-info-card>
-      </ion-list>
-    </ion-slide>
-    <ion-slide>
-      <ion-list class="first-card">
-        <app-info-card [cards]="cards"></app-info-card>
-      </ion-list>
-      <ion-list class="second-card">
-        <app-info-card [cards]="cards"></app-info-card>
-      </ion-list>
-    </ion-slide>
-    <ion-slide>
-      <ion-list class="first-card">
-        <app-info-card [cards]="cards"></app-info-card>
-      </ion-list>
-      <ion-list class="second-card">
-        <app-info-card [cards]="cards"></app-info-card>
-      </ion-list>
-    </ion-slide>
-    <ion-slide>
-      <ion-list class="first-card">
-        <app-info-card [cards]="cards"></app-info-card>
-      </ion-list>
+  <ion-slides>
+    <ion-slide
+      *ngFor="let card of cards; let i = index"
+      [ngStyle]="{'transform': 'translate(-' + 20 * i + 'px, 0px)'}"
+    >
+      <app-info-card class="card" [card]="card"></app-info-card>
     </ion-slide>
   </ion-slides>
 </ion-content>
