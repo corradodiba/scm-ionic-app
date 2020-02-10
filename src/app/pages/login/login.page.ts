@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/providers/auth.service';
 import Token from 'src/app/models/Token.model';
-import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +14,7 @@ export class LoginPage implements OnInit {
     password: new FormControl(),
   });
   userLogged: Token;
-  constructor(
-    private authService: AuthService,
-    private navCtrl: NavController,
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -28,6 +24,5 @@ export class LoginPage implements OnInit {
       email,
       password,
     });
-    this.navCtrl.navigateBack(['/dashboard']);
   }
 }

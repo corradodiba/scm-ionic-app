@@ -42,14 +42,10 @@ export class AuthService {
 
   registration(authData: AuthData) {
     try {
-      this.http
-        .post(signupPath, {
-          email: authData.email,
-          password: authData.password,
-        })
-        .subscribe(() => {
-          this.router.navigate(['/']);
-        });
+      this.http.post(signupPath, authData).subscribe(() => {
+        this.access(authData);
+        this.router.navigate(['/dashboard']);
+      });
     } catch (err) {
       this.authStatusListener.next(false);
     }
@@ -67,7 +63,7 @@ export class AuthService {
 
         const { type, expiresIn } = response;
         this.storeAuthData({ token, expiresIn, id: this.userId, type });
-        this.router.navigate(['/']);
+        this.router.navigate(['/dashboard']);
       }
     });
   }

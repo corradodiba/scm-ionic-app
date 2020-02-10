@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { AuthService } from 'src/app/providers/auth.service';
-import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signup',
@@ -21,10 +20,7 @@ export class SignupPage implements OnInit {
     type: new FormControl(),
   });
 
-  constructor(
-    private authService: AuthService,
-    private navCtrl: NavController,
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -33,6 +29,5 @@ export class SignupPage implements OnInit {
       return;
     }
     this.authService.registration(this.userForm.value);
-    this.navCtrl.navigateBack(['/dashboard']);
   }
 }
