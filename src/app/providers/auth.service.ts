@@ -1,92 +1,138 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { FetchedUser } from '../models/FetchedUser.model';
-import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
-import User from '../models/User.model';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
-const ApiUrl = `${environment.apiUrl}`;
+import { environment } from 'src/environments/environment';
+
+import AuthData from '../models/AuthData.model';
+import Token from '../models/Token.model';
+import { AuthorizationType } from '../models/AuthorizationType.models';
+
+const apiUrl = `${environment.apiUrl}`;
+const signupPath = `${apiUrl}/${environment.signUpPath}`;
+const loginPath = `${apiUrl}/${environment.loginPath}`;
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  isAuthenticated = false;
-  private tokenTimeout;
+  private isAuthenticated = false;
   private authStatusListener = new Subject<boolean>();
-  private fetchedUser: FetchedUser;
-  constructor(private httpClient: HttpClient) {}
+  private token: string | Token = '';
+  private tokenTimeout: any;
+  private tokenDetails: Token;
+  private userId: string;
+  constructor(private http: HttpClient, private router: Router) {}
+
+  getToken() {
+    return this.token;
+  }
 
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
 
-  registration(body: User) {
-    this.httpClient
-      .post<User>(`${ApiUrl}/${environment.signUpPath}`, body)
-      .subscribe(user => {
-        const { email, password } = user;
-        this.access({ email, password });
-      });
+  getUserId() {
+    return this.userId;
   }
-  access(body: { email: string; password: string }) {
-    console.log('body => ', body);
-    this.httpClient
-      .post<FetchedUser>(`${ApiUrl}/${environment.loginPath}`, { ...body })
-      .subscribe(resp => {
-        console.log('resp =>', resp);
-        this.fetchedUser = resp;
-        if (this.fetchedUser.token) {
-          this.getTokenTimeout(this.fetchedUser.expiresIn);
-          this.isAuthenticated = true;
-          const timeStamp = new Date();
-          const expirationDate = new Date(
-            timeStamp.getTime() + this.fetchedUser.expiresIn * 1000,
-          );
-          console.log('localStorage =>', localStorage.getItem('type'));
-          localStorage.setItem('token', this.fetchedUser.token);
-          localStorage.setItem('expiresIn', expirationDate.toISOString());
-          localStorage.setItem('userId', this.fetchedUser.id);
-          localStorage.setItem('type', this.fetchedUser.type);
-          this.authStatusListener.next(true);
-        }
-      });
+
+  isAuth() {
+    return this.isAuthenticated;
   }
-  getTokenTimeout(expiresIn: number) {
-    this.tokenTimeout = setTimeout(() => {
-      this.logoutUser();
-    }, expiresIn * 1000);
+
+  registration(authData: AuthData) {
+    try {
+      this.http
+        .post(signupPath, {
+          email: authData.email,
+          password: authData.password,
+        })
+        .subscribe(() => {
+          this.router.navigate(['/']);
+        });
+    } catch (err) {
+      this.authStatusListener.next(false);
+    }
   }
+  access(authData: AuthData) {
+    this.http.post(loginPath, authData).subscribe((response: Token) => {
+      const token = response.token;
+      this.token = token;
+      this.authStatusListener.next(true);
+      if (token) {
+        this.getTokenTimeout(response.expiresIn);
+        this.isAuthenticated = true;
+        this.userId = response.id;
+        this.authStatusListener.next(true);
+
+        const { type, expiresIn } = response;
+        this.storeAuthData({ token, expiresIn, id: this.userId, type });
+        this.router.navigate(['/']);
+      }
+    });
+  }
+
   logoutUser() {
     this.isAuthenticated = false;
-    this.fetchedUser = null;
+    this.token = null;
     clearTimeout(this.tokenTimeout);
     localStorage.removeItem('token');
     localStorage.removeItem('expiresIn');
-    localStorage.removeItem('userId');
+    localStorage.removeItem('id');
     localStorage.removeItem('type');
     this.authStatusListener.next(false);
   }
-  autoConfigAuthUser() {
+
+  getAuthStatus(): Token {
     const token = localStorage.getItem('token');
-    if (!token) {
-      return;
+    const expiresIn = localStorage.getItem('expiresIn');
+    const id = localStorage.getItem('id');
+    const type = localStorage.getItem('type');
+
+    if (token && expiresIn) {
+      return {
+        token,
+        expiresIn: Number(expiresIn),
+        id,
+        type: type as AuthorizationType,
+      };
     }
-    const loggedUser = {
-      token,
-      expiresIn: new Date(localStorage.getItem('expiresIn')),
-      id: localStorage.getItem('userId'),
-      type: localStorage.getItem('type'),
-    };
-    if (!loggedUser) {
+  }
+
+  autoConfigAuthUser() {
+    this.tokenDetails = this.getAuthStatus();
+    if (!this.tokenDetails) {
       return;
     }
     const timestamp = new Date();
-    const expirationDate = loggedUser.expiresIn.getTime() - timestamp.getTime();
+    const expirationDate = this.tokenDetails.expiresIn - timestamp.getTime();
     if (expirationDate > 0) {
-      this.fetchedUser.token = loggedUser.token;
+      this.token = this.tokenDetails.token;
       this.isAuthenticated = true;
       this.getTokenTimeout(expirationDate / 1000);
       this.authStatusListener.next(true);
     }
+  }
+
+  clearAuthData() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiresIn');
+    localStorage.removeItem('id');
+    localStorage.removeItem('type');
+  }
+
+  storeAuthData(data: Token) {
+    const timeStamp = new Date();
+    const expireIn = timeStamp.getTime() + data.expiresIn * 5000;
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('expiresIn', expireIn.toString());
+    localStorage.setItem('id', data.id);
+    localStorage.setItem('type', data.type);
+  }
+
+  getTokenTimeout(expiresIn: number) {
+    this.tokenTimeout = setTimeout(() => {
+      this.logoutUser();
+    }, expiresIn * 1000);
   }
 }

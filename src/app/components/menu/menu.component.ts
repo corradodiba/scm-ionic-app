@@ -14,6 +14,16 @@ export class MenuComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
 
   constructor(private authService: AuthService) {}
+
+  async ngOnInit() {
+    this.isAuthenticated = this.authService.isAuth();
+    this.authListenerSubs = this.authService
+      .getAuthStatusListener()
+      .subscribe(isAuthenticated => {
+        this.isAuthenticated = isAuthenticated;
+      });
+  }
+
   show(page: NavigationItem) {
     if (this.isAuthenticated) {
       return !page.guest;
@@ -25,14 +35,6 @@ export class MenuComponent implements OnInit, OnDestroy {
     if (page.title === 'Logout') {
       this.authService.logoutUser();
     }
-  }
-  async ngOnInit() {
-    this.isAuthenticated = this.authService.isAuthenticated;
-    this.authListenerSubs = this.authService
-      .getAuthStatusListener()
-      .subscribe(isAuthenticated => {
-        this.isAuthenticated = isAuthenticated;
-      });
   }
 
   ngOnDestroy() {

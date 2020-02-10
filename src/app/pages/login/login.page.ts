@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/providers/auth.service';
-import { FetchedUser } from 'src/app/models/FetchedUser.model';
+import Token from 'src/app/models/Token.model';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -14,7 +14,7 @@ export class LoginPage implements OnInit {
     email: new FormControl(),
     password: new FormControl(),
   });
-  userLogged: FetchedUser;
+  userLogged: Token;
   constructor(
     private authService: AuthService,
     private navCtrl: NavController,
@@ -28,8 +28,6 @@ export class LoginPage implements OnInit {
       email,
       password,
     });
-    if (localStorage.getItem('token')) {
-      this.navCtrl.navigateBack(['/home']);
-    }
+    this.navCtrl.navigateBack(['/dashboard']);
   }
 }

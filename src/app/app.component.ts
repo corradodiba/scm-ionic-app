@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { NavigationItem } from './models/NavigationItem.model';
 import { AuthService } from './providers/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy, OnInit {
+  private authListenerSubs = new Subscription();
+  isAuthenticated = false;
+
   pages: NavigationItem[] = [
     {
       title: 'Home',
@@ -52,7 +56,13 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.authService.autoConfigAuthUser();
     });
+  }
+  ngOnInit() {
+    this.authService.autoConfigAuthUser();
+  }
+
+  ngOnDestroy() {
+    this.authListenerSubs.unsubscribe();
   }
 }
