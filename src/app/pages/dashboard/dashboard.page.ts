@@ -15,6 +15,12 @@ export class DashboardPage implements OnInit {
 
   cards: InfoCard[] = [];
 
+  slideOpts = {
+    initialSlide: 0,
+    speed: 800,
+    spaceBetween: -17,
+  };
+
   constructor(private coursesService: CoursesService) {}
 
   async ngOnInit() {
