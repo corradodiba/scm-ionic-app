@@ -18,7 +18,7 @@ export class DashboardPage implements OnInit {
   slideOpts = {
     initialSlide: 0,
     speed: 800,
-    spaceBetween: -17,
+    spaceBetween: -13,
   };
 
   constructor(private coursesService: CoursesService) {}
