@@ -6,4 +6,18 @@
       <app-info-card class="card" [card]="card"></app-info-card>
     </ion-slide>
   </ion-slides>
+  <div style="margin-top: 20px">
+  </div>
+  <app-list style="margin-top: 20px" *ngFor="let list of courses">
+    <ion-item>
+      <ion-label>Name: {{list.name}}
+      </ion-label>
+      <ion-label> Status:
+        {{list.status}}
+      </ion-label>
+      <ion-label>Date:
+        {{list.year}}
+      </ion-label>
+    </ion-item>
+  </app-list>
 </ion-content>
