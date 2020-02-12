@@ -9,6 +9,7 @@ import { MenuButtonModule } from 'src/app/components/menu-button/menu-button.mod
 import { CoursesListPage } from './courses-list/courses-list.page';
 import { CourseDetailPage } from './course-detail/course-detail.page';
 import { ListModule } from 'src/app/components/list/list.module';
+import { FabButtonModule } from 'src/app/components/fab-button/fab-button.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { ListModule } from 'src/app/components/list/list.module';
     CoursesRoutingModule,
     MenuButtonModule,
     ListModule,
+    FabButtonModule,
   ],
   declarations: [CoursesListPage, CourseDetailPage],
 })

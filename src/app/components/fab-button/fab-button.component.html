@@ -3,7 +3,11 @@
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
   <ion-fab-list side="top">
-    <ion-fab-button color="light" *ngFor="let button of buttons">
+    <ion-fab-button
+      color="{{ button.name }}"
+      *ngFor="let button of buttons"
+      (click)="button.action()"
+    >
       <ion-icon name="{{ button.icon }}"></ion-icon>
     </ion-fab-button>
   </ion-fab-list>

@@ -18,9 +18,13 @@ export class CoursesService {
   }
 
   getById(id: string): Promise<Course> {
-    console.log(`${this.coursesApiUrl}/${id}`);
     return this.httpClient
       .get<Course>(`${this.coursesApiUrl}/${id}`)
+      .toPromise();
+  }
+  add(body: {}) {
+    return this.httpClient
+      .post<Course>(`${this.coursesApiUrl}`, body)
       .toPromise();
   }
 }
