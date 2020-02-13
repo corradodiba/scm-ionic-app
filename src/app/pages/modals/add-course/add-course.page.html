@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Course</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>Name</ion-label>
+    <ion-input [value]="course.name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Status</ion-label>
+    <ion-input [value]="course.status"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Year</ion-label>
+    <ion-input [value]="course.year"></ion-input>
+  </ion-item>
+</ion-content>

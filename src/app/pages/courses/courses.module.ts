@@ -10,6 +10,7 @@ import { CoursesListPage } from './courses-list/courses-list.page';
 import { CourseDetailPage } from './course-detail/course-detail.page';
 import { ListModule } from 'src/app/components/list/list.module';
 import { FabButtonModule } from 'src/app/components/fab-button/fab-button.module';
+import { AddCoursePage } from '../modals/add-course/add-course.page';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { FabButtonModule } from 'src/app/components/fab-button/fab-button.module
     ListModule,
     FabButtonModule,
   ],
-  declarations: [CoursesListPage, CourseDetailPage],
+  declarations: [CoursesListPage, CourseDetailPage, AddCoursePage],
+  entryComponents: [AddCoursePage],
 })
 export class CoursesModule {}

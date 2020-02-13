@@ -22,9 +22,22 @@ export class CoursesService {
       .get<Course>(`${this.coursesApiUrl}/${id}`)
       .toPromise();
   }
-  add(body: {}) {
+  add(body: Course): Promise<Course> {
     return this.httpClient
       .post<Course>(`${this.coursesApiUrl}`, body)
+      .toPromise();
+  }
+  update(body: Course): Promise<Course> {
+    const { id } = body;
+    return this.httpClient
+      .put<Course>(`${this.coursesApiUrl}/${id}`, body)
+      .toPromise();
+  }
+  delete(id: string): Promise<Course> {
+    console.log(`${this.coursesApiUrl}/${id}`);
+
+    return this.httpClient
+      .delete<Course>(`${this.coursesApiUrl}/${id}`)
       .toPromise();
   }
 }
