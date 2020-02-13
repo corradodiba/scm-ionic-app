@@ -29,17 +29,23 @@ export class UserListPage implements OnInit {
     {
       name: 'light',
       icon: 'add',
-      action: this.addUser,
+      action: async () => {
+        this.addUser();
+      },
     },
     {
       name: 'primary',
       icon: 'arrow-up',
-      action: this.updateUser,
+      action: async () => {
+        this.updateUser();
+      },
     },
     {
       name: 'danger',
       icon: 'close',
-      action: this.deleteUser,
+      action: async () => {
+        this.deleteUser();
+      },
     },
   ];
 
@@ -72,34 +78,46 @@ export class UserListPage implements OnInit {
   }
 
   async addUser() {
-    console.log("sono nell'add");
     const modal = await this.modalController.create({
       component: AddUserPage,
     });
-    return await modal.present();
 
     // da inserire i valori generici
-    // const user: User = {
-    //   id: '5e42e715e14d8143676b0740',
-    //   email: 'prova@prova.com',
-    //   password: 'pippo',
-    //   fiscalCode: 'ABCEFG27B69C239K',
-    //   name: 'Giuseppe',
-    //   surname: 'Bianchi',
-    //   dateOfBirth: new Date(1990, 12, 12),
-    //   subjects: [],
-    //   imagePath: 'string',
-    //   type: 'Teacher',
-    // };
-    // this.newUser = await this.usersService.addUser(user);
+    const user: User = {
+      id: '',
+      email: 'prova@prova.com',
+      password: 'pippo',
+      fiscalCode: 'ABCEFG27B69C239K',
+      name: 'Giuseppe',
+      surname: 'Bianchi',
+      dateOfBirth: new Date(1990, 12, 12),
+      subjects: [],
+      imagePath: 'string',
+      type: 'Teacher',
+    };
+    this.newUser = await this.usersService.addUser(user);
+    return await modal.present();
   }
 
   async updateUser() {
-    console.log("sono nell'update");
+    // const modal = await this.modalController.create({
+    //   component: AddUserPage,
+    // });
+    const user = {
+      surname: 'Verde',
+    };
+    const id = '5e45bee01fbe12829d6a70f6';
+    this.newUser = await this.usersService.updateUser(id, user as User);
+    this.users.map(user => {
+      if (user.id === this.newUser.id) {
+        user = this.newUser;
+      }
+    });
+    // return await modal.present();
   }
 
-  async deleteUser(id: string) {
-    console.log('sono nel delete');
+  async deleteUser() {
+    const id = '5e45c4be1fbe12829d6a70f7';
     this.newUser = await this.usersService.deleteUser(id);
   }
 }

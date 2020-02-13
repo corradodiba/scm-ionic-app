@@ -40,4 +40,13 @@ export class UsersService {
       .delete<User>(`${this.usersApiUrl}/${id}`)
       .toPromise();
   }
+
+  async updateUser(id: string, user: User) {
+    for (let field in user)
+      if (!(user as any)[field]) delete (user as any)[field];
+    console.log(user);
+    return this.httpClient
+      .put<User>(`${this.usersApiUrl}/${id}`, user)
+      .toPromise();
+  }
 }
