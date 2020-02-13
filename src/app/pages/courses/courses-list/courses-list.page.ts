@@ -12,6 +12,8 @@ import { CoursesService } from 'src/app/providers/courses.service';
 export class CoursesListPage implements OnInit {
   courses: Course[] = [];
   selectedCourse: Course;
+  numTimesLeft = 1;
+  course: any = [];
 
   constructor(private coursesService: CoursesService) {}
 
@@ -26,5 +28,16 @@ export class CoursesListPage implements OnInit {
   async navigate(id: string) {
     await this.onSelectCourse(id);
     // await this.navCtrl.navigateForward(this.selectedCourse.id);
+  }
+  doInfinite(event) {
+    setTimeout(() => {
+      this.coursesService.getAll().then(courses => {
+        for (const course of courses) {
+          this.course.push(course);
+        }
+      });
+      this.numTimesLeft -= 1;
+      event.target.complete();
+    }, 500);
   }
 }

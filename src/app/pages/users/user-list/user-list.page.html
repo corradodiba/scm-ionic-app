@@ -24,11 +24,16 @@
 
   <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
     <ion-slide>
-      <app-list class="full-width">
+      <app-list virtualScroll="people" approxItemHeight="50px" class="full-width">
         <ion-item *ngFor="let user of users" [routerLink]="['users/' + user.id]">
           <ion-label> {{ user.name }} {{ user.surname }} </ion-label>
         </ion-item>
       </app-list>
     </ion-slide>
   </ion-slides>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)" [disabled]="numTimesLeft <= 0">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
