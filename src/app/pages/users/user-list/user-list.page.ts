@@ -1,9 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import User from 'src/app/models/User.model';
+import { IonSlides, ModalController } from '@ionic/angular';
 
 import { UsersService } from 'src/app/providers/users.service';
-import { IonSlides } from '@ionic/angular';
+
+import User from 'src/app/models/User.model';
+import FabIcon from 'src/app/models/FabIcon.model';
+import { AddUserPage } from 'src/app/modals/add-user/add-user.page';
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.page.html',
@@ -15,12 +19,34 @@ export class UserListPage implements OnInit {
   students: User[] = [];
   teachers: User[] = [];
   userSelected: User;
+  newUser: User;
 
   segment = 0;
 
   segments = ['all', 'students', 'teachers'];
 
-  constructor(private usersService: UsersService) {}
+  buttons: FabIcon[] = [
+    {
+      name: 'light',
+      icon: 'add',
+      action: this.addUser,
+    },
+    {
+      name: 'primary',
+      icon: 'arrow-up',
+      action: this.updateUser,
+    },
+    {
+      name: 'danger',
+      icon: 'close',
+      action: this.deleteUser,
+    },
+  ];
+
+  constructor(
+    private usersService: UsersService,
+    private modalController: ModalController,
+  ) {}
 
   async ngOnInit() {
     this.users = await this.usersService.getUsers();
@@ -43,5 +69,37 @@ export class UserListPage implements OnInit {
 
   async slideChanged() {
     this.segment = await this.slider.getActiveIndex();
+  }
+
+  async addUser() {
+    console.log("sono nell'add");
+    const modal = await this.modalController.create({
+      component: AddUserPage,
+    });
+    return await modal.present();
+
+    // da inserire i valori generici
+    // const user: User = {
+    //   id: '5e42e715e14d8143676b0740',
+    //   email: 'prova@prova.com',
+    //   password: 'pippo',
+    //   fiscalCode: 'ABCEFG27B69C239K',
+    //   name: 'Giuseppe',
+    //   surname: 'Bianchi',
+    //   dateOfBirth: new Date(1990, 12, 12),
+    //   subjects: [],
+    //   imagePath: 'string',
+    //   type: 'Teacher',
+    // };
+    // this.newUser = await this.usersService.addUser(user);
+  }
+
+  async updateUser() {
+    console.log("sono nell'update");
+  }
+
+  async deleteUser(id: string) {
+    console.log('sono nel delete');
+    this.newUser = await this.usersService.deleteUser(id);
   }
 }

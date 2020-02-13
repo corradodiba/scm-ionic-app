@@ -1,7 +1,11 @@
 <app-menu-button [title]="'Courses'"></app-menu-button>
 <ion-content>
   <ion-toolbar>
-    <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="danger">
+    <ion-segment
+      (ionChange)="segmentChanged()"
+      [(ngModel)]="segment"
+      color="danger"
+    >
       <ion-segment-button value="0">
         <ion-label>{{segments[0]}}</ion-label>
         <ion-icon name="person"></ion-icon>
@@ -17,14 +21,21 @@
     </ion-segment>
   </ion-toolbar>
 
-  <app-fab-button></app-fab-button>
   <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
     <ion-slide>
-      <app-list [items]="users" [isInfiniteScrollable]="true" class="full-width ">
-        <ion-item *ngFor="let user of users" [routerLink]="['users/' + user.id]">
+      <app-list
+        [items]="users"
+        [isInfiniteScrollable]="true"
+        class="full-width "
+      >
+        <ion-item
+          *ngFor="let user of users"
+          [routerLink]="['users/' + user.id]"
+        >
           <ion-label> {{ user.name }} {{ user.surname }} </ion-label>
         </ion-item>
       </app-list>
     </ion-slide>
   </ion-slides>
 </ion-content>
+<app-fab-button [buttons]="buttons"></app-fab-button>

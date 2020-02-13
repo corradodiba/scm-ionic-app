@@ -58,8 +58,8 @@ const routes: Routes = [
   {
     path: 'add-user',
     loadChildren: () =>
-      import('./pages/modals/add-course/add-course.module').then(
-        m => m.AddCoursePageModule,
+      import('./modals/add-user/add-user.module').then(
+        m => m.AddUserPageModule,
       ),
   },
   {
@@ -67,6 +67,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/modals/update-course/update-course.module').then(
         m => m.UpdateCoursePageModule,
+      ),
+  },
+  {
+    path: 'add-course',
+    loadChildren: () =>
+      import('./pages/modals/add-course/add-course.module').then(
+        m => m.AddCoursePageModule,
       ),
   },
 ];

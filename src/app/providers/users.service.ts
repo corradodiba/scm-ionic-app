@@ -13,6 +13,7 @@ import { TypeUser } from '../models/TypeUser.type';
 export class UsersService {
   usersApiUrl = `${environment.apiUrl}/${environment.usersPath}`;
   userByTypeUrl = `${this.usersApiUrl}${environment.usersTypeQuery}`;
+  signupPath = `${environment.apiUrl}/${environment.signUpPath}`;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -27,6 +28,16 @@ export class UsersService {
   async getUsersByType(type: TypeUser) {
     return this.httpClient
       .get<User[]>(`${this.userByTypeUrl}${type}`)
+      .toPromise();
+  }
+
+  async addUser(user: User) {
+    return this.httpClient.post<User>(`${this.signupPath}`, user).toPromise();
+  }
+
+  async deleteUser(id: string) {
+    return this.httpClient
+      .delete<User>(`${this.usersApiUrl}/${id}`)
       .toPromise();
   }
 }
