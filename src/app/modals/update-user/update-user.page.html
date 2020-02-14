@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Add User</ion-title>
+    <ion-title>Edit User</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -19,32 +19,27 @@
           formControlName="email"
           inputmode="email"
           type="email"
-          required
         ></ion-input>
       </ion-item>
       <ion-item>
         <ion-icon name="md-key" slot="start"></ion-icon>
         <ion-label position="floating">Password</ion-label>
-        <ion-input
-          type="password"
-          formControlName="password"
-          required
-        ></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
       <ion-item>
         <ion-icon name="md-create" slot="start"></ion-icon>
         <ion-label position="floating">Fiscal Code</ion-label>
-        <ion-input formControlName="fiscalCode" required></ion-input>
+        <ion-input formControlName="fiscalCode"></ion-input>
       </ion-item>
       <ion-item>
         <ion-icon name="md-create" slot="start"></ion-icon>
         <ion-label position="floating">Name</ion-label>
-        <ion-input formControlName="name" required></ion-input>
+        <ion-input formControlName="name"></ion-input>
       </ion-item>
       <ion-item>
         <ion-icon name="md-create" slot="start"></ion-icon>
         <ion-label position="floating">Surname</ion-label>
-        <ion-input formControlName="surname" required></ion-input>
+        <ion-input formControlName="surname"></ion-input>
       </ion-item>
       <ion-item>
         <ion-icon name="md-calendar" slot="start"></ion-icon>
@@ -63,7 +58,7 @@
       <ion-item>
         <ion-icon name="md-contacts" slot="start"></ion-icon>
         <ion-label position="floating">Type</ion-label>
-        <ion-select formControlName="type" required>
+        <ion-select formControlName="type">
           <ion-select-option value="Admin">Admin</ion-select-option>
           <ion-select-option value="Student">Student</ion-select-option>
           <ion-select-option value="Teacher"
@@ -78,7 +73,7 @@
         expand="block"
         [disabled]="!userForm.valid"
         (click)="signUp()"
-        >Add</ion-button
+        >Edit</ion-button
       >
     </form>
   </ion-card>

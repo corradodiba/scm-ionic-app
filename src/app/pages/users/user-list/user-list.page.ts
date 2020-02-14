@@ -7,6 +7,7 @@ import { UsersService } from 'src/app/providers/users.service';
 import User from 'src/app/models/User.model';
 import FabIcon from 'src/app/models/FabIcon.model';
 import { AddUserPage } from 'src/app/modals/add-user/add-user.page';
+import { UpdateUserPage } from 'src/app/modals/update-user/update-user.page';
 
 @Component({
   selector: 'app-user-list',
@@ -27,24 +28,10 @@ export class UserListPage implements OnInit {
 
   buttons: FabIcon[] = [
     {
-      name: 'light',
+      name: 'Add User',
       icon: 'add',
       action: async () => {
         this.addUser();
-      },
-    },
-    {
-      name: 'primary',
-      icon: 'arrow-up',
-      action: async () => {
-        this.updateUser();
-      },
-    },
-    {
-      name: 'danger',
-      icon: 'close',
-      action: async () => {
-        this.deleteUser();
       },
     },
   ];
@@ -84,56 +71,30 @@ export class UserListPage implements OnInit {
     });
     modal.onWillDismiss().then(data => {
       console.log(data.data);
-    });
-    // da inserire i valori generici
-    const user: User = {
-      id: '',
-      email: 'prova@prova.com',
-      password: 'pippo',
-      fiscalCode: 'ABCEFG27B69C239K',
-      name: 'Giuseppe',
-      surname: 'Bianchi',
-      dateOfBirth: new Date(1990, 12, 12),
-      subjects: [],
-      imagePath: 'string',
-      type: 'Teacher',
-    };
-    this.newUser = await this.usersService.addUser(user);
-    this.users.map(user => {
-      if (user.id === this.newUser.id) {
-        this.users.push(this.newUser);
-      }
+      this.users.push(data.data);
     });
     return await modal.present();
   }
 
-  async updateUser() {
+  async updateUser(id: string) {
     const modal = await this.modalController.create({
-      component: AddUserPage,
+      component: UpdateUserPage,
+      componentProps: {
+        id,
+      },
     });
     modal.onWillDismiss().then(data => {
       console.log(data.data);
-    });
-    const user = {
-      surname: 'Arancione',
-    };
-    const id = '5e46587a53c76389db8ce80a';
-    const updatedUser = await this.usersService.updateUser(id, user as User);
-    // this.users.map(user => {
-    //   if (user.id === updatedUser.id) {
-    //     user = this.newUser;
-    //   }
-    // });
-    this.users.map((user, index) => {
-      if (user.id === updatedUser.id) {
-        this.users.splice(index, 1, updatedUser);
-      }
+      this.users.map((user, index) => {
+        if (user.id === data.data.id) {
+          this.users.splice(index, 1, data.data);
+        }
+      });
     });
     return await modal.present();
   }
 
-  async deleteUser() {
-    const id = '5e46587a53c76389db8ce80a';
+  async deleteUser(id: string) {
     const deleteUser = await this.usersService.deleteUser(id);
     this.users.map((user, index) => {
       if (user.id === deleteUser.id) {
@@ -142,7 +103,7 @@ export class UserListPage implements OnInit {
     });
     const toast = await this.toastController.create({
       message: 'User deleted.',
-      duration: 2000,
+      duration: 6000,
     });
     toast.present();
   }

@@ -63,6 +63,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'update-user',
+    loadChildren: () =>
+      import('./modals/update-user/update-user.module').then(
+        m => m.UpdateUserPageModule,
+      ),
+  },
+  {
     path: 'update-course',
     loadChildren: () =>
       import('./pages/modals/update-course/update-course.module').then(

@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController, NavParams } from '@ionic/angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UsersService } from 'src/app/providers/users.service';
+import User from 'src/app/models/User.model';
 
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.page.html',
-  styleUrls: ['./add-user.page.scss'],
+  selector: 'app-update-user',
+  templateUrl: './update-user.page.html',
+  styleUrls: ['./update-user.page.scss'],
 })
-export class AddUserPage implements OnInit {
+export class UpdateUserPage implements OnInit {
   userForm = new FormGroup({
     email: new FormControl(),
     password: new FormControl(),
@@ -24,14 +25,15 @@ export class AddUserPage implements OnInit {
     private modalController: ModalController,
     private toastController: ToastController,
     private userService: UsersService,
+    private param: NavParams,
   ) {}
 
-  async ngOnInit() {}
+  ngOnInit() {}
 
   async closeModal() {
     await this.modalController.dismiss();
     const toast = await this.toastController.create({
-      message: 'User not created.',
+      message: 'User not edit.',
       duration: 6000,
     });
     toast.present();
@@ -41,7 +43,7 @@ export class AddUserPage implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    this.userService.addUser(this.userForm.value);
+    this.userService.updateUser(this.param.get('id'), this.userForm.value);
     await this.modalController.dismiss(this.userForm.value);
     const toast = await this.toastController.create({
       message: 'User created.',
