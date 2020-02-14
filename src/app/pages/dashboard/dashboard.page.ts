@@ -12,8 +12,9 @@ import Course from 'src/app/models/Course.model';
 export class DashboardPage implements OnInit {
   @ViewChild('slides', { static: true }) slider: IonSlide;
   courses: Course[];
-
   cards: InfoCard[] = [];
+  numTimesLeft = 1;
+  coursesList: Course[] = [];
 
   slideOpts = {
     initialSlide: 0,
@@ -47,5 +48,22 @@ export class DashboardPage implements OnInit {
         counter: this.courses.length,
       },
     ];
+  }
+  async doInfinite(event): Promise<Course> {
+    const courses = await this.coursesService.getAll();
+    try {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          for (const course of courses) {
+            this.coursesList.push(course);
+          }
+          this.numTimesLeft -= 1;
+          event.target.complete();
+          resolve();
+        }, 500);
+      });
+    } catch (error) {
+      throw { error };
+    }
   }
 }

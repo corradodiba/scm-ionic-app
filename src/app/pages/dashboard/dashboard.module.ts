@@ -9,6 +9,7 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 import { DashboardPage } from './dashboard.page';
 import { InfoCardComponent } from 'src/app/components/info-card/info-card.component';
 import { MenuButtonModule } from 'src/app/components/menu-button/menu-button.module';
+import { ListModule } from 'src/app/components/list/list.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { MenuButtonModule } from 'src/app/components/menu-button/menu-button.mod
     IonicModule,
     DashboardPageRoutingModule,
     MenuButtonModule,
+    ListModule,
   ],
   declarations: [DashboardPage, InfoCardComponent],
 })

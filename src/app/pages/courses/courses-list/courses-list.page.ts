@@ -12,12 +12,13 @@ import { CoursesService } from 'src/app/providers/courses.service';
 export class CoursesListPage implements OnInit {
   courses: Course[] = [];
   selectedCourse: Course;
+  numTimesLeft = 1;
+  coursesList: Course[] = [];
 
   constructor(private coursesService: CoursesService) {}
 
   async ngOnInit() {
     this.courses = await this.coursesService.getAll();
-    console.log(this.courses);
   }
 
   async onSelectCourse(id: string) {
@@ -25,6 +26,22 @@ export class CoursesListPage implements OnInit {
   }
   async navigate(id: string) {
     await this.onSelectCourse(id);
-    // await this.navCtrl.navigateForward(this.selectedCourse.id);
+  }
+  async doInfinite(event): Promise<Course> {
+    const courses = await this.coursesService.getAll();
+    try {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          for (const course of courses) {
+            this.coursesList.push(course);
+          }
+          this.numTimesLeft -= 1;
+          event.target.complete();
+          resolve();
+        }, 500);
+      });
+    } catch (error) {
+      throw { error };
+    }
   }
 }

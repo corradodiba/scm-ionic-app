@@ -6,11 +6,7 @@
 
 <ion-content>
   <ion-toolbar>
-    <ion-segment
-      (ionChange)="segmentChanged()"
-      [(ngModel)]="segment"
-      color="danger"
-    >
+    <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="danger">
       <ion-segment-button value="0">
         <ion-label>{{segments[0]}}</ion-label>
         <ion-icon name="person"></ion-icon>
@@ -28,14 +24,16 @@
 
   <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
     <ion-slide>
-      <ion-list class="full-width">
-        <ion-item
-          *ngFor="let user of users"
-          [routerLink]="['users/' + user.id]"
-        >
+      <app-list virtualScroll="people" approxItemHeight="50px" class="full-width">
+        <ion-item *ngFor="let user of users" [routerLink]="['users/' + user.id]">
           <ion-label> {{ user.name }} {{ user.surname }} </ion-label>
         </ion-item>
-      </ion-list>
+      </app-list>
     </ion-slide>
   </ion-slides>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)" [disabled]="numTimesLeft <= 0">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
