@@ -27,8 +27,7 @@ export class CoursesService {
       .post<Course>(`${this.coursesApiUrl}`, body)
       .toPromise();
   }
-  update(body: Course): Promise<Course> {
-    const { id } = body;
+  update(id: string, body: Course): Promise<Course> {
     return this.httpClient
       .put<Course>(`${this.coursesApiUrl}/${id}`, body)
       .toPromise();

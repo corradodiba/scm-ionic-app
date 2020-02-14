@@ -57,6 +57,10 @@ const routes: Routes = [
         m => m.AddCoursePageModule,
       ),
   },
+  {
+    path: 'update-course',
+    loadChildren: () => import('./pages/modals/update-course/update-course.module').then( m => m.UpdateCoursePageModule)
+  },
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import Course from 'src/app/models/Course.model';
+import { ModalController, ToastController } from '@ionic/angular';
 import { FormGroup, FormControl } from '@angular/forms';
+import { CoursesService } from 'src/app/providers/courses.service';
 
 @Component({
   selector: 'app-add-course',
@@ -14,9 +14,33 @@ export class AddCoursePage implements OnInit {
     status: new FormControl(),
     year: new FormControl(),
   });
-  constructor(private modalController: ModalController) {}
+  constructor(
+    private courseService: CoursesService,
+    private modalController: ModalController,
+    private toastController: ToastController,
+  ) {}
   ngOnInit() {}
+
+  abortModal() {
+    this.modalController.dismiss();
+  }
+
   async closeModal() {
+    try {
+      await this.courseService.add(this.courseForm.value);
+    } catch (error) {
+      await this.modalController.dismiss();
+      const toast = await this.toastController.create({
+        message: `Course ${this.courseForm.value.name} not created. Error status code: ${error.status}`,
+        duration: 6000,
+      });
+      toast.present();
+    }
     await this.modalController.dismiss(this.courseForm.value);
+    const toast = await this.toastController.create({
+      message: `Course ${this.courseForm.value.name} created.`,
+      duration: 6000,
+    });
+    toast.present();
   }
 }

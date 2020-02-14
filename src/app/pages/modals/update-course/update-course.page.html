@@ -1,11 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>New Course</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="abortModal()">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>update-course</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +10,8 @@
       <ion-item>
         <ion-icon name="md-create" slot="start"></ion-icon>
         <ion-label position="floating">Name</ion-label>
-        <ion-input formControlName="name" required></ion-input>
+        <ion-input formControlName="name" [disabled]="disableName"></ion-input>
+        <ion-toggle slot="end" (click)="enableName()"></ion-toggle>
       </ion-item>
       <ion-item>
         <ion-icon name="md-create" slot="start"></ion-icon>
@@ -24,18 +20,25 @@
           displayFormat="YYYY"
           placeholder="Select Date"
           formControlName="year"
+          [disabled]="disableYear"
         ></ion-datetime>
+        <ion-toggle slot="end" (click)="enableYear()"></ion-toggle>
       </ion-item>
       <ion-item>
-        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-icon
+          name="md-create"
+          slot="start"
+          ng-mousehover="disableStatus = false"
+        ></ion-icon>
         <ion-label position="floating">Status</ion-label>
-        <ion-select formControlName="status" required>
+        <ion-select formControlName="status" [disabled]="disableStatus">
           <ion-select-option value="in-progress">
             Still in progress
           </ion-select-option>
           <ion-select-option value="pending">Not started</ion-select-option>
           <ion-select-option value="complete">Ended</ion-select-option>
         </ion-select>
+        <ion-toggle slot="end" (click)="enableStatus()"></ion-toggle>
       </ion-item>
       <ion-button
         type="submit"
@@ -43,7 +46,7 @@
         expand="block"
         [disabled]="!courseForm.valid"
         (click)="closeModal()"
-        >Create Course</ion-button
+        >Update Course</ion-button
       >
     </form>
   </ion-card>
