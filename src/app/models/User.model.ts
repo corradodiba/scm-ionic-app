@@ -11,6 +11,7 @@ interface User {
   subjects?: Subject['id'][];
   imagePath: string;
   type: 'Admin' | 'Student' | 'Teacher';
+  status?: boolean;
 }
 
 export default User;

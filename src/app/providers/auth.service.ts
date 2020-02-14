@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Socket } from 'ngx-socket-io';
 
 import { environment } from 'src/environments/environment';
 
@@ -22,7 +23,11 @@ export class AuthService {
   private tokenTimeout: any;
   private tokenDetails: Token;
   private userId: string;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private socket: Socket,
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   getToken() {
     return this.token;
@@ -69,6 +74,9 @@ export class AuthService {
   }
 
   logoutUser() {
+    this.socket.connect();
+    this.socket.emit('auth', localStorage.getItem('id'));
+
     this.isAuthenticated = false;
     this.token = null;
     clearTimeout(this.tokenTimeout);

@@ -18,6 +18,11 @@ import { MenuComponent } from './components/menu/menu.component';
 
 import { AuthInterceptor } from './pages/auth-interceptor';
 import { HomePageModule } from './pages/home/home.module';
+import { environment } from 'src/environments/environment';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
+
 @NgModule({
   declarations: [AppComponent, MenuComponent],
   entryComponents: [],
@@ -25,6 +30,7 @@ import { HomePageModule } from './pages/home/home.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    SocketIoModule.forRoot(config),
     HttpClientModule,
     DashboardPageModule,
     CoursesModule,

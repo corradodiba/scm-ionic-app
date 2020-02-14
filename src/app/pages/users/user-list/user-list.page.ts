@@ -7,6 +7,8 @@ import {
   NavController,
 } from '@ionic/angular';
 
+import { Socket } from 'ngx-socket-io';
+
 import { UsersService } from 'src/app/providers/users.service';
 
 import User from 'src/app/models/User.model';
@@ -43,6 +45,7 @@ export class UserListPage implements OnInit {
   ];
 
   constructor(
+    private socket: Socket,
     private usersService: UsersService,
     private modalController: ModalController,
     private toastController: ToastController,
@@ -50,6 +53,16 @@ export class UserListPage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    this.socket.connect();
+
+    this.socket
+      .fromEvent('auth')
+      .subscribe((data: { status: boolean; user: User }) => {
+        const { status, user } = data;
+        this.users.find(
+          fetchedUser => user.id === fetchedUser.id,
+        ).status = status;
+      });
     this.users = await this.usersService.getUsers();
   }
 
