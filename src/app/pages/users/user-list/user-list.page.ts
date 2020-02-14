@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { IonSlides, ModalController } from '@ionic/angular';
+import { IonSlides, ModalController, ToastController } from '@ionic/angular';
 
 import { UsersService } from 'src/app/providers/users.service';
 
@@ -52,6 +52,7 @@ export class UserListPage implements OnInit {
   constructor(
     private usersService: UsersService,
     private modalController: ModalController,
+    private toastController: ToastController,
   ) {}
 
   async ngOnInit() {
@@ -81,7 +82,9 @@ export class UserListPage implements OnInit {
     const modal = await this.modalController.create({
       component: AddUserPage,
     });
-
+    modal.onWillDismiss().then(data => {
+      console.log(data.data);
+    });
     // da inserire i valori generici
     const user: User = {
       id: '',
@@ -96,28 +99,51 @@ export class UserListPage implements OnInit {
       type: 'Teacher',
     };
     this.newUser = await this.usersService.addUser(user);
+    this.users.map(user => {
+      if (user.id === this.newUser.id) {
+        this.users.push(this.newUser);
+      }
+    });
     return await modal.present();
   }
 
   async updateUser() {
-    // const modal = await this.modalController.create({
-    //   component: AddUserPage,
-    // });
+    const modal = await this.modalController.create({
+      component: AddUserPage,
+    });
+    modal.onWillDismiss().then(data => {
+      console.log(data.data);
+    });
     const user = {
-      surname: 'Verde',
+      surname: 'Arancione',
     };
-    const id = '5e45bee01fbe12829d6a70f6';
-    this.newUser = await this.usersService.updateUser(id, user as User);
-    this.users.map(user => {
-      if (user.id === this.newUser.id) {
-        user = this.newUser;
+    const id = '5e46587a53c76389db8ce80a';
+    const updatedUser = await this.usersService.updateUser(id, user as User);
+    // this.users.map(user => {
+    //   if (user.id === updatedUser.id) {
+    //     user = this.newUser;
+    //   }
+    // });
+    this.users.map((user, index) => {
+      if (user.id === updatedUser.id) {
+        this.users.splice(index, 1, updatedUser);
       }
     });
-    // return await modal.present();
+    return await modal.present();
   }
 
   async deleteUser() {
-    const id = '5e45c4be1fbe12829d6a70f7';
-    this.newUser = await this.usersService.deleteUser(id);
+    const id = '5e46587a53c76389db8ce80a';
+    const deleteUser = await this.usersService.deleteUser(id);
+    this.users.map((user, index) => {
+      if (user.id === deleteUser.id) {
+        this.users.splice(index, 1);
+      }
+    });
+    const toast = await this.toastController.create({
+      message: 'User deleted.',
+      duration: 2000,
+    });
+    toast.present();
   }
 }

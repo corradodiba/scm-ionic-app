@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-user',
@@ -7,11 +7,19 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./add-user.page.scss'],
 })
 export class AddUserPage implements OnInit {
-  constructor(private modalController: ModalController) {}
+  constructor(
+    private modalController: ModalController,
+    private toastController: ToastController,
+  ) {}
 
-  ngOnInit() {}
+  async ngOnInit() {}
 
   async closeModal() {
     await this.modalController.dismiss();
+    const toast = await this.toastController.create({
+      message: 'User created.',
+      duration: 2000,
+    });
+    toast.present();
   }
 }
