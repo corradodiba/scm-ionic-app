@@ -11,6 +11,7 @@ import { CourseDetailPage } from './course-detail/course-detail.page';
 import { ListModule } from 'src/app/components/list/list.module';
 import { FabButtonModule } from 'src/app/components/fab-button/fab-button.module';
 import { AddCoursePage } from '../modals/add-course/add-course.page';
+import { AddCoursePageModule } from '../modals/add-course/add-course.module';
 
 @NgModule({
   imports: [
@@ -21,8 +22,9 @@ import { AddCoursePage } from '../modals/add-course/add-course.page';
     MenuButtonModule,
     ListModule,
     FabButtonModule,
+    AddCoursePageModule,
   ],
-  declarations: [CoursesListPage, CourseDetailPage, AddCoursePage],
+  declarations: [CoursesListPage, CourseDetailPage],
   entryComponents: [AddCoursePage],
 })
 export class CoursesModule {}

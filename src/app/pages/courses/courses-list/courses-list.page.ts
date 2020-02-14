@@ -101,7 +101,7 @@ export class CoursesListPage implements OnInit {
     });
   }
   async deleteCourse() {
-    const id = '5e45cb8782c850c8eefe1d40';
+    const id = '5e45cbae82c850c8eefe1d41';
     console.log('x');
     const deletedCourse = await this.coursesService.delete(id);
     console.log(deletedCourse);

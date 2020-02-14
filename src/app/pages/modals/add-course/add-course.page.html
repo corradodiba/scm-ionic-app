@@ -10,16 +10,31 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-label>Name</ion-label>
-    <ion-input [value]="course.name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Status</ion-label>
-    <ion-input [value]="course.status"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Year</ion-label>
-    <ion-input [value]="course.year"></ion-input>
-  </ion-item>
+  <ion-card>
+    <form [formGroup]="courseForm" padding-right>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">Status</ion-label>
+        <ion-input formControlName="status" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">Year</ion-label>
+        <ion-input formControlName="year" required></ion-input>
+      </ion-item>
+      <ion-button
+        type="submit"
+        color="primary"
+        expand="block"
+        [disabled]="!courseForm.valid"
+        (click)="closeModal()"
+        >Login</ion-button
+      >
+    </form>
+  </ion-card>
 </ion-content>
