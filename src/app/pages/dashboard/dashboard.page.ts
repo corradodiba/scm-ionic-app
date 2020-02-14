@@ -14,7 +14,7 @@ export class DashboardPage implements OnInit {
   courses: Course[];
   cards: InfoCard[] = [];
   numTimesLeft = 1;
-  course: any = [];
+  coursesList: Course[] = [];
 
   slideOpts = {
     initialSlide: 0,
@@ -49,15 +49,21 @@ export class DashboardPage implements OnInit {
       },
     ];
   }
-  doInfinite(event) {
-    setTimeout(() => {
-      this.coursesService.getAll().then(courses => {
-        for (const course of courses) {
-          this.course.push(course);
-        }
+  async doInfinite(event): Promise<Course> {
+    const courses = await this.coursesService.getAll();
+    try {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          for (const course of courses) {
+            this.coursesList.push(course);
+          }
+          this.numTimesLeft -= 1;
+          event.target.complete();
+          resolve();
+        }, 500);
       });
-      this.numTimesLeft -= 1;
-      event.target.complete();
-    }, 500);
+    } catch (error) {
+      throw { error };
+    }
   }
 }
