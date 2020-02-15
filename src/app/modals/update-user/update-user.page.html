@@ -15,10 +15,12 @@
       <ion-item>
         <ion-icon name="md-contact" slot="start"></ion-icon>
         <ion-label position="floating">Email</ion-label>
+        <ion-toggle slot="end" (click)="enableEmail()"></ion-toggle>
         <ion-input
           formControlName="email"
           inputmode="email"
           type="email"
+          [disabled]="disableEmail"
         ></ion-input>
       </ion-item>
       <ion-item>
@@ -29,26 +31,36 @@
       <ion-item>
         <ion-icon name="md-create" slot="start"></ion-icon>
         <ion-label position="floating">Fiscal Code</ion-label>
-        <ion-input formControlName="fiscalCode"></ion-input>
+        <ion-input
+          formControlName="fiscalCode"
+          [disabled]="disableFiscal"
+        ></ion-input>
+        <ion-toggle slot="end" (click)="enableFiscal()"></ion-toggle>
       </ion-item>
       <ion-item>
         <ion-icon name="md-create" slot="start"></ion-icon>
         <ion-label position="floating">Name</ion-label>
-        <ion-input formControlName="name"></ion-input>
+        <ion-input formControlName="name" [disabled]="disableName"></ion-input>
+        <ion-toggle slot="end" (click)="enableName()"></ion-toggle>
       </ion-item>
       <ion-item>
         <ion-icon name="md-create" slot="start"></ion-icon>
         <ion-label position="floating">Surname</ion-label>
-        <ion-input formControlName="surname"></ion-input>
+        <ion-input
+          formControlName="surname"
+          [disabled]="disableSurname"
+        ></ion-input>
+        <ion-toggle slot="end" (click)="enableSurname()"></ion-toggle>
       </ion-item>
       <ion-item>
         <ion-icon name="md-calendar" slot="start"></ion-icon>
-        <ion-label position="floating">Data</ion-label>
+        <ion-label position="floating">Birthday</ion-label>
         <ion-datetime
           displayFormat="DD MM YY"
-          placeholder="Select Date"
           formControlName="dateOfBirth"
+          [disabled]="disableBirthday"
         ></ion-datetime>
+        <ion-toggle slot="end" (click)="enableBirthday()"></ion-toggle>
       </ion-item>
       <!-- <ion-item>
         <ion-icon name="walk" slot="start"></ion-icon>
@@ -58,13 +70,14 @@
       <ion-item>
         <ion-icon name="md-contacts" slot="start"></ion-icon>
         <ion-label position="floating">Type</ion-label>
-        <ion-select formControlName="type">
+        <ion-select formControlName="type" [disabled]="disableType">
           <ion-select-option value="Admin">Admin</ion-select-option>
           <ion-select-option value="Student">Student</ion-select-option>
           <ion-select-option value="Teacher"
             >Teacher</ion-select-option
           ></ion-select
         >
+        <ion-toggle slot="end" (click)="enableType()"></ion-toggle>
       </ion-item>
 
       <ion-button

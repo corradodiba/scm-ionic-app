@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { IonSlides, ModalController, ToastController } from '@ionic/angular';
+import {
+  IonSlides,
+  ModalController,
+  ToastController,
+  NavController,
+} from '@ionic/angular';
 
 import { UsersService } from 'src/app/providers/users.service';
 
@@ -30,6 +35,7 @@ export class UserListPage implements OnInit {
     {
       name: 'Add User',
       icon: 'add',
+      color: 'light',
       action: async () => {
         this.addUser();
       },
@@ -40,10 +46,15 @@ export class UserListPage implements OnInit {
     private usersService: UsersService,
     private modalController: ModalController,
     private toastController: ToastController,
+    private navCtrl: NavController,
   ) {}
 
   async ngOnInit() {
     this.users = await this.usersService.getUsers();
+  }
+
+  async navigate(id: string) {
+    await this.navCtrl.navigateForward(`users/${id}`);
   }
 
   async segmentChanged() {
@@ -69,24 +80,33 @@ export class UserListPage implements OnInit {
     const modal = await this.modalController.create({
       component: AddUserPage,
     });
-    modal.onWillDismiss().then(data => {
-      console.log(data.data);
-      this.users.push(data.data);
+    modal.onWillDismiss().then(({ data }) => {
+      if (!data) {
+        return;
+      }
+      this.users.push(data);
     });
     return await modal.present();
   }
 
   async updateUser(id: string) {
+    const selectedUser = await this.usersService.getUserById(id);
     const modal = await this.modalController.create({
       component: UpdateUserPage,
       componentProps: {
         id,
+        name: selectedUser.name,
+        surname: selectedUser.surname,
+        email: selectedUser.email,
+        password: selectedUser.password,
+        fiscal: selectedUser.fiscalCode,
+        type: selectedUser.type,
+        birthday: selectedUser.dateOfBirth,
       },
     });
     modal.onWillDismiss().then(data => {
-      console.log(data.data);
       this.users.map((user, index) => {
-        if (user.id === data.data.id) {
+        if (user.id === id) {
           this.users.splice(index, 1, data.data);
         }
       });
