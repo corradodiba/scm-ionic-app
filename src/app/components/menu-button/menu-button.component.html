@@ -4,6 +4,8 @@
       <ion-menu-button *ngIf="!isToBack"></ion-menu-button>
       <ion-back-button *ngIf="isToBack" defaultHref=""></ion-back-button>
     </ion-buttons>
+
+    <ion-badge *ngIf="isHome" [color]="color" slot="end"> {{ text }}</ion-badge>
     <ion-title>
       {{ title }}
     </ion-title>

@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { SignupPage } from './signup.page';
 import { SignupPageRoutingModule } from './signup-routing.module';
+import { MenuButtonModule } from 'src/app/components/menu-button/menu-button.module';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { SignupPageRoutingModule } from './signup-routing.module';
     ReactiveFormsModule,
     IonicModule,
     SignupPageRoutingModule,
+    MenuButtonModule,
   ],
   declarations: [SignupPage],
 })

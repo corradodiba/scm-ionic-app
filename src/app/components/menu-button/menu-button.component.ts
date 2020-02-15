@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from 'src/app/providers/auth.service';
 
 @Component({
   selector: 'app-menu-button',
@@ -8,8 +9,19 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MenuButtonComponent implements OnInit {
   @Input() title?: string;
   @Input() isToBack?: boolean;
+  color: string;
+  text: string;
+  isHome = false;
+  constructor(private authService: AuthService) {}
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.title === 'Home') this.isHome = true;
+    if (this.authService.isAuth()) {
+      this.color = 'success';
+      this.text = 'connected';
+    } else {
+      this.color = 'danger';
+      this.text = 'guest';
+    }
+  }
 }
