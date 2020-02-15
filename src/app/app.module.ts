@@ -18,6 +18,7 @@ import { MenuComponent } from './components/menu/menu.component';
 
 import { AuthInterceptor } from './pages/auth-interceptor';
 import { HomePageModule } from './pages/home/home.module';
+
 @NgModule({
   declarations: [AppComponent, MenuComponent],
   entryComponents: [],

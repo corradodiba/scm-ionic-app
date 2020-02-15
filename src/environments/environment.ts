@@ -10,6 +10,7 @@ export const environment = {
   loginPath: 'auth/login',
   usersPath: 'users',
   usersTypeQuery: '?type=',
+  subjectPath: 'subjects',
 };
 
 /*
