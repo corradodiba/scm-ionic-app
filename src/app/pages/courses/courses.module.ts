@@ -14,6 +14,10 @@ import { AddCoursePage } from '../modals/add-course/add-course.page';
 import { AddCoursePageModule } from '../modals/add-course/add-course.module';
 import { UpdateCoursePageModule } from '../modals/update-course/update-course.module';
 import { UpdateCoursePage } from '../modals/update-course/update-course.page';
+import { AddSubjectPageModule } from '../modals/add-subject/add-subject.module';
+import { AddSubjectPage } from '../modals/add-subject/add-subject.page';
+import { UpdateSubjectPage } from '../modals/update-subject/update-subject.page';
+import { UpdateSubjectPageModule } from '../modals/update-subject/update-subject.module';
 
 @NgModule({
   imports: [
@@ -26,9 +30,15 @@ import { UpdateCoursePage } from '../modals/update-course/update-course.page';
     FabButtonModule,
     AddCoursePageModule,
     UpdateCoursePageModule,
-    ListModule,
+    AddSubjectPageModule,
+    UpdateSubjectPageModule,
   ],
   declarations: [CoursesListPage, CourseDetailPage],
-  entryComponents: [AddCoursePage, UpdateCoursePage],
+  entryComponents: [
+    AddCoursePage,
+    UpdateCoursePage,
+    AddSubjectPage,
+    UpdateSubjectPage,
+  ],
 })
 export class CoursesModule {}
