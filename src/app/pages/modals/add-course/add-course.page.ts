@@ -27,7 +27,13 @@ export class AddCoursePage implements OnInit {
 
   async closeModal() {
     try {
-      await this.courseService.add(this.courseForm.value);
+      const newCourse = await this.courseService.add(this.courseForm.value);
+      await this.modalController.dismiss(newCourse);
+      const toast = await this.toastController.create({
+        message: `Course ${this.courseForm.value.name} created.`,
+        duration: 6000,
+      });
+      toast.present();
     } catch (error) {
       await this.modalController.dismiss();
       const toast = await this.toastController.create({
@@ -36,11 +42,5 @@ export class AddCoursePage implements OnInit {
       });
       toast.present();
     }
-    await this.modalController.dismiss(this.courseForm.value);
-    const toast = await this.toastController.create({
-      message: `Course ${this.courseForm.value.name} created.`,
-      duration: 6000,
-    });
-    toast.present();
   }
 }
