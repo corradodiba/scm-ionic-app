@@ -59,8 +59,11 @@ export class CoursesListPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: AddCoursePage,
     });
-    modal.onWillDismiss().then(data => {
-      this.courses.push(data.data);
+    modal.onWillDismiss().then(({ data }) => {
+      if (!data) {
+        return;
+      }
+      this.courses.push(data);
     });
     await modal.present();
   }
