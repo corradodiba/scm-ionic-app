@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Course</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abortModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <form [formGroup]="courseForm" padding-right>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">Year</ion-label>
+        <ion-datetime
+          displayFormat="YYYY"
+          placeholder="Select Date"
+          formControlName="year"
+        ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">Status</ion-label>
+        <ion-select formControlName="status" required>
+          <ion-select-option value="in-progress">
+            Still in progress
+          </ion-select-option>
+          <ion-select-option value="pending">Not started</ion-select-option>
+          <ion-select-option value="complete">Ended</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button
+        type="submit"
+        color="primary"
+        expand="block"
+        [disabled]="!courseForm.valid"
+        (click)="closeModal()"
+        >Create Course</ion-button
+      >
+    </form>
+  </ion-card>
+</ion-content>

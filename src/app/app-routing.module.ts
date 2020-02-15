@@ -50,6 +50,17 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/users/users.module').then(m => m.UsersModule),
   },
+  {
+    path: 'add-user',
+    loadChildren: () =>
+      import('./pages/modals/add-course/add-course.module').then(
+        m => m.AddCoursePageModule,
+      ),
+  },
+  {
+    path: 'update-course',
+    loadChildren: () => import('./pages/modals/update-course/update-course.module').then( m => m.UpdateCoursePageModule)
+  },
 ];
 
 @NgModule({

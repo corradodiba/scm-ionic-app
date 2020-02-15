@@ -1,0 +1,13 @@
+<ion-fab horizontal="end" vertical="bottom" slot="absolute">
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="top" *ngFor="let button of buttons">
+    <ion-fab-button color="{{ button.color }}" (click)="button.action()">
+      <ion-icon name="{{ button.icon }}"></ion-icon>
+    </ion-fab-button>
+    <ion-label>
+      {{ button.name }}
+    </ion-label>
+  </ion-fab-list>
+</ion-fab>

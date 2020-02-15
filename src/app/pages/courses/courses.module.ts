@@ -9,6 +9,11 @@ import { MenuButtonModule } from 'src/app/components/menu-button/menu-button.mod
 import { CoursesListPage } from './courses-list/courses-list.page';
 import { CourseDetailPage } from './course-detail/course-detail.page';
 import { ListModule } from 'src/app/components/list/list.module';
+import { FabButtonModule } from 'src/app/components/fab-button/fab-button.module';
+import { AddCoursePage } from '../modals/add-course/add-course.page';
+import { AddCoursePageModule } from '../modals/add-course/add-course.module';
+import { UpdateCoursePageModule } from '../modals/update-course/update-course.module';
+import { UpdateCoursePage } from '../modals/update-course/update-course.page';
 
 @NgModule({
   imports: [
@@ -18,7 +23,11 @@ import { ListModule } from 'src/app/components/list/list.module';
     CoursesRoutingModule,
     MenuButtonModule,
     ListModule,
+    FabButtonModule,
+    AddCoursePageModule,
+    UpdateCoursePageModule,
   ],
   declarations: [CoursesListPage, CourseDetailPage],
+  entryComponents: [AddCoursePage, UpdateCoursePage],
 })
 export class CoursesModule {}

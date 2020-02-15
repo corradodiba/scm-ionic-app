@@ -10,6 +10,7 @@ import { UserListPage } from './user-list/user-list.page';
 import { UserDetailPage } from './user-detail/user-detail.page';
 import { MenuButtonModule } from 'src/app/components/menu-button/menu-button.module';
 import { ListModule } from 'src/app/components/list/list.module';
+import { FabButtonModule } from 'src/app/components/fab-button/fab-button.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ListModule } from 'src/app/components/list/list.module';
     UsersRoutingModule,
     MenuButtonModule,
     ListModule,
+    FabButtonModule,
   ],
   declarations: [UserListPage, UserDetailPage],
 })
