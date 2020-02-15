@@ -11,8 +11,6 @@ import { IonSlides } from '@ionic/angular';
 })
 export class UserListPage implements OnInit {
   @ViewChild('slides', { static: true }) slider: IonSlides;
-  numTimesLeft = 1;
-  usersList: User[] = [];
   users: User[] = [];
   students: User[] = [];
   teachers: User[] = [];
@@ -45,22 +43,5 @@ export class UserListPage implements OnInit {
 
   async slideChanged() {
     this.segment = await this.slider.getActiveIndex();
-  }
-  async doInfinite(event): Promise<User> {
-    const users = await this.usersService.getUsers();
-    try {
-      return new Promise(resolve => {
-        setTimeout(() => {
-          for (const user of users) {
-            this.usersList.push(user);
-          }
-          this.numTimesLeft -= 1;
-          event.target.complete();
-          resolve();
-        }, 500);
-      });
-    } catch (error) {
-      throw { error };
-    }
   }
 }

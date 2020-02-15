@@ -7,7 +7,7 @@
     </ion-slide>
   </ion-slides>
 
-  <app-list>
+  <app-list [items]="courses" [isInfiniteScrollable]="true">
     <ion-card class="listcard" *ngFor="let course of courses">
       <ion-item lines="none">
         <ion-avatar class="avatar">{{course.name}}</ion-avatar>
