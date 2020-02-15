@@ -69,8 +69,11 @@ export class UpdateUserPage implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    this.userService.updateUser(this.param.get('id'), this.userForm.value);
-    await this.modalController.dismiss(this.userForm.value);
+    const updatedUser = await this.userService.updateUser(
+      this.param.get('id'),
+      this.userForm.value,
+    );
+    await this.modalController.dismiss(updatedUser);
     const toast = await this.toastController.create({
       message: `User ${this.param.get('name')} edited.`,
       duration: 6000,

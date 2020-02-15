@@ -111,7 +111,7 @@ export class UserListPage implements OnInit {
         }
       });
     });
-    return await modal.present();
+    await modal.present();
   }
 
   async deleteUser(id: string) {

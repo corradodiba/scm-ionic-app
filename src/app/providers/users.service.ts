@@ -25,26 +25,25 @@ export class UsersService {
     return this.httpClient.get<User>(`${this.usersApiUrl}/${id}`).toPromise();
   }
 
-  async getUsersByType(type: TypeUser) {
+  getUsersByType(type: TypeUser): Promise<User[]> {
     return this.httpClient
       .get<User[]>(`${this.userByTypeUrl}${type}`)
       .toPromise();
   }
 
-  async addUser(user: User) {
+  addUser(user: User): Promise<User> {
     return this.httpClient.post<User>(`${this.signupPath}`, user).toPromise();
   }
 
-  async deleteUser(id: string) {
+  deleteUser(id: string): Promise<User> {
     return this.httpClient
       .delete<User>(`${this.usersApiUrl}/${id}`)
       .toPromise();
   }
 
-  async updateUser(id: string, user: User) {
+  updateUser(id: string, user: User): Promise<User> {
     for (let field in user)
       if (!(user as any)[field]) delete (user as any)[field];
-    console.log(user);
     return this.httpClient
       .put<User>(`${this.usersApiUrl}/${id}`, user)
       .toPromise();

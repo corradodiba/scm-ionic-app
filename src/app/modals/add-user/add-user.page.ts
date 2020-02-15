@@ -41,10 +41,10 @@ export class AddUserPage implements OnInit {
     if (this.userForm.invalid) {
       return;
     }
-    this.userService.addUser(this.userForm.value);
-    await this.modalController.dismiss(this.userForm.value);
+    const newUser = await this.userService.addUser(this.userForm.value);
+    await this.modalController.dismiss(newUser);
     const toast = await this.toastController.create({
-      message: 'User created.',
+      message: `User created.`,
       duration: 6000,
     });
     toast.present();

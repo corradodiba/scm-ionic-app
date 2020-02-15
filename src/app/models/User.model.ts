@@ -1,7 +1,7 @@
 import { Subject } from './Subject.model';
 
 interface User {
-  id?: string;
+  id: string;
   email: string;
   password: string;
   fiscalCode: string;
