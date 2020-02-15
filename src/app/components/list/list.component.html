@@ -1,7 +1,15 @@
 <ion-list>
   <ng-content></ng-content>
+  <ion-infinite-scroll
+    *ngIf="isInfiniteScrollable"
+    threshold="100px"
+    (ionInfinite)="doInfinite($event)"
+    [disabled]="itemsListView.length === items.length"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-list>
-<ion-infinite-scroll threshold="100px" (ionInfinite)="doInfinite($event)" [disabled]="numTimesLeft <= 0">
-  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
