@@ -14,12 +14,7 @@
       </ion-item> -->
       <ion-item-sliding (dblclick)="navigate(course?.id)">
         <ion-item-options side="start">
-          <ion-item-option
-            color="primary"
-            (click)="updateCourse(course.id)"
-            expandable
-            >Update</ion-item-option
-          >
+          <ion-item-option color="primary" (click)="updateCourse(course.id)" expandable>Update</ion-item-option>
         </ion-item-options>
 
         <ion-item>
@@ -27,12 +22,7 @@
         </ion-item>
 
         <ion-item-options side="end">
-          <ion-item-option
-            color="danger"
-            (click)="deleteCourse(course.id)"
-            expandable
-            >Delete</ion-item-option
-          >
+          <ion-item-option color="danger" (click)="deleteCourse(course.id)" expandable>Delete</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
     </ion-card>

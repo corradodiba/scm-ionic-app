@@ -1,5 +1,15 @@
-<app-menu-button
-  [title]="'Course' + course?.name"
-  [isToBack]="true"
-></app-menu-button>
-<ion-content>Details works!</ion-content>
+<app-menu-button [title]="'Course' + course?.name" [isToBack]="true"></app-menu-button>
+<ion-content>
+  <app-list>
+    <ion-card>
+      <ion-card-content>
+        <ion-title>SUBJECTS</ion-title>
+        <ion-item lines="none" *ngFor="let subject of course?.subjects">
+          <ion-label> {{subject.name}} {{subject.hours}}
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </app-list>
+  <app-fab-button [buttons]="buttons"></app-fab-button>
+</ion-content>
