@@ -26,6 +26,7 @@ import { UpdateCoursePage } from '../modals/update-course/update-course.page';
     FabButtonModule,
     AddCoursePageModule,
     UpdateCoursePageModule,
+    ListModule,
   ],
   declarations: [CoursesListPage, CourseDetailPage],
   entryComponents: [AddCoursePage, UpdateCoursePage],

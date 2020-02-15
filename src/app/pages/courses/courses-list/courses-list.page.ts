@@ -85,10 +85,10 @@ export class CoursesListPage implements OnInit {
     });
     await modal.present();
   }
-  async deleteCourse(id: string) {
-    const deletedCourse = await this.coursesService.delete(id);
-    this.courses.map((course, index) => {
-      if (course.id === deletedCourse.id) this.courses.splice(index, 1);
-    });
-  }
+  // async deleteCourse(id: string) {
+  //   const deletedCourse = await this.coursesService.delete(id);
+  //   this.courses.map((course, index) => {
+  //     if (course.id === deletedCourse.id) this.courses.splice(index, 1);
+  //   });
+  // }
 }
