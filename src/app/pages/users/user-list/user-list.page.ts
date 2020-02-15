@@ -57,11 +57,9 @@ export class UserListPage implements OnInit {
 
     this.socket
       .fromEvent('auth')
-      .subscribe((data: { status: boolean; user: User }) => {
-        const { status, user } = data;
-        this.users.find(
-          fetchedUser => user.id === fetchedUser.id,
-        ).status = status;
+      .subscribe((data: { status: boolean; id: string }) => {
+        const { status, id } = data;
+        this.users.find(user => id === user.id).status = status;
       });
     this.users = await this.usersService.getUsers();
   }
