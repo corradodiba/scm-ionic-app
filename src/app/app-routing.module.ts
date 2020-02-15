@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './pages/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
     path: 'courses',
     loadChildren: () =>
       import('./pages/courses/courses.module').then(m => m.CoursesModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'signup',
@@ -27,6 +29,7 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () =>
       import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'dashboard',
@@ -34,11 +37,13 @@ const routes: Routes = [
       import('./pages/dashboard/dashboard.module').then(
         m => m.DashboardPageModule,
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'users',
     loadChildren: () =>
       import('./pages/users/users.module').then(m => m.UsersModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'students',
@@ -59,7 +64,10 @@ const routes: Routes = [
   },
   {
     path: 'update-course',
-    loadChildren: () => import('./pages/modals/update-course/update-course.module').then( m => m.UpdateCoursePageModule)
+    loadChildren: () =>
+      import('./pages/modals/update-course/update-course.module').then(
+        m => m.UpdateCoursePageModule,
+      ),
   },
 ];
 
