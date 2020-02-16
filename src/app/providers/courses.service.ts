@@ -34,8 +34,6 @@ export class CoursesService {
       .toPromise();
   }
   delete(id: string): Promise<Course> {
-    console.log(`${this.coursesApiUrl}/${id}`);
-
     return this.httpClient
       .delete<Course>(`${this.coursesApiUrl}/${id}`)
       .toPromise();

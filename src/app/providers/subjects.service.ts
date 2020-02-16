@@ -31,8 +31,6 @@ export class SubjectsService {
       .toPromise();
   }
   delete(id: string): Promise<Subject> {
-    console.log(`${this.subjectsApiUrl}/${id}`);
-
     return this.httpClient
       .delete<Subject>(`${this.subjectsApiUrl}/${id}`)
       .toPromise();

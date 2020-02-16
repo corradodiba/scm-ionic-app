@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CoursesService } from 'src/app/providers/courses.service';
 import { ModalController, ToastController } from '@ionic/angular';
@@ -9,11 +9,11 @@ import { ModalController, ToastController } from '@ionic/angular';
   styleUrls: ['./add-subject.page.scss'],
 })
 export class AddSubjectPage implements OnInit {
+  @Input() courseSelected: string;
   subjectForm = new FormGroup({
     name: new FormControl(),
     hours: new FormControl(),
   });
-  courseId: string;
 
   constructor(
     private courseService: CoursesService,
@@ -29,10 +29,10 @@ export class AddSubjectPage implements OnInit {
   async closeModal() {
     try {
       const newSubject = await this.courseService.addSubjects(
-        this.courseId,
+        this.courseSelected,
         this.subjectForm.value,
       );
-      await this.modalController.dismiss(newSubject);
+      await this.modalController.dismiss(this.subjectForm.value);
       const toast = await this.toastController.create({
         message: `Subjects ${this.subjectForm.value.name} created.`,
         duration: 6000,
