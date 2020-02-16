@@ -61,7 +61,7 @@ const routes: Routes = [
   {
     path: 'add-user',
     loadChildren: () =>
-      import('./modals/add-user/add-user.module').then(
+      import('./pages/modals/add-user/add-user.module').then(
         m => m.AddUserPageModule,
       ),
     canActivate: [AuthGuard],
@@ -69,7 +69,7 @@ const routes: Routes = [
   {
     path: 'update-user',
     loadChildren: () =>
-      import('./modals/update-user/update-user.module').then(
+      import('./pages/modals/update-user/update-user.module').then(
         m => m.UpdateUserPageModule,
       ),
     canActivate: [AuthGuard],

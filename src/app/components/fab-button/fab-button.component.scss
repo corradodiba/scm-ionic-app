@@ -1,5 +1,11 @@
 ion-label {
-  position: relative;
-  right: 2em;
-  top: 2.65em;
+  position: absolute;
+  top: 1em;
+  right: 3.6em;
+  display: flex;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  line-height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
 }

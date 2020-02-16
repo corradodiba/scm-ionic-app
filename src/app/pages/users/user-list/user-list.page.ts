@@ -13,8 +13,8 @@ import { UsersService } from 'src/app/providers/users.service';
 
 import User from 'src/app/models/User.model';
 import FabIcon from 'src/app/models/FabIcon.model';
-import { AddUserPage } from 'src/app/modals/add-user/add-user.page';
-import { UpdateUserPage } from 'src/app/modals/update-user/update-user.page';
+import { AddUserPage } from 'src/app/pages/modals/add-user/add-user.page';
+import { UpdateUserPage } from 'src/app/pages/modals/update-user/update-user.page';
 
 @Component({
   selector: 'app-user-list',
@@ -35,7 +35,7 @@ export class UserListPage implements OnInit {
 
   buttons: FabIcon[] = [
     {
-      name: 'Add User',
+      name: 'Add',
       icon: 'add',
       color: 'light',
       action: async () => {
