@@ -37,7 +37,7 @@ export class AppComponent implements OnDestroy, OnInit {
     },
     {
       title: 'Logout',
-      url: '/home',
+      url: '/login',
       icon: 'log-in',
       guest: false,
     },

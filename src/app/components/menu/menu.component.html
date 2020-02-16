@@ -15,11 +15,7 @@
               {{ page.title }}
             </ion-label>
           </ion-item>
-          <ion-item
-            *ngIf="page.action"
-            [routerLink]="[page.url]"
-            (click)="page.action()"
-          >
+          <ion-item *ngIf="page.action" href="/home" (click)="page.action()">
             <ion-icon slot="start" [name]="page.icon"></ion-icon>
             <ion-label>
               {{ page.title }}
