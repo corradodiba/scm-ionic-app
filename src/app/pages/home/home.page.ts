@@ -8,8 +8,8 @@ import { Subscription } from 'rxjs';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  isFirstSession = Number(localStorage.getItem('session')) === 1;
+export class HomePage implements OnInit, OnDestroy {
+  isFirstSession = false;
   tabs: NavigationItem[] = [
     {
       title: 'dashboard',
@@ -37,4 +37,12 @@ export class HomePage {
     },
   ];
   constructor() {}
+
+  ngOnInit() {
+    this.isFirstSession = Number(localStorage.getItem('session')) === 1;
+  }
+
+  ngOnDestroy() {
+    this.isFirstSession = false;
+  }
 }

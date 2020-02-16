@@ -3,4 +3,5 @@ export interface NavigationItem {
   url: string;
   icon: string;
   guest: boolean;
+  action?: () => void;
 }

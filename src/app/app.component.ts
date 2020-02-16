@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { NavigationItem } from './models/NavigationItem.model';
@@ -43,9 +43,12 @@ export class AppComponent implements OnDestroy, OnInit {
     },
     {
       title: 'Tutorial',
-      url: '/slides',
+      url: '/home',
       icon: 'information-circle',
       guest: false,
+      action: () => {
+        this.showTutorialAgain();
+      },
     },
   ];
 
@@ -66,6 +69,10 @@ export class AppComponent implements OnDestroy, OnInit {
   }
   ngOnInit() {
     this.authService.autoConfigAuthUser();
+  }
+
+  showTutorialAgain() {
+    localStorage.setItem('session', '1');
   }
 
   ngOnDestroy() {

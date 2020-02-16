@@ -5,9 +5,20 @@
       <ion-menu-toggle auto-hide="false" *ngFor="let page of pages">
         <ng-template [ngIf]="show(page)">
           <ion-item
+            *ngIf="!page.action"
             [routerDirection]="'root'"
             [routerLink]="[page.url]"
             (click)="logout(page)"
+          >
+            <ion-icon slot="start" [name]="page.icon"></ion-icon>
+            <ion-label>
+              {{ page.title }}
+            </ion-label>
+          </ion-item>
+          <ion-item
+            *ngIf="page.action"
+            [routerLink]="[page.url]"
+            (click)="page.action()"
           >
             <ion-icon slot="start" [name]="page.icon"></ion-icon>
             <ion-label>

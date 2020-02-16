@@ -8,6 +8,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then(m => m.HomePageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'courses',
@@ -49,11 +50,13 @@ const routes: Routes = [
     path: 'students',
     loadChildren: () =>
       import('./pages/users/users.module').then(m => m.UsersModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'teachers',
     loadChildren: () =>
       import('./pages/users/users.module').then(m => m.UsersModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'add-user',
@@ -61,6 +64,7 @@ const routes: Routes = [
       import('./modals/add-user/add-user.module').then(
         m => m.AddUserPageModule,
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'update-user',
@@ -68,6 +72,7 @@ const routes: Routes = [
       import('./modals/update-user/update-user.module').then(
         m => m.UpdateUserPageModule,
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'update-course',
@@ -75,6 +80,7 @@ const routes: Routes = [
       import('./pages/modals/update-course/update-course.module').then(
         m => m.UpdateCoursePageModule,
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: 'add-course',
@@ -82,11 +88,7 @@ const routes: Routes = [
       import('./pages/modals/add-course/add-course.module').then(
         m => m.AddCoursePageModule,
       ),
-  },
-  {
-    path: 'slides',
-    loadChildren: () =>
-      import('./pages/slides/slides.module').then(m => m.SlidesPageModule),
+    canActivate: [AuthGuard],
   },
 ];
 
