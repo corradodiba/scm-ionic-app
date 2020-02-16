@@ -113,15 +113,29 @@ const routes: Routes = [
   },
   {
     path: 'grades',
-    loadChildren: () => import('./pages/grades/grades.module').then( m => m.GradesPageModule)
+    loadChildren: () =>
+      import('./pages/grades/grades.module').then(m => m.GradesPageModule),
   },
   {
     path: 'add-grade',
-    loadChildren: () => import('./pages/modals/add-grade/add-grade.module').then( m => m.AddGradePageModule)
+    loadChildren: () =>
+      import('./pages/modals/add-grade/add-grade.module').then(
+        m => m.AddGradePageModule,
+      ),
   },
   {
     path: 'update-grade',
-    loadChildren: () => import('./pages/modals/update-grade/update-grade.module').then( m => m.UpdateGradePageModule)
+    loadChildren: () =>
+      import('./pages/modals/update-grade/update-grade.module').then(
+        m => m.UpdateGradePageModule,
+      ),
+  },
+  {
+    path: 'subjects',
+    loadChildren: () =>
+      import('./pages/subjects/subjects.module').then(
+        m => m.SubjectsPageModule,
+      ),
   },
 ];
 

@@ -30,8 +30,8 @@ export class HomePage implements OnInit, OnDestroy {
       guest: true,
     },
     {
-      title: 'profile',
-      url: '/profile',
+      title: 'subjects',
+      url: '/subjects',
       icon: 'contact',
       guest: true,
     },
