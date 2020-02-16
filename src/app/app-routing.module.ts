@@ -83,6 +83,11 @@ const routes: Routes = [
         m => m.AddCoursePageModule,
       ),
   },
+  {
+    path: 'slides',
+    loadChildren: () =>
+      import('./pages/slides/slides.module').then(m => m.SlidesPageModule),
+  },
 ];
 
 @NgModule({
