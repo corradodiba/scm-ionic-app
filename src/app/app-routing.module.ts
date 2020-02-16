@@ -91,6 +91,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'update-course',
+    loadChildren: () =>
+      import('./pages/modals/update-course/update-course.module').then(
+        m => m.UpdateCoursePageModule,
+      ),
+  },
+  {
     path: 'add-subject',
     loadChildren: () =>
       import('./pages/modals/add-subject/add-subject.module').then(
