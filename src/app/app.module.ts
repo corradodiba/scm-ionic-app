@@ -38,7 +38,6 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     UsersModule,
     MenuButtonModule,
     HomePageModule,
-    SlidesPageModule,
   ],
   providers: [
     StatusBar,

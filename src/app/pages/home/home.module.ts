@@ -10,6 +10,8 @@ import { MenuButtonModule } from '../../components/menu-button/menu-button.modul
 import { HomePage } from './home.page';
 
 import { TabsComponent } from '../../components/tabs/tabs.component';
+import { SlidesPageModule } from '../slides/slides.module';
+import { SlidesPage } from '../slides/slides.page';
 
 @NgModule({
   imports: [
@@ -24,6 +26,7 @@ import { TabsComponent } from '../../components/tabs/tabs.component';
       },
     ]),
     MenuButtonModule,
+    SlidesPageModule,
   ],
   declarations: [HomePage, TabsComponent],
   exports: [HomePage],
