@@ -69,7 +69,15 @@
         expand="block"
         [disabled]="!userForm.valid"
         (click)="signUp()"
-        >Login</ion-button
+        >Signup</ion-button
+      >
+      <ion-button
+        class="button-block"
+        type="button"
+        color="success"
+        [routerDirection]="'root'"
+        [routerLink]="'/login'"
+        >Go To Login</ion-button
       >
     </form>
   </ion-card>
