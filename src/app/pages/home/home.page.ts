@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavigationItem } from 'src/app/models/NavigationItem.model';
+import { AuthService } from 'src/app/providers/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,7 @@ import { NavigationItem } from 'src/app/models/NavigationItem.model';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  isFirstSession = Number(localStorage.getItem('session')) === 1;
   tabs: NavigationItem[] = [
     {
       title: 'dashboard',
