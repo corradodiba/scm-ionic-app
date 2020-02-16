@@ -1,0 +1,22 @@
+<app-menu-button [title]="'Update Subjects'"></app-menu-button>
+
+<ion-content padding>
+  <ion-card>
+    <form [formGroup]="subjectForm" padding-right>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name" [disabled]="disableName"></ion-input>
+        <ion-toggle slot="end" (click)="enableName()"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">Hours</ion-label>
+        <ion-input formControlName="hours" [disabled]="disableHours"></ion-input>
+        <ion-toggle slot="end" (click)="enableHours()"></ion-toggle>
+      </ion-item>
+      <ion-button type="submit" color="primary" expand="block" [disabled]="!subjectForm.valid" (click)="closeModal()">
+        Update Subject</ion-button>
+    </form>
+  </ion-card>
+</ion-content>

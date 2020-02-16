@@ -3,36 +3,15 @@
 <ion-content>
   <app-list [items]="courses" [isInfiniteScrollable]="true">
     <ion-card class="listcard" *ngFor="let course of courses">
-      <!-- <ion-item lines="none">
-        <ion-avatar class="avatar">{{course?.name}}</ion-avatar>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label class="position"> Status: {{course.status}} </ion-label>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label class="position">Date: {{course.year}} </ion-label>
-      </ion-item> -->
       <ion-item-sliding (dblclick)="navigate(course?.id)">
         <ion-item-options side="start">
-          <ion-item-option
-            color="primary"
-            (click)="updateCourse(course.id)"
-            expandable
-            >Update</ion-item-option
-          >
+          <ion-item-option color="primary" (click)="updateCourse(course.id)" expandable>Update</ion-item-option>
         </ion-item-options>
-
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>{{course?.name}}</ion-label>
         </ion-item>
-
         <ion-item-options side="end">
-          <ion-item-option
-            color="danger"
-            (click)="deleteCourse(course.id)"
-            expandable
-            >Delete</ion-item-option
-          >
+          <ion-item-option color="danger" (click)="deleteCourse(course.id)" expandable>Delete</ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
     </ion-card>

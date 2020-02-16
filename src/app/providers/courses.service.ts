@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 import Course from '../models/Course.model';
+import { Subject } from '../models/Subject.model';
 
 @Injectable({
   providedIn: 'root',
@@ -33,10 +34,16 @@ export class CoursesService {
       .toPromise();
   }
   delete(id: string): Promise<Course> {
-    console.log(`${this.coursesApiUrl}/${id}`);
-
     return this.httpClient
       .delete<Course>(`${this.coursesApiUrl}/${id}`)
+      .toPromise();
+  }
+  addSubjects(id: string, body: Subject): Promise<Subject> {
+    return this.httpClient
+      .post<Subject>(
+        `${this.coursesApiUrl}/${id}/${environment.subjectPath}`,
+        body,
+      )
       .toPromise();
   }
 }

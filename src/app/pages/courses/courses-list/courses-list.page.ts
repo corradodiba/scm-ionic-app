@@ -80,7 +80,7 @@ export class CoursesListPage implements OnInit {
     });
     modal.onWillDismiss().then(data => {
       this.courses.map((course, index) => {
-        if (course.id === id) this.courses.splice(index, 1, data.data);
+        if (course.id === id) { this.courses.splice(index, 1, data.data); }
       });
     });
     await modal.present();
@@ -88,7 +88,7 @@ export class CoursesListPage implements OnInit {
   async deleteCourse(id: string) {
     const deletedCourse = await this.coursesService.delete(id);
     this.courses.map((course, index) => {
-      if (course.id === deletedCourse.id) this.courses.splice(index, 1);
+      if (course.id === deletedCourse.id) { this.courses.splice(index, 1); }
     });
   }
 }
