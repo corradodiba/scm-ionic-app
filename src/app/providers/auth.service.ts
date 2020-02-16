@@ -68,6 +68,10 @@ export class AuthService {
 
         const { type, expiresIn } = response;
         this.storeAuthData({ token, expiresIn, id: this.userId, type });
+        const numberSession = localStorage.getItem('session')
+          ? Number(localStorage.getItem('session'))
+          : 0;
+        localStorage.setItem('session', (numberSession + 1).toString());
         this.router.navigate(['/home']);
       }
     });

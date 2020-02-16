@@ -1,5 +1,4 @@
 <app-menu-button [title]="'Home'"></app-menu-button>
-
 <ion-content class="background">
   <div class="ion-text-center">
     <img class="logo" src="../../assets/icon/logo-its.svg" alt="" />
@@ -17,7 +16,6 @@
       all the students, the teachers, the subjects and the grades.
     </p>
   </ion-card-content>
-
   <ion-list lines="none">
     <ion-list-header>
       <ion-label>Link</ion-label>
@@ -37,5 +35,6 @@
       <ion-label>Slack Chanel</ion-label>
     </ion-item>
   </ion-list>
+  <app-slides *ngIf="isFirstSession"></app-slides>
 </ion-content>
 <app-tabs [tabs]="tabs"></app-tabs>

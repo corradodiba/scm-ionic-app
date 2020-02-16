@@ -1,0 +1,23 @@
+ion-item {
+  position: sticky;
+  top: 0px;
+  bottom: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.38);
+  height: 100%;
+}
+
+ion-slide {
+  width: 100% !important;
+}
+
+ion-card {
+  background-color: white;
+}
+
+.image-size {
+  height: 50%;
+  width: 50%;
+  position: relative;
+  margin: auto;
+}
