@@ -54,14 +54,14 @@ export class UserListPage implements OnInit {
 
   async ngOnInit() {
     this.socket.connect();
-
+    this.users = await this.usersService.getUsers();
     this.socket
       .fromEvent('auth')
       .subscribe((data: { status: boolean; id: string }) => {
         const { status, id } = data;
+        console.log(data);
         this.users.find(user => id === user.id).status = status;
       });
-    this.users = await this.usersService.getUsers();
   }
 
   async navigate(id: string) {
