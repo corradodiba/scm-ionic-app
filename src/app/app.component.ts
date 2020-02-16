@@ -41,6 +41,12 @@ export class AppComponent implements OnDestroy, OnInit {
       icon: 'log-in',
       guest: false,
     },
+    {
+      title: 'Tutorial',
+      url: '/slides',
+      icon: 'information-circle',
+      guest: false,
+    },
   ];
 
   constructor(

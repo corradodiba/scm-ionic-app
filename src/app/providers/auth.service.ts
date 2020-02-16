@@ -68,7 +68,12 @@ export class AuthService {
 
         const { type, expiresIn } = response;
         this.storeAuthData({ token, expiresIn, id: this.userId, type });
-        this.router.navigate(['/home']);
+        if (localStorage.getItem('session')) {
+          this.router.navigate(['/home']);
+        } else {
+          localStorage.setItem('session', '1');
+          this.router.navigate(['/slides']);
+        }
       }
     });
   }
