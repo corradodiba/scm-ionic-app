@@ -43,14 +43,13 @@ export class CourseDetailPage implements OnInit {
   async ngOnInit() {
     this.courseId = this.router.snapshot.paramMap.get('courseId');
     this.course = await this.coursesService.getById(this.courseId);
-    // this.subject = await this.coursesService.addSubjects(
-    //   this.courseId,
-    //   this.subject,
-    // );
+    this.subjects =
+      this.course.subjects.length !== 0 ? this.course.subjects : [];
   }
   async addSubject() {
     const modal = await this.modalCtrl.create({
       component: AddSubjectPage,
+      componentProps: { courseSelected: this.courseId },
     });
     modal.onWillDismiss().then(({ data }) => {
       if (!data) {
@@ -70,10 +69,10 @@ export class CourseDetailPage implements OnInit {
         hours: selectedSubject.hours,
       },
     });
-    modal.onWillDismiss().then(data => {
+    modal.onWillDismiss().then(({ data }) => {
       this.subjects.map((subject, index) => {
         if (subject.id === id) {
-          this.subjects.splice(index, 1, data.data);
+          this.subjects.splice(index, 1, data);
         }
       });
     });
