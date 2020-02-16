@@ -1,7 +1,14 @@
-<ion-item color="transparent" lines="none">
+<ion-item color="transparent" lines="none" *ngIf="isVisible">
   <ion-slides>
     <ion-slide>
       <ion-card>
+        <ion-icon
+          class="close-slide"
+          slot="start"
+          color="medium"
+          name="close"
+          (click)="isVisible = false"
+        ></ion-icon>
         <div class="slide">
           <img
             src="../../../assets/slides-icon/logo-sj.png"
@@ -34,6 +41,13 @@
 
     <ion-slide>
       <ion-card>
+        <ion-icon
+          class="close-slide"
+          slot="start"
+          color="medium"
+          name="close"
+          (click)="isVisible = false"
+        ></ion-icon>
         <img src="../../../assets/slides-icon/team-sj.jpg" />
         <h2>What is Steve Jobs Academy?</h2>
         <p>
@@ -46,6 +60,13 @@
 
     <ion-slide>
       <ion-card>
+        <ion-icon
+          class="close-slide"
+          slot="start"
+          color="medium"
+          name="close"
+          (click)="isVisible = false"
+        ></ion-icon>
         <img src="../../../assets/slides-icon/rocket.png" class="image-size" />
         <h2>Ready to Play?</h2>
         <ion-button fill="clear" (click)="goHome()"

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-slides',
@@ -7,11 +6,12 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./slides.page.scss'],
 })
 export class SlidesPage implements OnInit {
-  constructor(private navCtrl: NavController) {}
+  isVisible = true;
+  constructor() {}
 
   ngOnInit() {}
 
   goHome() {
-    this.navCtrl.navigateBack('/');
+    this.isVisible = false;
   }
 }
