@@ -1,7 +1,13 @@
-<app-menu-button
-  [title]="'Update Subjects'"
-  [isToBack]="true"
-></app-menu-button>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update Subject</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abortModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content padding>
   <ion-card>

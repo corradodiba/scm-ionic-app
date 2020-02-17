@@ -60,9 +60,6 @@ export class UsersService {
       .toPromise();
   }
   addGrade(userId: string, body: { grade: number; subject: string }) {
-    console.log('user', userId);
-    console.log('subject', body.subject);
-
     return this.httpClient
       .post<Grade>(`${this.usersApiUrl}/${userId}/grades`, body)
       .toPromise();
@@ -70,6 +67,15 @@ export class UsersService {
   deleteGrade(userId: string, id: string): Promise<Grade> {
     return this.httpClient
       .delete<Grade>(`${this.usersApiUrl}/${userId}/grades/${id}`)
+      .toPromise();
+  }
+  updateGrade(
+    userId: string,
+    gradeId: string,
+    body: { grade: number; subject: string },
+  ): Promise<Grade> {
+    return this.httpClient
+      .put<Grade>(`${this.usersApiUrl}/${userId}/grades/${gradeId}`, body)
       .toPromise();
   }
 }

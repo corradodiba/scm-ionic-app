@@ -8,6 +8,7 @@ import { Subject } from 'src/app/models/Subject.model';
 import { SubjectsService } from 'src/app/providers/subjects.service';
 import { AddGradePage } from '../modals/add-grade/add-grade.page';
 import { ModalController } from '@ionic/angular';
+import { UpdateGradePage } from '../modals/update-grade/update-grade.page';
 
 @Component({
   selector: 'app-grades',
@@ -42,18 +43,13 @@ export class GradesPage implements OnInit {
     //prendo tutti gli user
     const users: User[] = await this.usersService.getUsers();
     for (const user of users) {
-      console.log(user.id);
-
       //di ognuno prendo il loro id per prendermi i loro voti di ogni materia
       let allGrades = await this.usersService.getAllGradesOfAUser(user.id);
       //se ce ne sono, filtriamoli per la materia selezionata
       if (allGrades.length > 0) {
         let subjectGrades = allGrades.map(grade => {
-          console.log(grade);
-
           if (grade.subject.id == subjectId) return grade;
         });
-        console.log(subjectGrades);
 
         if (subjectGrades)
           for (const grade of subjectGrades) {
@@ -62,7 +58,6 @@ export class GradesPage implements OnInit {
           }
       }
     }
-    console.log(this.grades);
   }
   async addGrade() {
     const modal = await this.modalCtrl.create({
@@ -80,11 +75,29 @@ export class GradesPage implements OnInit {
     await modal.present();
   }
   async deleteGrade(userId: string, id: string) {
-    const deletedCourse = await this.usersService.deleteGrade(userId, id);
-    this.grades.map((course, index) => {
-      if (course.id === deletedCourse.id) {
+    const deletedGrade = await this.usersService.deleteGrade(userId, id);
+    this.grades.map((grade, index) => {
+      if (grade.id === deletedGrade.id) {
         this.grades.splice(index, 1);
       }
     });
+  }
+  async updateGrade(userId: string, gradeId: string) {
+    const modal = await this.modalCtrl.create({
+      component: UpdateGradePage,
+      componentProps: {
+        gradeId,
+        subjectId: this.subject.id,
+        userId: userId,
+      },
+    });
+    modal.onWillDismiss().then(data => {
+      this.grades.map((grade, index) => {
+        if (grade.id === gradeId) {
+          this.grades.splice(index, 1, data.data);
+        }
+      });
+    });
+    await modal.present();
   }
 }
