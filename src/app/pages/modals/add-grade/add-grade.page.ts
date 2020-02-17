@@ -15,7 +15,7 @@ export class AddGradePage implements OnInit {
   users: User[];
   gradeForm = new FormGroup({
     grade: new FormControl(),
-    user: new FormControl(),
+    userId: new FormControl(),
   });
   constructor(
     private usersService: UsersService,
@@ -30,15 +30,16 @@ export class AddGradePage implements OnInit {
     this.modalCtrl.dismiss();
   }
   async closeModal() {
-    const userId = this.gradeForm.value.user;
-    console.log(this.gradeForm.value);
+    const userId = this.gradeForm.value.userId;
 
     const body = {
       grade: this.gradeForm.value.grade,
-      subjectId: this.subject.id,
+      subject: this.subject.id,
     };
     try {
       const newGrade = await this.usersService.addGrade(userId, body);
+      console.log(newGrade);
+
       await this.modalCtrl.dismiss(newGrade);
       const toast = await this.toastCtrl.create({
         message: `Grade added.`,

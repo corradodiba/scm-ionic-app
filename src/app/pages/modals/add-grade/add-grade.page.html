@@ -19,8 +19,8 @@
       <ion-item>
         <ion-icon name="md-create" slot="start"></ion-icon>
         <ion-label position="floating">User</ion-label>
-        <ion-select formControlName="status" required>
-          <ion-select-option *ngFor="let user of users" value="{{user}}">
+        <ion-select formControlName="userId" [selectedText]="userId" required>
+          <ion-select-option *ngFor="let user of users" value="{{user.id}}">
             {{user.name}} {{user.surname}}
           </ion-select-option>
         </ion-select>
