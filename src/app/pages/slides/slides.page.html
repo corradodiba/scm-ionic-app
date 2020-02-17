@@ -7,7 +7,7 @@
           slot="start"
           color="medium"
           name="close"
-          (click)="isVisible = false"
+          (click)="onCloseSlides()"
         ></ion-icon>
         <div class="slide">
           <img
@@ -46,7 +46,7 @@
           slot="start"
           color="medium"
           name="close"
-          (click)="isVisible = false"
+          (click)="onCloseSlides()"
         ></ion-icon>
         <img src="../../../assets/slides-icon/team-sj.jpg" />
         <h2>What is Steve Jobs Academy?</h2>
@@ -66,11 +66,11 @@
           slot="start"
           color="medium"
           name="close"
-          (click)="isVisible = false"
+          (click)="onCloseSlides()"
         ></ion-icon>
         <img src="../../../assets/slides-icon/rocket.png" class="image-size" />
         <h2>Ready to Play?</h2>
-        <ion-button fill="clear" (click)="goHome()"
+        <ion-button fill="clear" (click)="onCloseSlides()"
           >Continue <ion-icon slot="end" name="arrow-forward"></ion-icon
         ></ion-button>
       </ion-card>

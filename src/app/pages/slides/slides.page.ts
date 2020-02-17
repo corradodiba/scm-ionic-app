@@ -14,4 +14,9 @@ export class SlidesPage implements OnInit {
   goHome() {
     this.isVisible = false;
   }
+
+  onCloseSlides() {
+    this.isVisible = false;
+    localStorage.setItem('session', '2');
+  }
 }
