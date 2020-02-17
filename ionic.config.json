@@ -1,5 +1,7 @@
 {
   "name": "scm-ionic-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
