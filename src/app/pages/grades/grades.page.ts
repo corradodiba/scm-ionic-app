@@ -43,6 +43,8 @@ export class GradesPage implements OnInit {
     //prendo tutti gli user
     const users: User[] = await this.usersService.getUsers();
     for (const user of users) {
+      console.log(user.id);
+
       //di ognuno prendo il loro id per prendermi i loro voti di ogni materia
       let allGrades = await this.usersService.getAllGradesOfAUser(user.id);
       //se ce ne sono, filtriamoli per la materia selezionata
