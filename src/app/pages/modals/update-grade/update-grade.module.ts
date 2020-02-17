@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { UpdateGradePageRoutingModule } from './update-grade-routing.module';
 
 import { UpdateGradePage } from './update-grade.page';
+import { MenuButtonModule } from 'src/app/components/menu-button/menu-button.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { UpdateGradePage } from './update-grade.page';
     IonicModule,
     ReactiveFormsModule,
     UpdateGradePageRoutingModule,
+    MenuButtonModule,
   ],
   declarations: [UpdateGradePage],
 })
