@@ -5,11 +5,13 @@ import Course from 'src/app/models/Course.model';
 
 import { CoursesService } from 'src/app/providers/courses.service';
 import FabIcon from 'src/app/models/FabIcon.model';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Subject } from 'src/app/models/Subject.model';
 import { AddSubjectPage } from '../../modals/add-subject/add-subject.page';
 import { SubjectsService } from 'src/app/providers/subjects.service';
 import { UpdateSubjectPage } from '../../modals/update-subject/update-subject.page';
+import { UsersService } from 'src/app/providers/users.service';
+import { Grade } from 'src/app/models/Grade.model';
 
 @Component({
   selector: 'app-course-detail',
@@ -21,7 +23,6 @@ export class CourseDetailPage implements OnInit {
   course: Course;
   subjects: Subject[] = [];
   subject: Subject;
-
   buttons: FabIcon[] = [
     {
       name: 'Add',
@@ -38,6 +39,7 @@ export class CourseDetailPage implements OnInit {
     private subjectsService: SubjectsService,
     private router: ActivatedRoute,
     private modalCtrl: ModalController,
+    private navCtrl: NavController,
   ) {}
 
   async ngOnInit() {
@@ -45,6 +47,9 @@ export class CourseDetailPage implements OnInit {
     this.course = await this.coursesService.getById(this.courseId);
     this.subjects =
       this.course.subjects.length !== 0 ? this.course.subjects : [];
+  }
+  async navigate(id: string) {
+    await this.navCtrl.navigateForward(`/grades/${id}`);
   }
   async addSubject() {
     const modal = await this.modalCtrl.create({
@@ -86,4 +91,5 @@ export class CourseDetailPage implements OnInit {
       }
     });
   }
+  async getGrades() {}
 }

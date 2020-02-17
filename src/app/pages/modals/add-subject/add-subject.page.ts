@@ -32,7 +32,7 @@ export class AddSubjectPage implements OnInit {
         this.courseSelected,
         this.subjectForm.value,
       );
-      await this.modalController.dismiss(this.subjectForm.value);
+      await this.modalController.dismiss(newSubject);
       const toast = await this.toastController.create({
         message: `Subjects ${this.subjectForm.value.name} created.`,
         duration: 6000,

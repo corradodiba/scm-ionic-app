@@ -111,6 +111,18 @@ const routes: Routes = [
         m => m.UpdateSubjectPageModule,
       ),
   },
+  {
+    path: 'grades',
+    loadChildren: () => import('./pages/grades/grades.module').then( m => m.GradesPageModule)
+  },
+  {
+    path: 'add-grade',
+    loadChildren: () => import('./pages/modals/add-grade/add-grade.module').then( m => m.AddGradePageModule)
+  },
+  {
+    path: 'update-grade',
+    loadChildren: () => import('./pages/modals/update-grade/update-grade.module').then( m => m.UpdateGradePageModule)
+  },
 ];
 
 @NgModule({

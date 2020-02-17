@@ -15,7 +15,11 @@
         <ion-label class="position">Date: {{course?.year}} </ion-label>
       </ion-item>
     </ion-card>
-    <ion-card class="listcard" *ngFor="let subject of subjects">
+    <ion-card
+      class="listcard"
+      *ngFor="let subject of subjects"
+      (dblclick)="navigate(subject.id)"
+    >
       <ion-item-sliding>
         <ion-item-options side="start">
           <ion-item-option

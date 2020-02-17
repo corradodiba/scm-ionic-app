@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{subject.name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="abortModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <form [formGroup]="gradeForm" padding-right>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">Grade</ion-label>
+        <ion-input formControlName="grade" type="number" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">User</ion-label>
+        <ion-select formControlName="status" required>
+          <ion-select-option *ngFor="let user of users" value="{{user}}">
+            {{user.name}} {{user.surname}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button
+        type="submit"
+        color="primary"
+        expand="block"
+        [disabled]="!gradeForm.valid"
+        (click)="closeModal()"
+      >
+        Add Grade</ion-button
+      >
+    </form>
+  </ion-card>
+</ion-content>

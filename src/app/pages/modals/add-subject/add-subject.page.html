@@ -1,4 +1,4 @@
-<app-menu-button [title]="'New Subject'"></app-menu-button>
+<app-menu-button [title]="'New Subject'" [isToBack]="true"></app-menu-button>
 
 <ion-content padding>
   <ion-card>
@@ -13,8 +13,15 @@
         <ion-label position="floating">Hours</ion-label>
         <ion-input formControlName="hours" required></ion-input>
       </ion-item>
-      <ion-button type="submit" color="primary" expand="block" [disabled]="!subjectForm.valid" (click)="closeModal()">
-        Create Subject</ion-button>
+      <ion-button
+        type="submit"
+        color="primary"
+        expand="block"
+        [disabled]="!subjectForm.valid"
+        (click)="closeModal()"
+      >
+        Create Subject</ion-button
+      >
     </form>
   </ion-card>
 </ion-content>

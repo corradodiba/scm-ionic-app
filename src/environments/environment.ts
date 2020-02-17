@@ -11,6 +11,7 @@ export const environment = {
   usersPath: 'users',
   usersTypeQuery: '?type=',
   subjectPath: 'subjects',
+  gradesPath: 'grades',
 };
 
 /*
