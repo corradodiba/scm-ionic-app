@@ -1,30 +1,49 @@
-ion-item {
-  position: sticky;
-  top: 0px;
+ion-slides {
+  background: rgba(235, 81, 50, 0.9215686274509803);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
   z-index: 999;
-  background: rgba(0, 0, 0, 0.38);
-  height: 100%;
 }
 
 ion-slide {
   width: 100% !important;
+  margin: auto;
+  height: 90%;
+  display: flex;
 }
 
 ion-card {
+  height: 100%;
   background-color: white;
+  border-radius: 10px !important;
+  padding: 10% 3% !important;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.26) !important;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .image-size {
-  height: 50%;
   width: 50%;
-  position: relative;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .close-slide {
   position: absolute;
   right: 5%;
   top: 3%;
-  font-size: 30px;
+  font-size: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.text-container {
+  margin: 0;
+  padding: 2% 5%;
+  text-align: start;
 }

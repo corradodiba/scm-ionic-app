@@ -1,24 +1,23 @@
-<ion-item color="transparent" lines="none" *ngIf="isVisible">
-  <ion-slides>
-    <ion-slide>
-      <ion-card class="ion-padding">
-        <ion-icon
-          class="close-slide"
-          slot="start"
-          color="medium"
-          name="close"
-          (click)="onCloseSlides()"
-        ></ion-icon>
-        <div class="slide">
-          <img
-            src="../../../assets/slides-icon/logo-sj.png"
-            class="image-size"
-          />
+<ion-slides color="transparent" *ngIf="isVisible">
+  <ion-slide>
+    <ion-card class="ion-padding">
+      <ion-icon
+        class="close-slide"
+        slot="start"
+        color="medium"
+        name="close"
+        (click)="onCloseSlides()"
+      ></ion-icon>
+      <div class="slide">
+        <img src="../../../assets/slides-icon/logo-sj.png" class="image-size" />
+        <div class="text-container">
           <h2>Welcome</h2>
           <p>
             This is a handy preview of the <b>Steve Jobs Academy app</b>, and a
             demonstration of the proper way to use it.
           </p>
+        </div>
+        <div style="display: flex; flex: 1; flex-direction: column;">
           <ion-item href="https://stevejobs.academy">
             <ion-icon slot="start" color="medium" name="laptop"></ion-icon>
             <ion-label>Steve Jobs Website</ion-label>
@@ -36,44 +35,43 @@
             <ion-label>Slack Chanel</ion-label>
           </ion-item>
         </div>
-      </ion-card>
-    </ion-slide>
+      </div>
+    </ion-card>
+  </ion-slide>
 
-    <ion-slide>
-      <ion-card class="ion-padding">
-        <ion-icon
-          class="close-slide"
-          slot="start"
-          color="medium"
-          name="close"
-          (click)="onCloseSlides()"
-        ></ion-icon>
-        <img src="../../../assets/slides-icon/team-sj.jpg" />
-        <h2>What is Steve Jobs Academy?</h2>
-        <p>
-          <b>Steve Jobs Academy</b> has designed, together with its teachers,
-          courses where you can learn what do you need to do to work
-          immediately. It also provides you with a MacBook 👨‍💻to study at best
-          potential.
-        </p>
-      </ion-card>
-    </ion-slide>
+  <ion-slide>
+    <ion-card class="ion-padding">
+      <ion-icon
+        class="close-slide"
+        slot="start"
+        color="medium"
+        name="close"
+        (click)="onCloseSlides()"
+      ></ion-icon>
+      <img src="../../../assets/slides-icon/team-sj.jpg" />
+      <h2>What is Steve Jobs Academy?</h2>
+      <p>
+        <b>Steve Jobs Academy</b> has designed, together with its teachers,
+        courses where you can learn what do you need to do to work immediately.
+        It also provides you with a MacBook 👨‍💻to study at best potential.
+      </p>
+    </ion-card>
+  </ion-slide>
 
-    <ion-slide>
-      <ion-card class="ion-padding">
-        <ion-icon
-          class="close-slide"
-          slot="start"
-          color="medium"
-          name="close"
-          (click)="onCloseSlides()"
-        ></ion-icon>
-        <img src="../../../assets/slides-icon/rocket.png" class="image-size" />
-        <h2>Ready to Play?</h2>
-        <ion-button fill="clear" (click)="onCloseSlides()"
-          >Continue <ion-icon slot="end" name="arrow-forward"></ion-icon
-        ></ion-button>
-      </ion-card>
-    </ion-slide>
-  </ion-slides>
-</ion-item>
+  <ion-slide>
+    <ion-card class="ion-padding">
+      <ion-icon
+        class="close-slide"
+        slot="start"
+        color="medium"
+        name="close"
+        (click)="onCloseSlides()"
+      ></ion-icon>
+      <img src="../../../assets/slides-icon/rocket.png" class="image-size" />
+      <h2>Ready to Play?</h2>
+      <ion-button fill="clear" (click)="onCloseSlides()"
+        >Continue <ion-icon slot="end" name="arrow-forward"></ion-icon
+      ></ion-button>
+    </ion-card>
+  </ion-slide>
+</ion-slides>
