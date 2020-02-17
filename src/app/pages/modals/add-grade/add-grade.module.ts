@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UpdateCoursePageRoutingModule } from './update-course-routing.module';
+import { AddGradePageRoutingModule } from './add-grade-routing.module';
 
-import { UpdateCoursePage } from './update-course.page';
+import { AddGradePage } from './add-grade.page';
 import { MenuButtonModule } from 'src/app/components/menu-button/menu-button.module';
 
 @NgModule({
@@ -15,9 +15,9 @@ import { MenuButtonModule } from 'src/app/components/menu-button/menu-button.mod
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    UpdateCoursePageRoutingModule,
+    AddGradePageRoutingModule,
     MenuButtonModule,
   ],
-  declarations: [UpdateCoursePage],
+  declarations: [AddGradePage],
 })
-export class UpdateCoursePageModule {}
+export class AddGradePageModule {}

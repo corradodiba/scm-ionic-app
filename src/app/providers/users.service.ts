@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 import User from '../models/User.model';
+import { Grade } from '../models/Grade.model';
 
 import { TypeUser } from '../models/TypeUser.type';
 
@@ -46,6 +47,35 @@ export class UsersService {
       if (!(user as any)[field]) delete (user as any)[field];
     return this.httpClient
       .put<User>(`${this.usersApiUrl}/${id}`, user)
+      .toPromise();
+  }
+  getAllGradesOfAUser(userId: string): Promise<Grade[]> {
+    return this.httpClient
+      .get<Grade[]>(`${this.usersApiUrl}/${userId}/grades`)
+      .toPromise();
+  }
+  getGradeById(gradeId: string, userId: string): Promise<Grade> {
+    return this.httpClient
+      .get<Grade>(`${this.usersApiUrl}/${userId}/grades/${gradeId}`)
+      .toPromise();
+  }
+  addGrade(userId: string, body: { grade: number; subject: string }) {
+    return this.httpClient
+      .post<Grade>(`${this.usersApiUrl}/${userId}/grades`, body)
+      .toPromise();
+  }
+  deleteGrade(userId: string, id: string): Promise<Grade> {
+    return this.httpClient
+      .delete<Grade>(`${this.usersApiUrl}/${userId}/grades/${id}`)
+      .toPromise();
+  }
+  updateGrade(
+    userId: string,
+    gradeId: string,
+    body: { grade: number; subject: string },
+  ): Promise<Grade> {
+    return this.httpClient
+      .put<Grade>(`${this.usersApiUrl}/${userId}/grades/${gradeId}`, body)
       .toPromise();
   }
 }

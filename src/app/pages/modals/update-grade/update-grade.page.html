@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update Grade</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abortModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <form [formGroup]="gradeForm" padding-right>
+      <ion-item>
+        <ion-icon name="md-create" slot="start"></ion-icon>
+        <ion-label position="floating">Grade</ion-label>
+        <ion-select formControlName="grade">
+          <ion-select-option value="1"> 1 </ion-select-option>
+          <ion-select-option value="2"> 2 </ion-select-option>
+          <ion-select-option value="3"> 3 </ion-select-option>
+          <ion-select-option value="4"> 4 </ion-select-option>
+          <ion-select-option value="5"> 5 </ion-select-option>
+          <ion-select-option value="6"> 6 </ion-select-option>
+          <ion-select-option value="7"> 7 </ion-select-option>
+          <ion-select-option value="8"> 8 </ion-select-option>
+          <ion-select-option value="9"> 9 </ion-select-option>
+          <ion-select-option value="10"> 10 </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button
+        type="submit"
+        color="primary"
+        expand="block"
+        [disabled]="!gradeForm.valid"
+        (click)="closeModal()"
+        >Update Grade</ion-button
+      >
+    </form>
+  </ion-card>
+</ion-content>

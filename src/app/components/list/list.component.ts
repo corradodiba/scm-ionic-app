@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import Course from 'src/app/models/Course.model';
 import User from 'src/app/models/User.model';
+import { Grade } from 'src/app/models/Grade.model';
 
 @Component({
   selector: 'app-list',
@@ -9,7 +10,7 @@ import User from 'src/app/models/User.model';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent {
-  @Input() items: Course[] | User[] = [];
+  @Input() items: Course[] | Grade[] | User[] = [];
   @Input() isInfiniteScrollable: boolean;
   itemsListView = [];
 
