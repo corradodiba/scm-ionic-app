@@ -1,5 +1,5 @@
 <app-menu-button
-  [title]="'Course' + course?.name"
+  [title]="'Course ' + course?.name"
   [isToBack]="true"
 ></app-menu-button>
 <ion-content>
@@ -15,33 +15,88 @@
         <ion-label class="position">Date: {{course?.year}} </ion-label>
       </ion-item>
     </ion-card>
-    <ion-card
-      class="listcard"
-      *ngFor="let subject of subjects"
-      (dblclick)="navigate(subject.id)"
+    <ion-toolbar>
+      <ion-segment
+        (ionChange)="segmentChanged()"
+        [(ngModel)]="segment"
+        color="danger"
+      >
+        <ion-segment-button value="0">
+          <ion-label>{{segments[0]}}</ion-label>
+          <ion-icon name="person"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="1">
+          <ion-label>{{segments[1]}}</ion-label>
+          <ion-icon name="laptop"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="2">
+          <ion-label>{{segments[2]}}</ion-label>
+          <ion-icon name="school"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+    <ion-slides
+      [options]="slideOpts"
+      #slides
+      (ionSlideDidChange)="slideChanged()"
+      scrollbar="true"
     >
-      <ion-item-sliding>
-        <ion-item-options side="start">
-          <ion-item-option
-            color="primary"
-            (click)="updateSubject(subject.id)"
-            expandable
-            >Update</ion-item-option
+      <ion-slide>
+        <app-list
+          class="full-width"
+          [items]="subjects"
+          [isInfiniteScrollable]="true"
+        >
+          <ion-item-sliding
+            *ngFor="let subject of subjects"
+            (dblclick)="navigate(subject.id)"
           >
-        </ion-item-options>
-        <ion-item lines="none">
-          <ion-label> {{subject.name}} {{subject.hours}} </ion-label>
-        </ion-item>
-        <ion-item-options side="end">
-          <ion-item-option
-            color="danger"
-            (click)="deleteSubject(subject.id)"
-            expandable
-            >Delete</ion-item-option
-          >
-        </ion-item-options>
-      </ion-item-sliding>
-    </ion-card>
+            <ion-item-options side="start">
+              <ion-item-option
+                color="primary"
+                (click)="updateSubject(subject.id)"
+                >Update</ion-item-option
+              >
+            </ion-item-options>
+            <ion-item>
+              <ion-label>
+                {{ subject.name }} {{ subject.hours }}
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="end">
+              <ion-item-option
+                color="danger"
+                (click)="deleteSubject(subject.id)"
+                >Delete</ion-item-option
+              >
+            </ion-item-options>
+          </ion-item-sliding>
+        </app-list>
+      </ion-slide>
+      <ion-slide>
+        <app-list
+          class="full-width"
+          [items]="subjects"
+          [isInfiniteScrollable]="true"
+        >
+          <ion-item *ngFor="let subject of course?.students">
+            <ion-label> {{ subject.name }} {{ subject.surname }} </ion-label>
+          </ion-item>
+        </app-list>
+      </ion-slide>
+      <ion-slide>
+        <app-list
+          class="full-width "
+          [items]="subjects"
+          [isInfiniteScrollable]="true"
+        >
+          <ion-item *ngFor="let subject of course?.teachers">
+            <ion-label> {{ subject.name }} {{ subject.surname }} </ion-label>
+          </ion-item>
+        </app-list>
+      </ion-slide>
+    </ion-slides>
   </app-list>
 </ion-content>
 <app-fab-button [buttons]="buttons"></app-fab-button>
