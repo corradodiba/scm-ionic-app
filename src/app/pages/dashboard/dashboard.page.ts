@@ -3,6 +3,8 @@ import { InfoCard } from 'src/app/models/InfoCard.model';
 import { IonSlide } from '@ionic/angular';
 import { CoursesService } from 'src/app/providers/courses.service';
 import Course from 'src/app/models/Course.model';
+import { UsersService } from 'src/app/providers/users.service';
+import { SubjectsService } from 'src/app/providers/subjects.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,10 +22,18 @@ export class DashboardPage implements OnInit {
     spaceBetween: -13,
   };
 
-  constructor(private coursesService: CoursesService) {}
+  constructor(
+    private coursesService: CoursesService,
+    private usersService: UsersService,
+    private subjectsService: SubjectsService,
+  ) {}
 
   async ngOnInit() {
     this.courses = await this.coursesService.getAll();
+    const teachers = await this.usersService.getUsersByType('Teacher');
+    const students = await this.usersService.getUsersByType('Student');
+    const subjects = await this.subjectsService.getAll();
+
     this.cards = [
       {
         title: 'Courses',
@@ -33,17 +43,17 @@ export class DashboardPage implements OnInit {
       {
         title: 'Teachers',
         icon: 'school',
-        counter: this.courses.length,
+        counter: teachers.length,
       },
       {
         title: 'Students',
         icon: 'school',
-        counter: this.courses.length,
+        counter: students.length,
       },
       {
         title: 'Subjects',
         icon: 'school',
-        counter: this.courses.length,
+        counter: subjects.length,
       },
     ];
   }
