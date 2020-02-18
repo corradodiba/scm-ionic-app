@@ -25,7 +25,7 @@ export class SubjectsPage implements OnInit {
       color: 'light',
       icon: 'add',
       action: async () => {
-        this.addCourse();
+        this.addSubject();
       },
     },
   ];
@@ -64,7 +64,7 @@ export class SubjectsPage implements OnInit {
   async navigate(id: string) {
     await this.navCtrl.navigateForward(`/grades/${id}`);
   }
-  async addCourse() {
+  async addSubject() {
     const modal = await this.modalCtrl.create({
       component: AddSubjectPage,
     });

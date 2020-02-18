@@ -11,7 +11,7 @@ import { Subject } from 'src/app/models/Subject.model';
   styleUrls: ['./add-grade.page.scss'],
 })
 export class AddGradePage implements OnInit {
-  @Input() subject: Subject;
+  subject: Subject;
   users: User[];
   gradeForm = new FormGroup({
     grade: new FormControl(),
