@@ -1,10 +1,15 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { NavigationItem } from 'src/app/models/NavigationItem.model';
+import { Subscription } from 'rxjs';
 import { IonSlide } from '@ionic/angular';
+
+import { NavigationItem } from 'src/app/models/NavigationItem.model';
 import { InfoCard } from 'src/app/models/InfoCard.model';
+
 import { CoursesService } from 'src/app/providers/courses.service';
 import { UsersService } from 'src/app/providers/users.service';
 import { SubjectsService } from 'src/app/providers/subjects.service';
+import { AuthService } from 'src/app/providers/auth.service';
+import User from 'src/app/models/User.model';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +20,10 @@ export class HomePage implements OnInit {
   @ViewChild('slides', { static: true }) slider: IonSlide;
   cards: InfoCard[] = [];
 
+  isAuthenticated = false;
+  authListenerSubs = new Subscription();
+  currentUser: User;
+
   slideOpts = {
     initialSlide: 0,
     speed: 500,
@@ -22,12 +31,6 @@ export class HomePage implements OnInit {
   };
 
   tabs: NavigationItem[] = [
-    // {
-    //   title: 'Profile',
-    //   url: '/home',
-    //   icon: 'apps',
-    //   guest: true,
-    // },
     {
       title: 'courses',
       url: '/courses',
@@ -51,9 +54,21 @@ export class HomePage implements OnInit {
     private coursesService: CoursesService,
     private usersService: UsersService,
     private subjectsService: SubjectsService,
+    private authService: AuthService,
   ) {}
 
   async ngOnInit() {
+    this.isAuthenticated = this.authService.isAuth();
+    this.authListenerSubs = this.authService
+      .getAuthStatusListener()
+      .subscribe(isAuthenticated => {
+        this.isAuthenticated = isAuthenticated;
+      });
+    if (this.isAuthenticated) {
+      this.currentUser = await this.usersService.getUserById(
+        localStorage.getItem('id'),
+      );
+    }
     const [courses, teachers, students, subjects] = await Promise.all([
       this.coursesService.getAll(),
       this.usersService.getUsersByType('Teacher'),
