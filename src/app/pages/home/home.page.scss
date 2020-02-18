@@ -1,6 +1,7 @@
 ion-content {
   --background: url(/assets/background-profile.jpg) 70% 50% / 830px;
   height: 100%;
+  --padding-top: 130px;
 }
 
 ion-list {
@@ -16,7 +17,7 @@ ion-item {
   width: 120px;
   border-radius: 100%;
   position: absolute;
-  top: 80px;
+  top: 65px;
   border: 3px solid #ffffff;
   z-index: 999;
   left: 30.5%;
@@ -27,7 +28,6 @@ ion-item {
 .container {
   height: 100%;
   background: white;
-  margin-top: 138px;
   border-radius: 20px 20px 0 0;
 }
 
