@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnDestroy, OnInit {
   private authListenerSubs = new Subscription();
   isAuthenticated = false;
+  isFirstSession = false;
 
   pages: NavigationItem[] = [
     {
@@ -69,6 +70,7 @@ export class AppComponent implements OnDestroy, OnInit {
   }
   ngOnInit() {
     this.authService.autoConfigAuthUser();
+    this.isFirstSession = Number(localStorage.getItem('session')) === 1;
   }
 
   showTutorialAgain() {
@@ -77,5 +79,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
   ngOnDestroy() {
     this.authListenerSubs.unsubscribe();
+    this.isFirstSession = false;
   }
 }

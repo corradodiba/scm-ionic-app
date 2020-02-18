@@ -21,6 +21,7 @@ import { HomePageModule } from './pages/home/home.module';
 import { environment } from 'src/environments/environment';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { SlidesPageModule } from './pages/slides/slides.module';
 const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
 
 @NgModule({
@@ -37,6 +38,7 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     UsersModule,
     MenuButtonModule,
     HomePageModule,
+    SlidesPageModule,
   ],
   providers: [
     StatusBar,
