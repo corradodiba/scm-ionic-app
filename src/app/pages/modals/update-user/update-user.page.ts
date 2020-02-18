@@ -65,7 +65,7 @@ export class UpdateUserPage implements OnInit {
     await this.modalController.dismiss();
   }
 
-  async signUp() {
+  async modify() {
     if (this.userForm.invalid) {
       return;
     }

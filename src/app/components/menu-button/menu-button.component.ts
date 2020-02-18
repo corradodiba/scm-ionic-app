@@ -12,16 +12,20 @@ export class MenuButtonComponent implements OnInit {
   color: string;
   text: string;
   isHome = false;
+  lang = 'eng';
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
     if (this.title === 'Home') this.isHome = true;
-    if (this.authService.isAuth()) {
+    if (this.lang === 'ita') {
       this.color = 'success';
-      this.text = 'connected';
+      this.text = 'Italiano';
     } else {
       this.color = 'danger';
-      this.text = 'guest';
+      this.text = 'English';
     }
+  }
+  changeLanguage() {
+    this.lang = this.lang === 'ita' ? 'eng' : 'ita';
   }
 }
