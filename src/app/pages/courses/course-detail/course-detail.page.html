@@ -36,72 +36,62 @@
       </ion-segment>
     </ion-toolbar>
 
-    <ion-slides
-      [options]="slideOpts"
-      #slides
-      (ionSlideDidChange)="slideChanged()"
-      scrollbar="true"
-    >
-      <ion-slide>
-        <app-list
-          class="full-width"
-          [items]="subjects"
-          [isInfiniteScrollable]="true"
-        >
-          <ion-item-sliding *ngFor="let subject of subjects">
-            <ion-item-options side="end">
-              <ion-item-option
-                color="secondary"
-                (click)="updateSubject(subject.id)"
-              >
-                <ion-icon slot="end" name="arrow-up"></ion-icon>
-                <p>Update</p></ion-item-option
-              >
-              <ion-item-option color="primary" (click)="navigate(subject.id)">
-                <ion-icon slot="end" name="arrow-down"></ion-icon>
-                <p>Show</p></ion-item-option
-              >
-            </ion-item-options>
-            <ion-item>
-              <ion-label>
-                {{ subject.name }} {{ subject.hours }}
-              </ion-label>
-            </ion-item>
-            <ion-item-options side="start">
-              <ion-item-option
-                color="danger"
-                (click)="deleteSubject(subject.id)"
-              >
-                <ion-icon slot="start" name="trash"></ion-icon
-                >Delete</ion-item-option
-              >
-            </ion-item-options>
-          </ion-item-sliding>
-        </app-list>
-      </ion-slide>
-      <ion-slide>
-        <app-list
-          class="full-width"
-          [items]="subjects"
-          [isInfiniteScrollable]="true"
-        >
-          <ion-item *ngFor="let subject of course?.students">
-            <ion-label> {{ subject.name }} {{ subject.surname }} </ion-label>
+    <div *ngIf="segment == 0">
+      <app-list
+        class="full-width"
+        [items]="subjects"
+        [isInfiniteScrollable]="true"
+      >
+        <ion-item-sliding *ngFor="let subject of subjects">
+          <ion-item-options side="end">
+            <ion-item-option
+              color="secondary"
+              (click)="updateSubject(subject.id)"
+            >
+              <ion-icon slot="end" name="arrow-up"></ion-icon>
+              <p>Update</p></ion-item-option
+            >
+            <ion-item-option color="primary" (click)="navigate(subject.id)">
+              <ion-icon slot="end" name="arrow-down"></ion-icon>
+              <p>Show</p></ion-item-option
+            >
+          </ion-item-options>
+          <ion-item>
+            <ion-label>
+              {{ subject.name }} {{ subject.hours }}
+            </ion-label>
           </ion-item>
-        </app-list>
-      </ion-slide>
-      <ion-slide>
-        <app-list
-          class="full-width "
-          [items]="subjects"
-          [isInfiniteScrollable]="true"
-        >
-          <ion-item *ngFor="let subject of course?.teachers">
-            <ion-label> {{ subject.name }} {{ subject.surname }} </ion-label>
-          </ion-item>
-        </app-list>
-      </ion-slide>
-    </ion-slides>
+          <ion-item-options side="start">
+            <ion-item-option color="danger" (click)="deleteSubject(subject.id)">
+              <ion-icon slot="start" name="trash"></ion-icon
+              >Delete</ion-item-option
+            >
+          </ion-item-options>
+        </ion-item-sliding>
+      </app-list>
+    </div>
+    <div *ngIf="segment == 1">
+      <app-list
+        class="full-width"
+        [items]="subjects"
+        [isInfiniteScrollable]="true"
+      >
+        <ion-item *ngFor="let subject of course?.students">
+          <ion-label> {{ subject.name }} {{ subject.surname }} </ion-label>
+        </ion-item>
+      </app-list>
+    </div>
+    <div *ngIf="segment == 2">
+      <app-list
+        class="full-width "
+        [items]="subjects"
+        [isInfiniteScrollable]="true"
+      >
+        <ion-item *ngFor="let subject of course?.teachers">
+          <ion-label> {{ subject.name }} {{ subject.surname }} </ion-label>
+        </ion-item>
+      </app-list>
+    </div>
   </app-list>
 </ion-content>
 <app-fab-button [buttons]="buttons"></app-fab-button>

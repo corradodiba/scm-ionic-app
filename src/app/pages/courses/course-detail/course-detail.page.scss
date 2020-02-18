@@ -5,13 +5,15 @@
 .avatar {
   height: 80px;
   width: 80px;
-  background: #dedede;
+  background: #f04141;
   display: flex;
   justify-content: center;
+  color: white;
+  font-weight: bold;
   align-items: center;
   font-size: 2rem;
   margin: 10px auto;
-  box-shadow: 0px 1px 1px 0 black;
+  box-shadow: 0px 1px 1px 0 #00000087;
 }
 
 .position {
