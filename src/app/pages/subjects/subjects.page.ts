@@ -87,11 +87,13 @@ export class SubjectsPage implements OnInit {
       },
     });
     modal.onWillDismiss().then(({ data }) => {
-      this.subjects.map((subject, index) => {
-        if (subject.id === id) {
-          this.subjects.splice(index, 1, data);
-        }
-      });
+      if (data.data) {
+        this.subjects.map((subject, index) => {
+          if (subject.id === id) {
+            this.subjects.splice(index, 1, data);
+          }
+        });
+      }
     });
     await modal.present();
   }

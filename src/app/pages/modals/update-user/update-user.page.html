@@ -23,11 +23,11 @@
           [disabled]="disableEmail"
         ></ion-input>
       </ion-item>
-      <ion-item>
+      <!-- <ion-item>
         <ion-icon name="md-key" slot="start"></ion-icon>
         <ion-label position="floating">Password</ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
-      </ion-item>
+      </ion-item> -->
       <ion-item>
         <ion-icon name="md-create" slot="start"></ion-icon>
         <ion-label position="floating">Fiscal Code</ion-label>
@@ -85,7 +85,7 @@
         color="primary"
         expand="block"
         [disabled]="!userForm.valid"
-        (click)="signUp()"
+        (click)="modify()"
         >Edit</ion-button
       >
     </form>

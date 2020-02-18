@@ -59,7 +59,6 @@ export class UserListPage implements OnInit {
       .fromEvent('auth')
       .subscribe((data: { status: boolean; id: string }) => {
         const { status, id } = data;
-        console.log(data);
         this.users.find(user => id === user.id).status = status;
       });
   }
@@ -102,6 +101,7 @@ export class UserListPage implements OnInit {
 
   async updateUser(id: string) {
     const selectedUser = await this.usersService.getUserById(id);
+
     const modal = await this.modalController.create({
       component: UpdateUserPage,
       componentProps: {
@@ -109,18 +109,19 @@ export class UserListPage implements OnInit {
         name: selectedUser.name,
         surname: selectedUser.surname,
         email: selectedUser.email,
-        password: selectedUser.password,
         fiscal: selectedUser.fiscalCode,
         type: selectedUser.type,
         birthday: selectedUser.dateOfBirth,
       },
     });
     modal.onWillDismiss().then(data => {
-      this.users.map((user, index) => {
-        if (user.id === id) {
-          this.users.splice(index, 1, data.data);
-        }
-      });
+      if (data.data) {
+        this.users.map((user, index) => {
+          if (user.id === id) {
+            this.users.splice(index, 1, data.data);
+          }
+        });
+      }
     });
     await modal.present();
   }
