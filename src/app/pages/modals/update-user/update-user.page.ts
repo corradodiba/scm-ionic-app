@@ -12,7 +12,7 @@ import User from 'src/app/models/User.model';
 export class UpdateUserPage implements OnInit {
   userForm = new FormGroup({
     email: new FormControl(this.param.get('email'), Validators.required),
-    password: new FormControl(this.param.get('password'), Validators.required),
+    // password: new FormControl('', Validators.required),
     fiscalCode: new FormControl(this.param.get('fiscal'), Validators.required),
     name: new FormControl(this.param.get('name'), Validators.required),
     surname: new FormControl(this.param.get('surname'), Validators.required),
@@ -27,7 +27,7 @@ export class UpdateUserPage implements OnInit {
   disableSurname = true;
   disableBirthday = true;
   disableEmail = true;
-  disablePassword = true;
+  //disablePassword = true;
   disableFiscal = true;
   disableType = true;
   constructor(
@@ -51,9 +51,9 @@ export class UpdateUserPage implements OnInit {
   enableBirthday() {
     return (this.disableBirthday = !this.disableBirthday);
   }
-  enablePassword() {
-    return (this.disablePassword = !this.disablePassword);
-  }
+  // enablePassword() {
+  //   return (this.disablePassword = !this.disablePassword);
+  // }
   enableFiscal() {
     return (this.disableFiscal = !this.disableFiscal);
   }
@@ -67,8 +67,11 @@ export class UpdateUserPage implements OnInit {
 
   async modify() {
     if (this.userForm.invalid) {
+      console.log('form: ', this.userForm.value);
+
       return;
     }
+
     const updatedUser = await this.userService.updateUser(
       this.param.get('id'),
       this.userForm.value,
