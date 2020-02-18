@@ -1,4 +1,5 @@
-<app-menu-button [title]="'Home'"></app-menu-button>
+<app-tabs [tabs]="tabs"></app-tabs>
+
 <ion-content>
   <ion-slides [options]="slideOpts">
     <ion-slide *ngFor="let card of cards">
@@ -26,4 +27,3 @@
     </ion-item>
   </ion-list>
 </ion-content>
-<app-tabs [tabs]="tabs"></app-tabs>

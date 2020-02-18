@@ -9,19 +9,9 @@ import { AuthService } from 'src/app/providers/auth.service';
 export class MenuButtonComponent implements OnInit {
   @Input() title?: string;
   @Input() isToBack?: boolean;
-  color: string;
   text: string;
-  isHome = false;
+
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {
-    if (this.title === 'Home') this.isHome = true;
-    if (this.authService.isAuth()) {
-      this.color = 'success';
-      this.text = 'connected';
-    } else {
-      this.color = 'danger';
-      this.text = 'guest';
-    }
-  }
+  ngOnInit() {}
 }
