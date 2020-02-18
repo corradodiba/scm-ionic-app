@@ -1,9 +1,10 @@
-<ion-card class="card">
-  <ion-card-header>
-    <ion-card-title>{{ card.title }}</ion-card-title>
-  </ion-card-header>
-  <ion-item lines="none">
+<ion-card class="card {{ card.style ? card.style : 'first' }}">
+  <div class="card-container">
+    <h4>{{ card.title }}</h4>
     <ion-label>{{ card.counter }}</ion-label>
-    <ion-icon [name]="card.icon" slot="end"></ion-icon>
-  </ion-item>
+    <ion-icon
+      [name]="card.icon"
+      class="{{ card.style ? card.style : 'first' }}"
+    ></ion-icon>
+  </div>
 </ion-card>

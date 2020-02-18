@@ -1,11 +1,41 @@
 .logo {
-    width: 300px;
-    height: 270px;
-    padding: 10px;
-    margin-top: -40px;
-    margin-bottom: -60px;
+  width: 300px;
+  height: 270px;
+  padding: 10px;
+  margin-top: -40px;
+  margin-bottom: -60px;
 }
 
 .text {
-    font-size: 25px;
+  font-size: 25px;
+}
+
+.card {
+  width: 100%;
+}
+
+.listcard {
+  border-radius: 15px;
+}
+
+ion-slides {
+  justify-content: center;
+}
+
+.avatar {
+  height: 80px;
+  width: 80px;
+  background: #dedede;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  margin: 10px auto;
+  box-shadow: 0px 1px 1px 0 black;
+}
+
+.position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

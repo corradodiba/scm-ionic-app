@@ -1,21 +1,10 @@
 <app-menu-button [title]="'Home'"></app-menu-button>
 <ion-content>
-  <div class="ion-text-center">
-    <img class="logo" src="../../assets/icon/logo-its.svg" alt="" />
-  </div>
-  <ion-card-header>
-    <ion-card-title class="text">Class Management Platform</ion-card-title>
-    <ion-card-subtitle class="text"
-      >by five of SteveJobs Academy's students,
-    </ion-card-subtitle>
-  </ion-card-header>
-  <ion-card-content>
-    <p class="text">
-      product is a management software with the intent of automate all of the
-      usual operations used by the Steve Jobs Academy regarding the managing of
-      all the students, the teachers, the subjects and the grades.
-    </p>
-  </ion-card-content>
+  <ion-slides [options]="slideOpts">
+    <ion-slide *ngFor="let card of cards">
+      <app-info-card class="card" [card]="card"></app-info-card>
+    </ion-slide>
+  </ion-slides>
   <ion-list lines="none">
     <ion-list-header>
       <ion-label>Link</ion-label>

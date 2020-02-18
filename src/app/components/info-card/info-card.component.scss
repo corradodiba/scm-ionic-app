@@ -1,3 +1,56 @@
 .card {
-    border-radius: 15px;
+  border-radius: 6px;
+  box-shadow: none !important;
+}
+
+.card-container {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 7%;
+}
+
+h4 {
+  margin: 0;
+}
+
+ion-card.first {
+  background: linear-gradient(87deg, #f5365c 0, #f56036 100%);
+}
+ion-card.second {
+  background: linear-gradient(87deg, #11cdef 0, #1171ef 100%);
+}
+ion-card.third {
+  background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%);
+}
+ion-card.fourth {
+  background: linear-gradient(87deg, #2dce89 0, #2dcecc 100%);
+}
+
+ion-icon {
+  position: absolute;
+  right: 7%;
+  top: 25%;
+  font-size: 30px;
+  background: white;
+  padding: 4%;
+  border-radius: 100%;
+}
+
+ion-icon.first {
+  color: #f5365c;
+}
+ion-icon.second {
+  color: #11cdef;
+}
+ion-icon.third {
+  color: #5e72e4;
+}
+ion-icon.fourth {
+  color: #2dce89;
 }

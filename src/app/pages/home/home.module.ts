@@ -8,6 +8,7 @@ import { MenuButtonModule } from '../../components/menu-button/menu-button.modul
 import { HomePage } from './home.page';
 
 import { TabsComponent } from '../../components/tabs/tabs.component';
+import { InfoCardComponent } from 'src/app/components/info-card/info-card.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { TabsComponent } from '../../components/tabs/tabs.component';
     HomeRoutingModule,
     MenuButtonModule,
   ],
-  declarations: [HomePage, TabsComponent],
+  declarations: [HomePage, TabsComponent, InfoCardComponent],
   exports: [HomePage],
 })
 export class HomePageModule {}
