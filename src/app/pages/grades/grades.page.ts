@@ -70,6 +70,9 @@ export class GradesPage implements OnInit {
       if (!data) {
         return;
       }
+
+      console.log(data);
+
       this.grades.push(data);
     });
     await modal.present();
@@ -92,11 +95,15 @@ export class GradesPage implements OnInit {
       },
     });
     modal.onWillDismiss().then(data => {
-      this.grades.map((grade, index) => {
-        if (grade.id === gradeId) {
-          this.grades.splice(index, 1, data.data);
-        }
-      });
+      console.log(data.data);
+
+      if (data.data) {
+        this.grades.map((grade, index) => {
+          if (grade.id === gradeId) {
+            this.grades.splice(index, 1, data.data);
+          }
+        });
+      }
     });
     await modal.present();
   }

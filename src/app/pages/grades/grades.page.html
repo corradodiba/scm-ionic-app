@@ -1,4 +1,4 @@
-<app-menu-button [isToBack]="true"></app-menu-button>
+<app-menu-button [title]="subject?.name" [isToBack]="true"></app-menu-button>
 <ion-content>
   <app-list [items]="grades">
     <ion-card class="listcard" *ngFor="let grade of grades">
