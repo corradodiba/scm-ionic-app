@@ -12,5 +12,20 @@ export class MenuButtonComponent {
   color: string;
   text: string;
   isHome = false;
+  lang = 'eng';
   constructor() {}
+
+  ngOnInit() {
+    if (this.title === 'Home') this.isHome = true;
+    if (this.lang === 'ita') {
+      this.color = 'success';
+      this.text = 'Italiano';
+    } else {
+      this.color = 'danger';
+      this.text = 'English';
+    }
+  }
+  changeLanguage() {
+    this.lang = this.lang === 'ita' ? 'eng' : 'ita';
+  }
 }
