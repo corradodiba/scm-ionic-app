@@ -37,9 +37,8 @@ export class AddGradePage implements OnInit {
       subject: this.subject.id,
     };
     try {
-      const newGrade = await this.usersService.addGrade(userId, body);
-      console.log(newGrade);
-
+      let newGrade = await this.usersService.addGrade(userId, body);
+      newGrade.user = await this.usersService.getUserById(newGrade.user.id);
       await this.modalCtrl.dismiss(newGrade);
       const toast = await this.toastCtrl.create({
         message: `Grade added.`,
