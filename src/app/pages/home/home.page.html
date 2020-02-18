@@ -1,29 +1,33 @@
-<app-menu-button [title]="'Home'"></app-menu-button>
+<app-menu-button
+  [title]="currentUser?.name + ' ' + currentUser?.surname"
+></app-menu-button>
 <ion-content>
-  <ion-slides [options]="slideOpts">
-    <ion-slide *ngFor="let card of cards">
-      <app-info-card class="card" [card]="card"></app-info-card>
-    </ion-slide>
-  </ion-slides>
-  {{currentUser?.name}}
-  <ion-list lines="none">
-    <ion-list-header>
-      <ion-label>Link</ion-label>
-    </ion-list-header>
-    <ion-item href="https://stevejobs.academy">
-      <ion-icon slot="start" color="medium" name="book"></ion-icon>
-      <ion-label>Steve Jobs Website</ion-label>
-    </ion-item>
-    <ion-item href="https://github.com/corradodiba/stevejobs-class-managing">
-      <ion-icon slot="start" color="medium" name="logo-github"></ion-icon>
-      <ion-label>Github Repository</ion-label>
-    </ion-item>
-    <ion-item
-      href="https://steve-jobs-academy.slack.com/?redir=%2Farchives%2FGQRS4582H"
-    >
-      <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-      <ion-label>Slack Chanel</ion-label>
-    </ion-item>
-  </ion-list>
+  <div class="user-image"></div>
+  <div class="container">
+    <ion-slides [options]="slideOpts">
+      <ion-slide *ngFor="let card of cards">
+        <app-info-card class="card" [card]="card"></app-info-card>
+      </ion-slide>
+    </ion-slides>
+    <ion-list lines="none">
+      <ion-list-header>
+        <ion-label>Link</ion-label>
+      </ion-list-header>
+      <ion-item href="https://stevejobs.academy">
+        <ion-icon slot="start" color="medium" name="book"></ion-icon>
+        <ion-label>Steve Jobs Website</ion-label>
+      </ion-item>
+      <ion-item href="https://github.com/corradodiba/stevejobs-class-managing">
+        <ion-icon slot="start" color="medium" name="logo-github"></ion-icon>
+        <ion-label>Github Repository</ion-label>
+      </ion-item>
+      <ion-item
+        href="https://steve-jobs-academy.slack.com/?redir=%2Farchives%2FGQRS4582H"
+      >
+        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
+        <ion-label>Slack Chanel</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
 <app-tabs [tabs]="tabs"></app-tabs>

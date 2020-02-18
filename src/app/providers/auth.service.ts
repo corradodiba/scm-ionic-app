@@ -83,11 +83,11 @@ export class AuthService {
 
     this.isAuthenticated = false;
     this.token = null;
-    clearTimeout(this.tokenTimeout);
     localStorage.removeItem('token');
     localStorage.removeItem('expiresIn');
     localStorage.removeItem('id');
     localStorage.removeItem('type');
+    clearTimeout(this.tokenTimeout);
     this.authStatusListener.next(false);
   }
 

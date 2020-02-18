@@ -1,3 +1,36 @@
+ion-content {
+  --background: url(/assets/background-profile.jpg) 70% 50% / 830px;
+  height: 100%;
+}
+
+ion-list {
+  --ion-background-color: white;
+}
+
+ion-item {
+  --ion-background-color: #fff;
+}
+
+.user-image {
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+  position: absolute;
+  top: 80px;
+  border: 3px solid #ffffff;
+  z-index: 999;
+  left: 30.5%;
+  background: url(/assets/image-profile.jpeg);
+  background-size: cover;
+}
+
+.container {
+  height: 100%;
+  background: white;
+  margin-top: 138px;
+  border-radius: 20px 20px 0 0;
+}
+
 .logo {
   width: 300px;
   height: 270px;
