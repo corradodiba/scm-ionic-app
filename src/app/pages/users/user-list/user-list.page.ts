@@ -22,7 +22,6 @@ import { UpdateUserPage } from 'src/app/pages/modals/update-user/update-user.pag
   styleUrls: ['./user-list.page.scss'],
 })
 export class UserListPage implements OnInit {
-  @ViewChild('slides', { static: true }) slider: IonSlides;
   users: User[] = [];
   students: User[] = [];
   teachers: User[] = [];
@@ -68,7 +67,6 @@ export class UserListPage implements OnInit {
   }
 
   async segmentChanged() {
-    await this.slider.slideTo(this.segment);
     const selectedSegment = this.segments[this.segment];
     this.users =
       selectedSegment === 'students'
