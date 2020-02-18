@@ -61,7 +61,6 @@ export class CourseDetailPage implements OnInit {
     await this.navCtrl.navigateForward(`/grades/${id}`);
   }
   async segmentChanged() {
-    await this.slider.slideTo(this.segment);
     const selectedSegment = this.segments[this.segment];
     this.course =
       selectedSegment === 'subjects'
@@ -109,9 +108,5 @@ export class CourseDetailPage implements OnInit {
         this.subjects.splice(index, 1);
       }
     });
-  }
-  async getGrades() {}
-  async slideChanged() {
-    this.segment = await this.slider.getActiveIndex();
   }
 }

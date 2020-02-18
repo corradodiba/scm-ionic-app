@@ -80,10 +80,6 @@ export class UserListPage implements OnInit {
     this.userSelected = await this.usersService.getUserById(id);
   }
 
-  async slideChanged() {
-    this.segment = await this.slider.getActiveIndex();
-  }
-
   async addUser() {
     const modal = await this.modalController.create({
       component: AddUserPage,
