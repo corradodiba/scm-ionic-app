@@ -47,30 +47,42 @@ export class AuthService {
 
   registration(authData: AuthData) {
     try {
+      //Api call with body
       this.http.post(signupPath, authData).subscribe(() => {
+        //after beign signed up, it logs you in and goes back to the homepage
         this.access(authData);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/home']);
       });
     } catch (err) {
       this.authStatusListener.next(false);
     }
   }
   access(authData: AuthData) {
+    //Api call with body
     this.http.post(loginPath, authData).subscribe((response: Token) => {
-      const token = response.token;
-      this.token = token;
+      //token stored
+      this.token = response.token;
+      //user is authenticated
       this.authStatusListener.next(true);
-      if (token) {
+      if (this.token) {
+        //storing timeout of the token
         this.getTokenTimeout(response.expiresIn);
         this.isAuthenticated = true;
         this.userId = response.id;
         this.authStatusListener.next(true);
 
         const { type, expiresIn } = response;
-        this.storeAuthData({ token, expiresIn, id: this.userId, type });
+        this.storeAuthData({
+          token: this.token,
+          expiresIn,
+          id: this.userId,
+          type,
+        });
+        //if session already exists cast it to number, else set it to zero
         const numberSession = localStorage.getItem('session')
           ? Number(localStorage.getItem('session'))
           : 0;
+        //sets the session as the number just found and cast it to string
         localStorage.setItem('session', (numberSession + 1).toString());
         this.router.navigate(['/home']);
       }
@@ -80,8 +92,9 @@ export class AuthService {
   logoutUser() {
     this.socket.connect();
     this.socket.emit('auth', localStorage.getItem('id'));
-
+    //user is not logged in anymore
     this.isAuthenticated = false;
+    //removing data
     this.token = null;
     localStorage.removeItem('token');
     localStorage.removeItem('expiresIn');
@@ -120,13 +133,6 @@ export class AuthService {
       this.getTokenTimeout(expirationDate / 1000);
       this.authStatusListener.next(true);
     }
-  }
-
-  clearAuthData() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expiresIn');
-    localStorage.removeItem('id');
-    localStorage.removeItem('type');
   }
 
   storeAuthData(data: Token) {

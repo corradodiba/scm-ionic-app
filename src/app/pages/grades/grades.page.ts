@@ -36,16 +36,16 @@ export class GradesPage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    //prendiamo la materia che abbiamo selezionato
+    //let's get the subject by the url
     const subjectId = this.router.snapshot.paramMap.get('subjectId');
     this.subject = await this.subjectsService.getById(subjectId);
 
-    //prendo tutti gli user
-    const users: User[] = await this.usersService.getUsers();
+    //let's get all the students
+    const users: User[] = await this.usersService.getUsersByType('Student');
     for (const user of users) {
-      //di ognuno prendo il loro id per prendermi i loro voti di ogni materia
+      //let's get a list of grades of each student
       let allGrades = await this.usersService.getAllGradesOfAUser(user.id);
-      //se ce ne sono, filtriamoli per la materia selezionata
+      //if they exist, let's store only the grade of the selected subject
       if (allGrades.length > 0) {
         let subjectGrades = allGrades.map(grade => {
           if (grade.subject.id == subjectId) return grade;
@@ -53,7 +53,7 @@ export class GradesPage implements OnInit {
 
         if (subjectGrades)
           for (const grade of subjectGrades) {
-            //mettiamo questi voti nell'array
+            //store them in the grades array
             if (grade) this.grades.push(grade);
           }
       }
@@ -70,9 +70,6 @@ export class GradesPage implements OnInit {
       if (!data) {
         return;
       }
-
-      console.log(data);
-
       this.grades.push(data);
     });
     await modal.present();
@@ -95,8 +92,6 @@ export class GradesPage implements OnInit {
       },
     });
     modal.onWillDismiss().then(data => {
-      console.log(data.data);
-
       if (data.data) {
         this.grades.map((grade, index) => {
           if (grade.id === gradeId) {

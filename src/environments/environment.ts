@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
+  apiUrl: 'http://class-management.eu-central-1.elasticbeanstalk.com',
   coursesPath: 'courses',
   signUpPath: 'auth/signup',
   loginPath: 'auth/login',
