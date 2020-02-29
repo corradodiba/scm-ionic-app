@@ -76,9 +76,9 @@ export class UserListPage implements OnInit {
         : await this.usersService.getUsers();
   }
 
-  async onUserSelected(id: string) {
-    this.userSelected = await this.usersService.getUserById(id);
-  }
+  // async onUserSelected(id: string) {
+  //   this.userSelected = await this.usersService.getUserById(id);
+  // }
 
   async addUser() {
     const modal = await this.modalController.create({
@@ -121,16 +121,21 @@ export class UserListPage implements OnInit {
   }
 
   async deleteUser(id: string) {
-    const deleteUser = await this.usersService.deleteUser(id);
-    this.users.map((user, index) => {
-      if (user.id === deleteUser.id) {
-        this.users.splice(index, 1);
+    try {
+      const deleteUser = await this.usersService.deleteUser(id);
+      this.users.map((user, index) => {
+        if (user.id === deleteUser.id) {
+          this.users.splice(index, 1);
+        }
+      });
+    } catch (e) {
+      if (e.status == 0) {
+        const toast = await this.toastController.create({
+          message: 'Server crashed. Error status code: 500',
+          duration: 6000,
+        });
+        toast.present();
       }
-    });
-    const toast = await this.toastController.create({
-      message: 'User deleted.',
-      duration: 6000,
-    });
-    toast.present();
+    }
   }
 }

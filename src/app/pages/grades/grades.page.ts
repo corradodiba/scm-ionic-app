@@ -7,7 +7,7 @@ import User from 'src/app/models/User.model';
 import { Subject } from 'src/app/models/Subject.model';
 import { SubjectsService } from 'src/app/providers/subjects.service';
 import { AddGradePage } from '../modals/add-grade/add-grade.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { UpdateGradePage } from '../modals/update-grade/update-grade.page';
 
 @Component({
@@ -32,6 +32,7 @@ export class GradesPage implements OnInit {
     private router: ActivatedRoute,
     private usersService: UsersService,
     private subjectsService: SubjectsService,
+    private toastController: ToastController,
     private modalCtrl: ModalController,
   ) {}
 
@@ -75,12 +76,22 @@ export class GradesPage implements OnInit {
     await modal.present();
   }
   async deleteGrade(userId: string, id: string) {
-    const deletedGrade = await this.usersService.deleteGrade(userId, id);
-    this.grades.map((grade, index) => {
-      if (grade.id === deletedGrade.id) {
-        this.grades.splice(index, 1);
+    try {
+      const deletedGrade = await this.usersService.deleteGrade(userId, id);
+      this.grades.map((grade, index) => {
+        if (grade.id === deletedGrade.id) {
+          this.grades.splice(index, 1);
+        }
+      });
+    } catch (e) {
+      if (e.status == 0) {
+        const toast = await this.toastController.create({
+          message: 'Server crashed. Error status code: 500',
+          duration: 6000,
+        });
+        toast.present();
       }
-    });
+    }
   }
   async updateGrade(userId: string, gradeId: string) {
     const modal = await this.modalCtrl.create({

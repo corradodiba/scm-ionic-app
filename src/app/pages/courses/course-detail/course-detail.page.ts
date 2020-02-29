@@ -5,7 +5,12 @@ import Course from 'src/app/models/Course.model';
 
 import { CoursesService } from 'src/app/providers/courses.service';
 import FabIcon from 'src/app/models/FabIcon.model';
-import { ModalController, NavController, IonSlides } from '@ionic/angular';
+import {
+  ModalController,
+  NavController,
+  IonSlides,
+  ToastController,
+} from '@ionic/angular';
 import { Subject } from 'src/app/models/Subject.model';
 import { AddSubjectPage } from '../../modals/add-subject/add-subject.page';
 import { SubjectsService } from 'src/app/providers/subjects.service';
@@ -48,6 +53,7 @@ export class CourseDetailPage implements OnInit {
     private subjectsService: SubjectsService,
     private router: ActivatedRoute,
     private modalCtrl: ModalController,
+    private toastController: ToastController,
     private navCtrl: NavController,
   ) {}
 
@@ -102,11 +108,17 @@ export class CourseDetailPage implements OnInit {
     await modal.present();
   }
   async deleteSubject(id: string) {
-    const deletedSubjects = await this.subjectsService.delete(id);
-    this.subjects.map((subject, index) => {
-      if (subject.id === deletedSubjects.id) {
-        this.subjects.splice(index, 1);
+    try {
+      const deletedSubjects = await this.subjectsService.delete(id);
+      this.course = await this.coursesService.getById(this.courseId);
+    } catch (e) {
+      if (e.status == 0) {
+        const toast = await this.toastController.create({
+          message: 'Server crashed. Error status code: 500',
+          duration: 6000,
+        });
+        toast.present();
       }
-    });
+    }
   }
 }

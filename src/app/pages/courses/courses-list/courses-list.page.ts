@@ -4,7 +4,11 @@ import FabIcon from 'src/app/models/FabIcon.model';
 import Course from 'src/app/models/Course.model';
 
 import { CoursesService } from 'src/app/providers/courses.service';
-import { ModalController, NavController } from '@ionic/angular';
+import {
+  ModalController,
+  NavController,
+  ToastController,
+} from '@ionic/angular';
 import { AddCoursePage } from '../../modals/add-course/add-course.page';
 import { UpdateCoursePage } from '../../modals/update-course/update-course.page';
 
@@ -45,6 +49,7 @@ export class CoursesListPage implements OnInit {
   constructor(
     private coursesService: CoursesService,
     private modalCtrl: ModalController,
+    private toastController: ToastController,
     private navCtrl: NavController,
   ) {}
 
@@ -59,11 +64,8 @@ export class CoursesListPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: AddCoursePage,
     });
-    modal.onWillDismiss().then(({ data }) => {
-      if (!data) {
-        return;
-      }
-      this.courses.push(data);
+    modal.onWillDismiss().then(async () => {
+      this.courses = await this.coursesService.getAll();
     });
     await modal.present();
   }
@@ -78,23 +80,23 @@ export class CoursesListPage implements OnInit {
         year: selectedCourse.year,
       },
     });
-    modal.onWillDismiss().then(data => {
-      if (data.data) {
-        this.courses.map((course, index) => {
-          if (course.id === id) {
-            this.courses.splice(index, 1, data.data);
-          }
-        });
-      }
+    modal.onWillDismiss().then(async () => {
+      this.courses = await this.coursesService.getAll();
     });
     await modal.present();
   }
   async deleteCourse(id: string) {
-    const deletedCourse = await this.coursesService.delete(id);
-    this.courses.map((course, index) => {
-      if (course.id === deletedCourse.id) {
-        this.courses.splice(index, 1);
+    try {
+      await this.coursesService.delete(id);
+      this.courses = await this.coursesService.getAll();
+    } catch (e) {
+      if (e.status == 0) {
+        const toast = await this.toastController.create({
+          message: 'Server crashed. Error status code: 500',
+          duration: 6000,
+        });
+        toast.present();
       }
-    });
+    }
   }
 }
