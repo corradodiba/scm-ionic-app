@@ -40,7 +40,9 @@ export class GradesPage implements OnInit {
     //let's get the subject by the url
     const subjectId = this.router.snapshot.paramMap.get('subjectId');
     this.subject = await this.subjectsService.getById(subjectId);
-
+    this.refreshGrades();
+  }
+  async refreshGrades() {
     //let's get all the students
     const users: User[] = await this.usersService.getUsersByType('Student');
     for (const user of users) {
@@ -49,9 +51,8 @@ export class GradesPage implements OnInit {
       //if they exist, let's store only the grade of the selected subject
       if (allGrades.length > 0) {
         let subjectGrades = allGrades.map(grade => {
-          if (grade.subject.id == subjectId) return grade;
+          if (grade.subject.id == this.subject.id) return grade;
         });
-
         if (subjectGrades)
           for (const grade of subjectGrades) {
             //store them in the grades array

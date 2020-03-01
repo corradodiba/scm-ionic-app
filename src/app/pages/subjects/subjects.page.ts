@@ -47,11 +47,8 @@ export class SubjectsPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: AddSubjectPage,
     });
-    modal.onWillDismiss().then(({ data }) => {
-      if (!data) {
-        return;
-      }
-      this.subjects.push(data);
+    modal.onWillDismiss().then(async () => {
+      this.subjects = await this.subjectsService.getAll();
     });
     await modal.present();
   }
@@ -65,25 +62,15 @@ export class SubjectsPage implements OnInit {
         hours: selectedSubject.hours,
       },
     });
-    modal.onWillDismiss().then(({ data }) => {
-      if (data.data) {
-        this.subjects.map((subject, index) => {
-          if (subject.id === id) {
-            this.subjects.splice(index, 1, data);
-          }
-        });
-      }
+    modal.onWillDismiss().then(async () => {
+      this.subjects = await this.subjectsService.getAll();
     });
     await modal.present();
   }
   async deleteSubject(id: string) {
     try {
-      const deletedSubjects = await this.subjectsService.delete(id);
-      this.subjects.map((subject, index) => {
-        if (subject.id === deletedSubjects.id) {
-          this.subjects.splice(index, 1);
-        }
-      });
+      await this.subjectsService.delete(id);
+      this.subjects = await this.subjectsService.getAll();
     } catch (e) {
       if (e.status == 0) {
         const toast = await this.toastController.create({

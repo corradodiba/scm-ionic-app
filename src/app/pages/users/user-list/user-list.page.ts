@@ -76,19 +76,12 @@ export class UserListPage implements OnInit {
         : await this.usersService.getUsers();
   }
 
-  // async onUserSelected(id: string) {
-  //   this.userSelected = await this.usersService.getUserById(id);
-  // }
-
   async addUser() {
     const modal = await this.modalController.create({
       component: AddUserPage,
     });
-    modal.onWillDismiss().then(({ data }) => {
-      if (!data) {
-        return;
-      }
-      this.users.push(data);
+    modal.onWillDismiss().then(async () => {
+      this.users = await this.usersService.getUsers();
     });
     return await modal.present();
   }
@@ -108,26 +101,16 @@ export class UserListPage implements OnInit {
         birthday: selectedUser.dateOfBirth,
       },
     });
-    modal.onWillDismiss().then(data => {
-      if (data.data) {
-        this.users.map((user, index) => {
-          if (user.id === id) {
-            this.users.splice(index, 1, data.data);
-          }
-        });
-      }
+    modal.onWillDismiss().then(async () => {
+      this.users = await this.usersService.getUsers();
     });
     await modal.present();
   }
 
   async deleteUser(id: string) {
     try {
-      const deleteUser = await this.usersService.deleteUser(id);
-      this.users.map((user, index) => {
-        if (user.id === deleteUser.id) {
-          this.users.splice(index, 1);
-        }
-      });
+      await this.usersService.deleteUser(id);
+      this.users = await this.usersService.getUsers();
     } catch (e) {
       if (e.status == 0) {
         const toast = await this.toastController.create({

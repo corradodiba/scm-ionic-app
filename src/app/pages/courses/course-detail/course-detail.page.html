@@ -42,27 +42,24 @@
         [items]="subjects"
         [isInfiniteScrollable]="true"
       >
-        <ion-item-sliding *ngFor="let subject of subjects">
+        <ion-item-sliding *ngFor="let item of segmentShowed">
           <ion-item-options side="end">
-            <ion-item-option
-              color="secondary"
-              (click)="updateSubject(subject.id)"
-            >
+            <ion-item-option color="secondary" (click)="updateSubject(item.id)">
               <ion-icon slot="end" name="arrow-up"></ion-icon>
               <p>Update</p></ion-item-option
             >
-            <ion-item-option color="primary" (click)="navigate(subject.id)">
+            <ion-item-option color="primary" (click)="navigate(item.id)">
               <ion-icon slot="end" name="arrow-down"></ion-icon>
               <p>Show</p></ion-item-option
             >
           </ion-item-options>
           <ion-item>
             <ion-label>
-              {{ subject.name }} {{ subject.hours }}
+              {{ item?.name }} {{ item?.hours }}
             </ion-label>
           </ion-item>
           <ion-item-options side="start">
-            <ion-item-option color="danger" (click)="deleteSubject(subject.id)">
+            <ion-item-option color="danger" (click)="deleteSubject(item.id)">
               <ion-icon slot="start" name="trash"></ion-icon
               >Delete</ion-item-option
             >
@@ -76,8 +73,8 @@
         [items]="subjects"
         [isInfiniteScrollable]="true"
       >
-        <ion-item *ngFor="let subject of course?.students">
-          <ion-label> {{ subject.name }} {{ subject.surname }} </ion-label>
+        <ion-item *ngFor="let item of segmentShowed">
+          <ion-label> {{ item?.name }} {{ item?.surname }} </ion-label>
         </ion-item>
       </app-list>
     </div>
@@ -87,8 +84,8 @@
         [items]="subjects"
         [isInfiniteScrollable]="true"
       >
-        <ion-item *ngFor="let subject of course?.teachers">
-          <ion-label> {{ subject.name }} {{ subject.surname }} </ion-label>
+        <ion-item *ngFor="let item of segmentShowed">
+          <ion-label> {{ item?.name }} {{ item?.surname }} </ion-label>
         </ion-item>
       </app-list>
     </div>

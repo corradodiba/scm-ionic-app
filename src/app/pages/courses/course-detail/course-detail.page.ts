@@ -30,6 +30,7 @@ export class CourseDetailPage implements OnInit {
   course: Course;
   subjects: Subject[] = [];
   subject: Subject;
+  segmentShowed = [];
   segment = 0;
   segments = ['subjects', 'students', 'teachers'];
 
@@ -42,6 +43,12 @@ export class CourseDetailPage implements OnInit {
         this.addSubject();
       },
     },
+    // {
+    //   name: 'Add Student',
+    //   color: 'primary',
+    //   icon: 'arrow-up',
+    //   action: async () => {},
+    // },
   ];
   slideOpts = {
     initialSlide: 0,
@@ -68,23 +75,20 @@ export class CourseDetailPage implements OnInit {
   }
   async segmentChanged() {
     const selectedSegment = this.segments[this.segment];
-    this.course =
+    this.segmentShowed =
       selectedSegment === 'subjects'
-        ? await this.coursesService.getById(this.courseId)
+        ? this.course.subjects
         : selectedSegment === 'teachers'
-        ? await this.coursesService.getById(this.courseId)
-        : await this.coursesService.getById(this.courseId);
+        ? this.course.teachers
+        : this.course.students;
   }
   async addSubject() {
     const modal = await this.modalCtrl.create({
       component: AddSubjectPage,
       componentProps: { courseSelected: this.courseId },
     });
-    modal.onWillDismiss().then(({ data }) => {
-      if (!data) {
-        return;
-      }
-      this.subjects.push(data);
+    modal.onWillDismiss().then(async () => {
+      this.course = await this.coursesService.getById(this.courseId);
     });
     await modal.present();
   }
@@ -98,18 +102,14 @@ export class CourseDetailPage implements OnInit {
         hours: selectedSubject.hours,
       },
     });
-    modal.onWillDismiss().then(({ data }) => {
-      this.subjects.map((subject, index) => {
-        if (subject.id === id) {
-          this.subjects.splice(index, 1, data);
-        }
-      });
+    modal.onWillDismiss().then(async () => {
+      this.course = await this.coursesService.getById(this.courseId);
     });
     await modal.present();
   }
   async deleteSubject(id: string) {
     try {
-      const deletedSubjects = await this.subjectsService.delete(id);
+      await this.subjectsService.delete(id);
       this.course = await this.coursesService.getById(this.courseId);
     } catch (e) {
       if (e.status == 0) {
